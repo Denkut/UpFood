@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { server } from '../../bff';
@@ -16,22 +16,24 @@ const regFormSchema = yup.object().shape({
 	login: yup
 		.string()
 		.required('Заполните логин')
-		.matches(/^\w+$/, 'Неверно заполнен логин. Допускаются только буквы и цифры')
-		.min(3, 'Неверно заполнен логин. Минимум 3 символа')
-		.max(15, 'Неверно заполнен логин. Максимум 15 символов'),
+		.matches(/^\w+$/, 'Неверно заполнен логин.')
+		.min(3, 'Неверно заполнен логин. Минимум 3 символа.')
+		.max(15, 'Неверно заполнен логин. Максимум 15 символов.'),
+
 	password: yup
 		.string()
 		.required('Заполните пароль')
 		.matches(
 			/^[\w#%]+$/,
-			'Неверно заполнен пароль. Допускаются буквы, цифры и знаки # %',
+			'Неверно заполнен пароль. Допускаются буквы, цифры и символы # %',
 		)
-		.min(6, 'Неверно заполнен логин. Минимум 6 символа')
-		.max(30, 'Неверно заполнен логин. Максимум 15 символов'),
+		.min(6, 'Неверный логин. Минимум 6 символа.')
+		.max(30, 'Неверный логин. Максимум 30 символов.'),
+
 	passcheck: yup
 		.string()
-		.required('Заполните повтор пароль')
-		.oneOf([yup.ref('password'), null], 'Повтор пароля не совпадает'),
+		.required('Заполните повтор пароля')
+		.oneOf([yup.ref('password'), null], 'Пароли не совпадают'),
 });
 
 const RegistrationContainer = ({ className }) => {
@@ -60,7 +62,7 @@ const RegistrationContainer = ({ className }) => {
 	const onSubmit = ({ login, password }) => {
 		server.register(login, password).then(({ error, res }) => {
 			if (error) {
-				setServerError(`Ошибка запроса ${error}`);
+				setServerError(`Ошибка запроса: ${error}`);
 				return;
 			}
 
@@ -116,8 +118,8 @@ export const Registration = styled(RegistrationContainer)`
 	align-items: center;
 
 	& > form {
+		width: 260px;
 		display: flex;
 		flex-direction: column;
-		width: 260px;
 	}
 `;
