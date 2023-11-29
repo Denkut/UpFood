@@ -45,8 +45,8 @@ const UserRowContainer = ({
 					<Icon
 						id="fa-floppy-o"
 						margin="0 0 0 10px"
-						onClick={() => onRoleSave(id, selectedRoleId)}
 						disabled={isSaveButtonDisabled}
+						onClick={() => onRoleSave(id, selectedRoleId)}
 					/>
 				</div>
 			</TableRow>
