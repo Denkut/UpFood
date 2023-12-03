@@ -88,9 +88,16 @@
     {
       "author_id": "001",
       "post_id": "001",
-      "published_at": "2046-11-26 04:48",
-      "content": "Первый",
+      "published_at": "2046-09-17 06:34",
+      "content": "Первый\n",
       "id": 3
+    },
+    {
+      "author_id": "001",
+      "post_id": "001",
+      "published_at": "2048-05-16 22:41",
+      "content": "Второй",
+      "id": 4
     }
   ],
   "sessions": [
