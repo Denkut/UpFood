@@ -77,5 +77,33 @@
       "published_at": "2045-05-18"
     }
   ],
-  "comments": []
+  "comments": [
+    {
+      "author_id": "001",
+      "post_id": "001",
+      "published_at": "2053-10-15 20:42",
+      "content": "Мой первый комментарий\n",
+      "id": 2
+    },
+    {
+      "author_id": "001",
+      "post_id": "001",
+      "published_at": "2046-11-26 04:48",
+      "content": "Первый",
+      "id": 3
+    }
+  ],
+  "sessions": [
+    {
+      "hash": "0.90372620104241385696752786316210404038429260253906",
+      "user": {
+        "id": "001",
+        "login": "anton",
+        "password": "qwe123",
+        "registeredAt": "2050-09-22",
+        "roleId": 0
+      },
+      "id": 1
+    }
+  ]
 }
