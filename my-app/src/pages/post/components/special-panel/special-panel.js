@@ -28,16 +28,26 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 	return (
 		<div className={className}>
 			<div className="published-at">
-				<Icon id="fa-calendar-o " margin="0px 6px 0 0" size="18px" />
+				{publishedAt && (
+					<Icon
+						inactive={true}
+						id="fa-calendar-o "
+						margin="0px 6px 0 0"
+						size="18px"
+					/>
+				)}
 				{publishedAt}
 			</div>
 			<div className="buttons">
 				{editButton}
-				<Icon
-					id="fa-trash-o "
-					size="21px"
-					onClick={() => onPostRemove(id)}
-				/>
+				{publishedAt && (
+					<Icon
+						id="fa-trash-o "
+						size="21px"
+						margin="0 0 0 6px"
+						onClick={() => onPostRemove(id)}
+					/>
+				)}
 			</div>
 		</div>
 	);
@@ -45,7 +55,7 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 export const SpecialPanel = styled(SpecialPanelContainer)`
 	display: flex;
 	justify-content: space-between;
-	margin: ${({ margin }) => margin} -20px 0 20px;
+	margin: ${({ margin }) => margin};
 
 	& .published-at {
 		display: flex;

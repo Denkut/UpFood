@@ -27,6 +27,7 @@ const CommentContainer = ({ className, postId, id, author, content, publishedAt 
 				<div className="information-panel">
 					<div className="author">
 						<Icon
+							inactive={true}
 							id="fa-user-circle-o "
 							size="18px"
 							margin="0 6px 0 0"
@@ -36,6 +37,7 @@ const CommentContainer = ({ className, postId, id, author, content, publishedAt 
 					</div>
 					<div className="published-at">
 						<Icon
+							inactive={true}
 							id="fa-calendar-o "
 							size="18px"
 							margin="0 6px 0 0"
@@ -59,7 +61,7 @@ const CommentContainer = ({ className, postId, id, author, content, publishedAt 
 export const Comment = styled(CommentContainer)`
 	display: flex;
 	margin-top: 10px;
-    
+
 	& .comment {
 		width: 550px;
 		padding: 5px 10px;

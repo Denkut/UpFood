@@ -1,7 +1,10 @@
-export const sanizeContent = (content) =>
+export const sanitizeContent = (content) =>
 	content
 		.replaceAll('&nbsp;', ' ')
-		.replace(/ +/, ' ')
-		.replaceAll('<div><br></div>', '\n')
-		.replaceAll('<div>', '\n')
+		.replaceAll('<br>', '\n\n')
+		.replaceAll('<div>', '')
 		.replaceAll('</div>', '');
+// content
+// 	.replaceAll('<div><br></div>', '\\n')
+// 	.replaceAll('<div>', '\\n')
+// 	.replaceAll('</div>', '');
