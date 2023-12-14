@@ -5,6 +5,7 @@ export const sessions = {
 		const hash = Math.random().toFixed(50);
 
 		addSession(hash, user);
+
 		return hash;
 	},
 	async remove(hash) {
@@ -13,11 +14,12 @@ export const sessions = {
 		if (!session) {
 			return;
 		}
+
 		deleteSession(session.id);
 	},
 	async access(hash, accessRoles) {
 		const dbSession = await getSession(hash);
 
-		return !!dbSession.user && accessRoles.includes(dbSession.user.roleId);
+		return !!dbSession?.user && accessRoles.includes(dbSession.user.roleId);
 	},
 };

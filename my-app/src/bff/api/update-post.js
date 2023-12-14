@@ -9,4 +9,6 @@ export const updatePost = ({ id, imageUrl, title, content }) =>
 			title,
 			content,
 		}),
-	}).then((loadedPost) => loadedPost.json());
+	})
+		.then((loadedPost) => loadedPost.json())
+		.catch((error) => console.log('Ошибка обновления role_id', error));
