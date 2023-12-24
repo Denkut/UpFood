@@ -98,7 +98,36 @@
       "id": "4L1JhaD"
     }
   ],
-  "comments": [],
+  "comments": [
+    {
+      "author_id": "001",
+      "post_id": "002",
+      "published_at": "2034-05-04 16:18",
+      "content": "Первый коммент 1",
+      "id": 1
+    },
+    {
+      "author_id": "001",
+      "post_id": "002",
+      "published_at": "2044-01-10 05:17",
+      "content": "Второй",
+      "id": 2
+    },
+    {
+      "author_id": "001",
+      "post_id": "002",
+      "published_at": "2059-12-03 06:55",
+      "content": "Третий",
+      "id": 3
+    },
+    {
+      "author_id": "001",
+      "post_id": "002",
+      "published_at": "2052-06-29 12:13",
+      "content": "Четвертый",
+      "id": 4
+    }
+  ],
   "sessions": [
     {
       "hash": "0.75828335675378677471769606199814006686210632324219",
