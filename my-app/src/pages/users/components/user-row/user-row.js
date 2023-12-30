@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { useServerRequest } from '../../../../hooks';
 import { Icon } from '../../../../components';
 import { TableRow } from '../table-row/table-row';
-import styled from 'styled-components';
 import { PROP_TYPE } from '../../../../constants';
+import styled from 'styled-components';
 
 const UserRowContainer = ({
 	className,
