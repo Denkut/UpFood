@@ -2,14 +2,14 @@
   "users": [
     {
       "id": "001",
-      "login": "stan",
-      "password": "qwerty123",
+      "login": "anton",
+      "password": "qwe123",
       "registered_at": "2023-10-04",
       "role_id": 0
     },
     {
       "login": "alina",
-      "password": "qwerty123",
+      "password": "qwe123",
       "registered_at": "2063-09-02 22:25",
       "role_id": 1,
       "id": "uSeQwtC"
