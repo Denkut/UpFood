@@ -16,7 +16,7 @@
     },
     {
       "login": "vasia",
-      "password": "qwerty123",
+      "password": "qwe123",
       "registered_at": "2064-01-10 00:03",
       "role_id": 2,
       "id": "1NALy5_"
@@ -154,6 +154,13 @@
       "published_at": "2048-01-30 19:34",
       "content": "и еще",
       "id": 4
+    },
+    {
+      "author_id": "uSeQwtC",
+      "post_id": "002",
+      "published_at": "2056-12-16 08:44",
+      "content": "Класс!",
+      "id": 5
     }
   ],
   "sessions": [
@@ -189,6 +196,17 @@
         "roleId": 0
       },
       "id": 3
+    },
+    {
+      "hash": "0.08410924314654399935875517257954925298690795898438",
+      "user": {
+        "id": "001",
+        "login": "anton",
+        "password": "qwe123",
+        "registeredAt": "2023-10-04",
+        "roleId": 0
+      },
+      "id": 4
     }
   ]
 }
