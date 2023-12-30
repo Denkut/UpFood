@@ -1,9 +1,9 @@
-import { Route, Routes } from 'react-router-dom';
-import { Footer, Header, Modal } from './components';
-import { Authorization, Main, Post, Registration, Users } from './pages';
 import { useLayoutEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from './actions';
+import { Footer, Header, Modal } from './components';
+import { Authorization, Main, Post, Registration, Users } from './pages';
 import styled from 'styled-components';
 
 const AppColumn = styled.div`
@@ -18,6 +18,8 @@ const AppColumn = styled.div`
 
 const Page = styled.div`
 	padding: 120px 0 20px;
+	position: relative;
+	flex-grow: 1;
 `;
 
 export const Blog = () => {
