@@ -33,7 +33,7 @@
     },
     {
       "id": 2,
-      "name": "Читатель"
+      "name": "Клиент"
     },
     {
       "id": 3,
@@ -147,20 +147,6 @@
       "published_at": "2045-12-14 02:52",
       "content": "А вот и от меня комментарий!!!",
       "id": 3
-    },
-    {
-      "author_id": "uSeQwtC",
-      "post_id": "002",
-      "published_at": "2048-01-30 19:34",
-      "content": "и еще",
-      "id": 4
-    },
-    {
-      "author_id": "uSeQwtC",
-      "post_id": "002",
-      "published_at": "2056-12-16 08:44",
-      "content": "Класс!",
-      "id": 5
     }
   ],
   "sessions": [
