@@ -4,9 +4,10 @@ import { Footer, Header } from './components';
 
 export const App = () => {
 	return (
-		<div>
+		<div className=''>
 			<Header />
-			<div className=" p-32">
+			<div className=" pt-32 pb-36" >
+				<h2>Контент</h2>
 				<Routes>
 					<Route path="/" element={<Main />} />
 					<Route path="/login" element={<div>Авторизация</div>} />
