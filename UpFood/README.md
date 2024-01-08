@@ -16,7 +16,7 @@
 -   Пользователи - users: id / login / password / registed_at / role_id / age / weight / height / fitnessGoals / dietPreferences / allergies 
 -   роли - roles: id / name
 -   рационы - rations: id / title / total_callories / fitnessGoal / meals / image_url / content / price
--   блюдо - meal: id / name / image_url / type / calories / suitableFor / dietCategories / ingredients / price
+-   блюда - meals: id / name / image_url / type / calories / suitableFor / dietCategories / ingredients / price
 
 Схема состояния на BFF:
 
@@ -27,4 +27,6 @@
 -   user: id / login / roleId / session / age / weight / height / fitnessGoals / dietPreferences / allergies /
 -   users: массив user: id / login / registeredAt / role
 -   meal: id / title / imageUrl / content / type / calories / suitableFor / dietCategories / ingredients / price
--   rations: массив meal: id / title / imageUrl / content /  totalCalories / fitnessGoal / price
+-   meals: массив meal / id / title / imageUrl / content / type / calories / suitableFor / dietCategories / ingredients / price
+-   ration: массив meal: id / title / imageUrl / content /  totalCalories / fitnessGoal / price
+-   rations: массив ration: id / title / imageUrl / content /  totalCalories / fitnessGoal / price

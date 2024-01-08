@@ -1,8 +1,13 @@
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
-import Logo from '../../assets/Logo.png';
+import { Bars3Icon, XMarkIcon, ShoppingCartIcon, ArrowLeftEndOnRectangleIcon} from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom';
+import Logo from '../../assets/Logo.png';
+import { ROLE } from '../../constants';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUserLogin, selectUserRole, selectUserSession } from '../../selectors';
+import { logout } from '../../actions';
+
 
 const navigation = [
   { name: 'Главная', to: '/' },
@@ -12,7 +17,11 @@ const navigation = [
 ]
 
 export const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const dispatch = useDispatch()
+  const roleId = useSelector(selectUserRole);
+  const login = useSelector(selectUserLogin);
+  const session = useSelector(selectUserSession);
 
   return (
     <div className="bg-white">
@@ -40,7 +49,7 @@ export const Header = () => {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <a key={item.name} href={item.to} className="text-sm font-semibold leading-6 text-gray-900">
+              <a key={item.name} href={item.to} className="text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100 rounded-lg">
                 {item.name}
               </a>
             ))}
@@ -48,12 +57,17 @@ export const Header = () => {
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
 		  <div>
 					<Link to='/basket'>
-					<ShoppingCartIcon className=" h-6 w-auto block rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"/>
+					<ShoppingCartIcon className=" h-6 w-auto block rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"/>
 					</Link>
 				</div>
-            <Link to="/login" className="text-sm font-semibold leading-6 text-gray-900 px-2.5">
-              Log in <span aria-hidden="true">&rarr;</span>
-            </Link>
+            {roleId === ROLE.GUEST ? (
+            <Link to="/login" className="text-sm font-semibold leading-6 text-gray-900 px-2.5 hover:bg-gray-100 rounded-lg">
+              Войти 
+            </Link> ) : ( 
+            <>
+            <div>{login}</div>
+            <ArrowLeftEndOnRectangleIcon onClick={() => dispatch(logout(session))} className=" h-6 w-auto block rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"/>
+            </>)}
           </div>
         </nav>
         <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -101,7 +115,7 @@ export const Header = () => {
                     to="/login"
                     className="-mx-3 block rounded-lg px-3 py-1 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Log in
+                    Войти
                   </Link>
                 </div>
               </div>

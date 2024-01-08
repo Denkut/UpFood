@@ -4,13 +4,12 @@ import { Footer, Header } from './components';
 
 export const App = () => {
 	return (
-		<div className=''>
+		<div className="">
 			<Header />
-			<div className=" pt-32 pb-36" >
-				<h2>Контент</h2>
+			<div className=" pb-36 pt-32">
 				<Routes>
 					<Route path="/" element={<Main />} />
-					<Route path="/login" element={<div>Авторизация</div>} />
+					<Route path="/login" element={<Authorization />} />
 					<Route path="/register" element={<div>Регистрация</div>} />
 					<Route path="/users" element={<div>Пользователи</div>} />
 					<Route path="/rations" element={<div>Рационы</div>} />
