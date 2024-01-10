@@ -10,6 +10,6 @@ export const addUser = (login, password) =>
 			login,
 			password,
 			registered_at: generateDate(),
-			role_id: 2,
+			role_id: 1,
 		}),
-	})
+	}).then(createdUser => createdUser.json());

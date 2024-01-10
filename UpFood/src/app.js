@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { Authorization, Main, Registration } from './pages';
+import { Authorization, Main, Profile, Registration } from './pages';
 import { Footer, Header } from './components';
 
 export const App = () => {
@@ -10,7 +10,8 @@ export const App = () => {
 				<Routes>
 					<Route path="/" element={<Main />} />
 					<Route path="/login" element={<Authorization />} />
-					<Route path="/register" element={<div>Регистрация</div>} />
+					<Route path="/register" element={<Registration />} />
+					<Route path="/profile" element={<Profile />} />
 					<Route path="/users" element={<div>Пользователи</div>} />
 					<Route path="/rations" element={<div>Рационы</div>} />
 					<Route path="/meal" element={<div>Блюдо</div>} />

@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { useStore } from "react-redux";
+import { useEffect } from 'react';
+import { useStore } from 'react-redux';
 
-export const useResetForm = (reset) => {
-    const store = useStore()
+export const useResetForm = reset => {
+	const store = useStore();
 
-    useEffect(() => {
+	useEffect(() => {
 		let currentWasLogout = store.getState().app.wasLogout;
 
 		return store.subscribe(() => {
@@ -16,4 +16,4 @@ export const useResetForm = (reset) => {
 			}
 		});
 	}, [reset, store]);
-}
+};
