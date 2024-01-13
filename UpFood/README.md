@@ -13,7 +13,7 @@
 
 Таблицы БД:
 
--   Пользователи - users: id / login / password / registed_at / role_id / age / weight / height / fitnessGoals / dietPreferences / allergies 
+-   Пользователи - users: id / login / password / registreed_at / role_id / age / weight / height / fitnessGoals / dietPreferences / allergies
 -   роли - roles: id / name
 -   рационы - rations: id / title / total_callories / fitnessGoal / meals / image_url / content / price
 -   блюда - meals: id / name / image_url / type / calories / suitableFor / dietCategories / ingredients / price
@@ -28,5 +28,5 @@
 -   users: массив user: id / login / registeredAt / role
 -   meal: id / title / imageUrl / content / type / calories / suitableFor / dietCategories / ingredients / price
 -   meals: массив meal / id / title / imageUrl / content / type / calories / suitableFor / dietCategories / ingredients / price
--   ration: массив meal: id / title / imageUrl / content /  totalCalories / fitnessGoal / price
--   rations: массив ration: id / title / imageUrl / content /  totalCalories / fitnessGoal / price
+-   ration: массив meal: id / title / imageUrl / content / totalCalories / fitnessGoal / price
+-   rations: массив ration: id / title / imageUrl / content / totalCalories / fitnessGoal / price

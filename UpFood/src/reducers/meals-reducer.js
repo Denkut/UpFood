@@ -1,4 +1,4 @@
-import { ACTION_TYPE } from '../actions';
+// import { ACTION_TYPE } from '../actions';
 import { ROLE } from '../constants';
 
 const initialMealsState = {

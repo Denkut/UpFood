@@ -6,7 +6,7 @@ import {
 	ShoppingCartIcon,
 	ArrowLeftEndOnRectangleIcon,
 } from '@heroicons/react/24/outline';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Logo from '../../assets/Logo.png';
 import { ROLE } from '../../constants';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,7 +20,7 @@ import { logout } from '../../actions';
 const navigation = [
 	{ name: 'Главная', to: '/' },
 	{ name: 'Блюда', to: '/meal' },
-	{ name: 'Рацион', to: 'rations' },
+	{ name: 'Рацион', to: '/rations' },
 	{ name: 'Пользователи', to: '/users' },
 ];
 
@@ -60,13 +60,13 @@ export const Header = () => {
 					</div>
 					<div className="hidden lg:flex lg:gap-x-12">
 						{navigation.map(item => (
-							<a
+							<Link
 								key={item.name}
-								href={item.to}
+								to={item.to}
 								className="rounded-lg text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
 							>
 								{item.name}
-							</a>
+							</Link>
 						))}
 					</div>
 					<div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -84,7 +84,7 @@ export const Header = () => {
 							</Link>
 						) : (
 							<>
-								<Link to="/profile">{login}</Link>
+								<NavLink to="/profile">{login}</NavLink>
 								<ArrowLeftEndOnRectangleIcon
 									onClick={() => dispatch(logout(session))}
 									className=" block h-6 w-auto rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
@@ -102,7 +102,7 @@ export const Header = () => {
 					<div className="fixed inset-0 z-50" />
 					<Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
 						<div className="flex items-center justify-between">
-							<Link href="#" className="-m-1.5 p-1.5">
+							<Link to="/" className="-m-1.5 p-1.5">
 								<span className="sr-only">Upfood</span>
 								<img
 									className="h-8 w-auto"

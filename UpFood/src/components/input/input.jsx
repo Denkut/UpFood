@@ -1,9 +1,13 @@
+/* eslint-disable react/display-name */
 import { forwardRef } from 'react';
 
 export const Input = forwardRef(({ label, error, ...props }, ref) => {
 	return (
 		<div className="mb-4">
-			<label className="mb-2 block text-sm font-bold text-gray-700" htmlFor={label}>
+			<label
+				className="mb-2 block text-sm font-bold text-gray-700"
+				htmlFor={label}
+			>
 				{label}
 			</label>
 			<input
