@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,34 +7,13 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { server } from '../../bff';
 import { Button, Input } from '../../components';
-import { useResetForm } from '../../hooks';
+import { useResetForm, useServerRequest } from '../../hooks';
 import { setUser } from '../../actions';
-import { selectUserRole } from '../../selectors';
+import { selectUser, selectUserRole } from '../../selectors';
 import { ROLE } from '../../constants';
+import { dietCategories, goals, ingredients } from '../../bff/constants';
 
-const regFormSchema = yup.object().shape({
-	login: yup
-		.string()
-		.required('Заполните логин')
-		.matches(/^\w+$/, 'Неверно заполнен логин.')
-		.min(3, 'Неверно заполнен логин. Минимум 3 символа.')
-		.max(15, 'Неверно заполнен логин. Максимум 15 символов.'),
-
-	password: yup
-		.string()
-		.required('Заполните пароль')
-		.matches(
-			/^[\w#%]+$/,
-			'Неверно заполнен пароль. Допускаются буквы, цифры и символы # %',
-		)
-		.min(6, 'Неверный логин. Минимум 6 символов.')
-		.max(30, 'Неверный логин. Максимум 30 символов.'),
-
-	passcheck: yup
-		.string()
-		.required('Заполните повтор пароля')
-		.oneOf([yup.ref('password'), null], 'Пароли не совпадают'),
-
+const profileFormSchema = yup.object().shape({
 	fullName: yup
 		.string()
 		.required('Заполните ФИО')
@@ -47,10 +27,7 @@ const regFormSchema = yup.object().shape({
 		.integer('Вес должен быть целым числом')
 		.min(10, 'Минимальный вес - 10 кг'),
 
-	goal: yup
-		.string()
-		.required('Заполните цель')
-		.max(100, 'Максимальная длина 100 символов.'),
+	goal: yup.number().required('Заполните цель'),
 
 	height: yup
 		.number()
@@ -72,12 +49,14 @@ const regFormSchema = yup.object().shape({
 		.email('Введите корректный email')
 		.max(100, 'Максимальная длина 100 символов.'),
 
-	dietPreferences: yup.string(),
+	dietCategory: yup.number().required('Заполните категорию диет'),
 
-	allergies: yup.string(),
+	allergenicIngredients: yup.array(),
 });
 
 export const Profile = () => {
+	const user = useSelector(selectUser);
+
 	const {
 		register,
 		reset,
@@ -85,19 +64,18 @@ export const Profile = () => {
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
-			login: '',
-			password: '',
-			passcheck: '',
-			fullName: '',
-			weight: '',
-			goal: '',
-			height: '',
-			age: '',
-			email: '',
-			dietPreferences: '',
-			allergies: '',
+			fullName: user.fullName ? user.fullName : '',
+			weight: user.weight ? user.weight : '',
+			goal: user.goal ? user.goal : '',
+			height: user.height ? user.height : '',
+			age: user.age ? user.age : '',
+			email: user.email ? user.email : '',
+			dietCategory: user.dietCategory ? user.dietCategory : '',
+			allergenicIngredients: user.allergenicIngredients
+				? user.allergenicIngredients
+				: '',
 		},
-		resolver: yupResolver(regFormSchema),
+		resolver: yupResolver(profileFormSchema),
 	});
 
 	const [serverError, setServerError] = useState(null);
@@ -108,58 +86,32 @@ export const Profile = () => {
 
 	useResetForm(reset);
 
-	const onSubmit = ({
-		login,
-		password,
-		fullName,
-		weight,
-		goal,
-		height,
-		age,
-		email,
-		dietPreferences,
-		allergies,
-	}) => {
-		server
-			.register(
-				login,
-				password,
-				fullName,
-				age,
-				email,
-				weight,
-				height,
-				goal,
-				dietPreferences,
-				allergies,
-			)
-			.then(({ error, res }) => {
-				if (error) {
-					setServerError(`Ошибка запроса: ${error}`);
-					return;
-				}
+	const onSubmit = data => {
+		server.updateUser(user, data).then(({ error, res }) => {
+			if (error) {
+				setServerError(`Ошибка запроса: ${error}`);
+				return;
+			}
 
-				dispatch(setUser(res));
-				// sessionStorage.setItem('userData', JSON.stringify(res));
-			});
+			dispatch(setUser(res));
+			sessionStorage.setItem('userData', JSON.stringify(res));
+		});
+		console.log('data', data);
 	};
 
 	const formError =
-		errors?.login?.message ||
-		errors?.password?.message ||
-		errors?.passcheck?.message ||
 		errors?.fullName?.message ||
 		errors?.weight?.message ||
 		errors?.goal?.message ||
 		errors?.height?.message ||
 		errors?.age?.message ||
 		errors?.email?.message ||
-		errors?.dietPreferences?.message ||
+		errors?.dietCategory?.message ||
 		errors?.allergies?.message;
 
 	const errorMessage = formError || serverError;
 
-	if (roleId !== ROLE.GUEST) {
+	if (roleId === ROLE.GUEST) {
 		return <Navigate to="/" />;
 	}
 
@@ -197,7 +149,6 @@ export const Profile = () => {
 						placeholder="Вес..."
 						{...register('weight', {
 							onChange: () => setServerError(null),
-							min: 10,
 						})}
 					/>
 				</div>
@@ -214,7 +165,6 @@ export const Profile = () => {
 						placeholder="Рост..."
 						{...register('height', {
 							onChange: () => setServerError(null),
-							min: 100,
 						})}
 					/>
 				</div>
@@ -231,7 +181,6 @@ export const Profile = () => {
 						placeholder="Возраст..."
 						{...register('age', {
 							onChange: () => setServerError(null),
-							min: 6,
 						})}
 					/>
 				</div>
@@ -268,28 +217,47 @@ export const Profile = () => {
 							onChange: () => setServerError(null),
 						})}
 					>
-						<option value="">Выберите цель</option>
-						<option value="похудеть">Похудеть</option>
-						<option value="набрать вес">Набрать вес</option>
-						<option value="поддерживать форму">
-							Поддерживать форму
+						<option key="0" value="0" defaultValue="0">
+							Не указано
 						</option>
+						{goals.map(item => {
+							return (
+								<option key={item.id} value={item.id}>
+									{item.name}
+								</option>
+							);
+						})}
 					</select>
 				</div>
+
 				<div className="mb-4">
 					<label
-						htmlFor="dietPreferences"
+						htmlFor="goal"
 						className="mb-2 block text-sm font-bold text-gray-700"
 					>
-						Предпочтения в диете:
+						Категория диеты:
 					</label>
-					<Input
-						type="text"
-						placeholder="Предпочтения в диете..."
-						{...register('dietPreferences', {
+					<select
+						id="dietCategory"
+						name="dietCategory"
+						className={`focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none ${
+							errors.goal ? 'border-red-500' : ''
+						}`}
+						{...register('dietCategory', {
 							onChange: () => setServerError(null),
 						})}
-					/>
+					>
+						<option key="0" value="0" defaultValue="0">
+							Не указано
+						</option>
+						{dietCategories.map(item => {
+							return (
+								<option key={item.id} value={item.id}>
+									{item.name}
+								</option>
+							);
+						})}
+					</select>
 				</div>
 
 				<div className="mb-4">
@@ -299,65 +267,27 @@ export const Profile = () => {
 					>
 						Аллергии:
 					</label>
-					<Input
-						type="text"
-						placeholder="Аллергии..."
-						{...register('allergies', {
-							onChange: () => setServerError(null),
-						})}
-					/>
-				</div>
-				<div className="mb-4">
-					<label
-						htmlFor="login"
-						className="mb-2 block text-sm font-bold text-gray-700"
-					>
-						Логин:
-					</label>
-					<Input
-						type="text"
-						placeholder="Логин..."
-						{...register('login', {
-							onChange: () => setServerError(null),
-						})}
-					/>
-				</div>
-
-				<div className="mb-4">
-					<label
-						htmlFor="password"
-						className="mb-2 block text-sm font-bold text-gray-700"
-					>
-						Пароль:
-					</label>
-					<Input
-						type="password"
-						placeholder="Пароль..."
-						{...register('password', {
-							onChange: () => setServerError(null),
-						})}
-					/>
-				</div>
-
-				<div className="mb-4">
-					<label
-						htmlFor="passcheck"
-						className="mb-2 block text-sm font-bold text-gray-700"
-					>
-						Проверка пароля:
-					</label>
-					<Input
-						type="password"
-						placeholder="Проверка пароля..."
-						{...register('passcheck', {
-							onChange: () => setServerError(null),
-						})}
-					/>
+					{ingredients.map(item => (
+						<div key={item.id}>
+							<label htmlFor={`ingredient-${item.id}`}>
+								{item.name}
+							</label>
+							<input
+								type="checkbox"
+								name={`ingredient${item.id}`}
+								id={`ingredient-${item.id}`}
+								value={item.id}
+								{...register('allergenicIngredients', {
+									onChange: () => setServerError(null),
+								})}
+							/>
+						</div>
+					))}
 				</div>
 
 				<div className="flex items-center justify-center">
 					<Button type="submit" disabled={!!formError}>
-						Зарегистрироваться
+						Сохранить изменения
 					</Button>
 				</div>
 				{errorMessage && (

@@ -6,6 +6,14 @@ const initialUserState = {
 	login: null,
 	roleId: ROLE.GUEST,
 	session: null,
+	fullName: null,
+	weight: null,
+	goal: null,
+	height: null,
+	age: null,
+	email: null,
+	dietCategory: null,
+	allergenicIngredients: null,
 };
 
 export const userReducer = (state = initialUserState, action) => {
@@ -17,6 +25,12 @@ export const userReducer = (state = initialUserState, action) => {
 			};
 		case ACTION_TYPE.LOGOUT: {
 			return initialUserState;
+		}
+		case ACTION_TYPE.USER_UPDATE: {
+			return {
+				...state,
+				...action.payload,
+			};
 		}
 		default:
 			return state;

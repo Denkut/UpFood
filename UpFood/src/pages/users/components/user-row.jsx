@@ -51,14 +51,14 @@ export const UserRow = ({
 					className={`mr-2 block h-7 cursor-pointer items-center rounded-lg pt-1 text-base font-semibold leading-7 text-gray-900 ${
 						isSaveButtonDisabled
 							? 'opacity-50'
-							: 'hover:bg-gray-300'
+							: 'hover:text-green-800'
 					}`}
 				/>
 			</TableRow>
 
 			<TrashIcon
 				onClick={onUserRemove}
-				className="flex h-8 w-auto cursor-pointer items-center  rounded-lg p-1 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-300"
+				className="flex h-8 w-auto cursor-pointer items-center  rounded-lg p-1 text-base font-semibold leading-7 text-gray-900 hover:text-red-800 "
 			/>
 		</div>
 	);

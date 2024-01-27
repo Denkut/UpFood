@@ -52,25 +52,23 @@ export const Authorization = () => {
 
 	useResetForm(reset);
 
-	const onSubmit = async ({ login, password }) => {
-		try {
-			const { error, res } = await server.authorize(login, password);
+	const onSubmit = ({ login, password }) => {
+		server.authorize(login, password).then(({ error, res }) => {
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
 				return;
 			}
 
 			dispatch(setUser(res));
-		} catch (error) {
-			setServerError(`Ошибка запроса: ${error.message}`);
-		}
+			sessionStorage.setItem('userData', JSON.stringify(res));
+		});
 	};
 
 	const formError = errors?.login?.message || errors?.password?.message;
 	const errorMessage = formError || serverError;
 
 	if (roleId !== ROLE.GUEST) {
-		return <Navigate to="/" />;
+		return <Navigate to="/profile" />;
 	}
 
 	return (

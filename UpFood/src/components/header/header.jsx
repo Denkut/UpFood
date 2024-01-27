@@ -6,7 +6,7 @@ import {
 	ShoppingCartIcon,
 	ArrowLeftEndOnRectangleIcon,
 } from '@heroicons/react/24/outline';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Logo from '../../assets/Logo.png';
 import { ROLE } from '../../constants';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,11 +16,12 @@ import {
 	selectUserSession,
 } from '../../selectors';
 import { logout } from '../../actions';
+import { HeaderMobile } from './components';
 
 const navigation = [
 	{ name: 'Главная', to: '/' },
 	{ name: 'Блюда', to: '/meal' },
-	{ name: 'Рацион', to: '/rations' },
+	{ name: 'Рационы', to: '/rations' },
 	{ name: 'Пользователи', to: '/users' },
 ];
 
@@ -30,6 +31,11 @@ export const Header = () => {
 	const roleId = useSelector(selectUserRole);
 	const login = useSelector(selectUserLogin);
 	const session = useSelector(selectUserSession);
+
+	const onLogout = () => {
+		dispatch(logout(session));
+		sessionStorage.removeItem('userData');
+	};
 
 	return (
 		<div className="bg-white">
@@ -70,9 +76,15 @@ export const Header = () => {
 						))}
 					</div>
 					<div className="hidden lg:flex lg:flex-1 lg:justify-end">
+						<Link
+							to="/add-meal"
+							className="-mx-3 block rounded-lg px-3 text-sm  font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+						>
+							Добавить блюдо
+						</Link>
 						<div>
 							<Link to="/basket">
-								<ShoppingCartIcon className=" block h-6 w-auto rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100" />
+								<ShoppingCartIcon className=" block h-6 w-auto rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:text-emerald-800" />
 							</Link>
 						</div>
 						{roleId === ROLE.GUEST ? (
@@ -84,9 +96,14 @@ export const Header = () => {
 							</Link>
 						) : (
 							<>
-								<NavLink to="/profile">{login}</NavLink>
+								<Link
+									to="/profile"
+									className="-mx-3 block rounded-lg px-3 text-lg  font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+								>
+									{login}
+								</Link>
 								<ArrowLeftEndOnRectangleIcon
-									onClick={() => dispatch(logout(session))}
+									onClick={onLogout}
 									className=" block h-6 w-auto rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
 								/>
 							</>
@@ -122,35 +139,8 @@ export const Header = () => {
 								/>
 							</button>
 						</div>
-						<div className="mt-6 flow-root">
-							<div className="-my-6 divide-y divide-gray-500/10">
-								<div className="space-y-2 py-6">
-									{navigation.map(item => (
-										<Link
-											key={item.name}
-											to={item.to}
-											className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-										>
-											{item.name}
-										</Link>
-									))}
-								</div>
 
-								<div className="py-6">
-									<div>
-										<Link to="/basket">
-											<ShoppingCartIcon className=" block h-10 w-auto rounded-lg py-1 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" />
-										</Link>
-									</div>
-									<Link
-										to="/login"
-										className="-mx-3 block rounded-lg px-3 py-1 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-									>
-										Войти
-									</Link>
-								</div>
-							</div>
-						</div>
+						<HeaderMobile navigation={navigation} />
 					</Dialog.Panel>
 				</Dialog>
 			</header>
