@@ -1,8 +1,10 @@
+/* eslint-disable no-debugger */
 import { getUser } from '../api';
 import { sessions } from '../sessions';
 
 export const authorize = async (authLogin, authPassword) => {
 	const user = await getUser(authLogin);
+
 
 	if (!user) {
 		return {
@@ -11,7 +13,20 @@ export const authorize = async (authLogin, authPassword) => {
 		};
 	}
 
-	const { id, login, password, roleId } = user;
+	const {
+		id,
+		login,
+		password,
+		roleId,
+		fullName,
+		weight,
+		goal,
+		height,
+		age,
+		email,
+		dietCategory,
+		allergenicIngredients,
+	} = user;
 
 	if (authPassword !== password) {
 		return {
@@ -26,6 +41,14 @@ export const authorize = async (authLogin, authPassword) => {
 			id,
 			login,
 			roleId,
+			fullName,
+			weight,
+			goal,
+			height,
+			age,
+			email,
+			dietCategory,
+			allergenicIngredients,
 			session: sessions.create(user),
 		},
 	};

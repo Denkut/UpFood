@@ -12,6 +12,7 @@ import { AddMeal } from './pages/meal';
 import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from './actions';
+import { MealContent } from './pages/meal/components';
 
 export const App = () => {
 	const dispatch = useDispatch();
@@ -48,8 +49,8 @@ export const App = () => {
 						path="/rations/:id"
 						element={<div>Новый рацион</div>}
 					/>
-					<Route path="/meal" element={<div>Новое блюдо</div>} />
-					<Route path="/meal/:id" element={<Meal />} />
+					<Route path="/meal" element={<Meal />} />
+					<Route path="/meal/:id" element={<MealContent />} />
 					{/* <Route path="/meal/:id/edit" element={<EditMeal />} /> */}
 					<Route path="/add-meal" element={<AddMeal />} />
 					<Route path="/basket" element={<div>Корзина</div>} />

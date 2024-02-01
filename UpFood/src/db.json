@@ -7,16 +7,15 @@
       "role_id": 0,
       "id": "JahlbFP",
       "allergenicIngredients": [
-        "1",
-        "3"
+        "1"
       ],
-      "dietCategory": 2,
-      "email": "ww@rr.ru",
-      "age": 32,
-      "height": 167,
-      "goal": 1,
+      "dietCategory": 1,
+      "email": "upfood.ru@yandex.ru",
+      "age": 38,
+      "height": 127,
+      "goal": 2,
       "weight": 65,
-      "fullName": "Den k"
+      "fullName": "Den kutepov"
     },
     {
       "login": "Denis",
@@ -247,7 +246,7 @@
   ],
   "sessions": [
     {
-      "hash": "0.40706691699931019101654783298727124929428100585938",
+      "hash": "0.01269400890928396030687963502714410424232482910156",
       "user": {
         "id": "JahlbFP",
         "login": "anton",
@@ -258,138 +257,25 @@
       "id": 1
     },
     {
-      "hash": "0.93921727226451778847149398643523454666137695312500",
+      "hash": "0.90587516475544505034633857576409354805946350097656",
       "user": {
         "id": "JahlbFP",
         "login": "anton",
         "password": "qwe123",
         "registeredAt": "2024-01-10 17:15",
-        "roleId": 0
+        "roleId": 0,
+        "fullName": "Den kutepov",
+        "weight": 65,
+        "goal": 2,
+        "height": 127,
+        "age": 38,
+        "email": "upfood.ru@yandex.ru",
+        "dietCategory": 1,
+        "allergenicIngredients": [
+          "1"
+        ]
       },
       "id": 2
-    },
-    {
-      "hash": "0.78609808893743715607627109420718625187873840332031",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "password": "qwe123",
-        "registeredAt": "2024-01-10 17:15",
-        "roleId": 0
-      },
-      "id": 3
-    },
-    {
-      "hash": "0.47705093118204278113125837990082800388336181640625",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "roleId": 0,
-        "session": "0.78609808893743715607627109420718625187873840332031",
-        "fullName": null,
-        "weight": null,
-        "goal": null,
-        "height": null,
-        "age": null,
-        "email": null,
-        "dietCategory": null,
-        "allergenicIngredients": null
-      },
-      "id": 4
-    },
-    {
-      "hash": "0.12391455075566271126774609001586213707923889160156",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "roleId": 0,
-        "session": "0.47705093118204278113125837990082800388336181640625",
-        "fullName": "Den k",
-        "weight": 65,
-        "goal": "2",
-        "height": 123,
-        "age": 32,
-        "email": "ww@rr.ru",
-        "dietCategory": "1",
-        "allergenicIngredients": [
-          "3",
-          "4"
-        ]
-      },
-      "id": 5
-    },
-    {
-      "hash": "0.12807193646176462387131778086768463253974914550781",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "roleId": 0,
-        "session": "0.12391455075566271126774609001586213707923889160156",
-        "fullName": "Den k",
-        "weight": 65,
-        "goal": "2",
-        "height": 123,
-        "age": 32,
-        "email": "denix.ru@yandex.ru",
-        "dietCategory": "1",
-        "allergenicIngredients": [
-          "1",
-          "3",
-          "6"
-        ]
-      },
-      "id": 6
-    },
-    {
-      "hash": "0.10766209894460376794711464754072949290275573730469",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "roleId": 0,
-        "session": "0.12807193646176462387131778086768463253974914550781",
-        "fullName": "Den k",
-        "weight": 65,
-        "goal": 1,
-        "height": 123,
-        "age": 32,
-        "email": "denix.ru@yandex.ru",
-        "dietCategory": "1",
-        "allergenicIngredients": [
-          "1",
-          "3",
-          "6"
-        ]
-      },
-      "id": 7
-    },
-    {
-      "hash": "0.55407583649544145387721982842776924371719360351563",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "password": "qwe123",
-        "registeredAt": "2024-01-10 17:15",
-        "roleId": 0
-      },
-      "id": 8
-    },
-    {
-      "hash": "0.41387271499872313462731199251720681786537170410156",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "roleId": 0,
-        "session": "0.55407583649544145387721982842776924371719360351563",
-        "fullName": null,
-        "weight": null,
-        "goal": null,
-        "height": null,
-        "age": null,
-        "email": null,
-        "dietCategory": null,
-        "allergenicIngredients": null
-      },
-      "id": 9
     }
   ]
 }

@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,11 +6,12 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { server } from '../../bff';
 import { Button, Input } from '../../components';
-import { useResetForm, useServerRequest } from '../../hooks';
+import { useResetForm } from '../../hooks';
 import { setUser } from '../../actions';
 import { selectUser, selectUserRole } from '../../selectors';
 import { ROLE } from '../../constants';
 import { dietCategories, goals, ingredients } from '../../bff/constants';
+// import { getUser } from '../../bff/api';
 
 const profileFormSchema = yup.object().shape({
 	fullName: yup
@@ -56,6 +56,17 @@ const profileFormSchema = yup.object().shape({
 
 export const Profile = () => {
 	const user = useSelector(selectUser);
+	const roleId = useSelector(selectUserRole);
+
+	const [serverError, setServerError] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
+	const [isSaved, setIsSaved] = useState(false);
+
+	const dispatch = useDispatch();
+
+	const saveUserDataToSessionStorage = userData => {
+		sessionStorage.setItem('userData', JSON.stringify(userData));
+	};
 
 	const {
 		register,
@@ -78,25 +89,25 @@ export const Profile = () => {
 		resolver: yupResolver(profileFormSchema),
 	});
 
-	const [serverError, setServerError] = useState(null);
-
-	const dispatch = useDispatch();
-
-	const roleId = useSelector(selectUserRole);
-
 	useResetForm(reset);
 
-	const onSubmit = data => {
+	const onSubmit = async data => {
+
+		setIsLoading(true);
+
 		server.updateUser(user, data).then(({ error, res }) => {
+			setIsLoading(false);
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
 				return;
 			}
 
 			dispatch(setUser(res));
-			sessionStorage.setItem('userData', JSON.stringify(res));
+			saveUserDataToSessionStorage(res);
+
+			setIsSaved(true);
+			setTimeout(() => setIsSaved(false), 3000);
 		});
-		console.log('data', data);
 	};
 
 	const formError =
@@ -286,10 +297,15 @@ export const Profile = () => {
 				</div>
 
 				<div className="flex items-center justify-center">
-					<Button type="submit" disabled={!!formError}>
-						Сохранить изменения
+					<Button type="submit" disabled={!!formError || isLoading}>
+						{isLoading ? 'Отправка...' : 'Сохранить изменения'}
 					</Button>
 				</div>
+				{isSaved && (
+					<div className="mt-1 text-center text-sm text-green-500">
+						Изменения сохранены
+					</div>
+				)}
 				{errorMessage && (
 					<div className="mb-6 text-xs italic text-red-500">
 						{errorMessage}

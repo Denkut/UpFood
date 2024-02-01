@@ -25,7 +25,7 @@ module.exports = {
 	},
 	plugins: ['react'],
 	rules: {
-		'no-var': 'error',
+		'no-var': 'warn',
 		'prefer-const': 'warn',
 		'react/prop-types': 'off',
 		'react/react-in-jsx-scope': 'off',

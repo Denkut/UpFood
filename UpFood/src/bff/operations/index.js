@@ -6,4 +6,5 @@ export * from './fetch-users';
 export * from './update-user-role';
 export * from './remove-user';
 export * from './fetch-meal';
+export * from './fetch-meals';
 export * from './update-user';

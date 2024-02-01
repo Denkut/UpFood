@@ -1,5 +1,4 @@
 import { setUser } from '../api';
-import { sessions } from '../sessions';
 
 export const updateUser = async (user, profileFormData) => {
 	await setUser(user.id, profileFormData);
@@ -10,7 +9,6 @@ export const updateUser = async (user, profileFormData) => {
 			id: user.id,
 			login: user.login,
 			roleId: user.roleId,
-			session: sessions.create(user),
 			...profileFormData,
 		},
 	};
