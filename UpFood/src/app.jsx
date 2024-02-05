@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import {
+	// AddMeal,
 	Authorization,
 	Main,
 	Meal,
@@ -8,11 +9,9 @@ import {
 	Users,
 } from './pages';
 import { Footer, Header } from './components';
-import { AddMeal } from './pages/meal';
 import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from './actions';
-import { MealContent } from './pages/meal/components';
 
 export const App = () => {
 	const dispatch = useDispatch();
@@ -50,9 +49,9 @@ export const App = () => {
 						element={<div>Новый рацион</div>}
 					/>
 					<Route path="/meal" element={<Meal />} />
-					<Route path="/meal/:id" element={<MealContent />} />
-					{/* <Route path="/meal/:id/edit" element={<EditMeal />} /> */}
-					<Route path="/add-meal" element={<AddMeal />} />
+					<Route path="/meal/:id" element={<Meal />} />
+					<Route path="/meal/:id/edit" element={<Meal />} />
+					{/* <Route path="/add-meal" element={<AddMeal />} /> */}
 					<Route path="/basket" element={<div>Корзина</div>} />
 					<Route path="*" element={<div>Ошибка</div>} />
 				</Routes>

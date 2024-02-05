@@ -35,5 +35,7 @@ module.exports = {
 				endOfLine: 'auto',
 			},
 		],
+		'no-unused-vars': 'warn',
+		'no-debugger': 'warn',
 	},
 };

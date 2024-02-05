@@ -6,7 +6,7 @@ const initialMealState = {
 	imageUrl: '',
 	type: '',
 	calories: '',
-	dietCategories: [],
+	dietCategory: [],
 	price: '',
 	isEditing: false,
 };

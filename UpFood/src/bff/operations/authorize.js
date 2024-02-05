@@ -1,10 +1,8 @@
-/* eslint-disable no-debugger */
 import { getUser } from '../api';
 import { sessions } from '../sessions';
 
 export const authorize = async (authLogin, authPassword) => {
 	const user = await getUser(authLogin);
-
 
 	if (!user) {
 		return {

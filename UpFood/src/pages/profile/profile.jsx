@@ -11,7 +11,6 @@ import { setUser } from '../../actions';
 import { selectUser, selectUserRole } from '../../selectors';
 import { ROLE } from '../../constants';
 import { dietCategories, goals, ingredients } from '../../bff/constants';
-// import { getUser } from '../../bff/api';
 
 const profileFormSchema = yup.object().shape({
 	fullName: yup
@@ -92,7 +91,6 @@ export const Profile = () => {
 	useResetForm(reset);
 
 	const onSubmit = async data => {
-
 		setIsLoading(true);
 
 		server.updateUser(user, data).then(({ error, res }) => {

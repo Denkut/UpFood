@@ -4,8 +4,8 @@ export const transformMeal = dbMeal => ({
 	imageUrl: dbMeal.image_url,
 	type: dbMeal.type,
 	calories: dbMeal.calories,
-	suitableFor: dbMeal.suitableFor,
-	dietCategories: dbMeal.dietCategories,
+	dietCategory: dbMeal.dietCategory,
 	price: dbMeal.price,
 	ingredients: dbMeal.ingredients,
+	goal: dbMeal.goal,
 });

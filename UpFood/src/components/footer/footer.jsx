@@ -12,7 +12,7 @@ export const Footer = () => {
 
 	useEffect(() => {
 		fetch(
-			'https://api.openweathermap.org/data/2.5/weather?q=Moscow&units=metric&lang=ru&appid=3eabd83bc3c77b5a00e1f7cd19e716a2',
+			'https://api.openweathermap.org/data/2.5/weather?q=Volgograd&units=metric&lang=ru&appid=3eabd83bc3c77b5a00e1f7cd19e716a2',
 		)
 			.then(res => res.json())
 			.then(({ name, main, weather }) => {

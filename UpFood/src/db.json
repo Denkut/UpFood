@@ -13,7 +13,7 @@
       "email": "upfood.ru@yandex.ru",
       "age": 38,
       "height": 127,
-      "goal": 2,
+      "goal": 1,
       "weight": 65,
       "fullName": "Den kutepov"
     },
@@ -132,34 +132,30 @@
     {
       "id": "001",
       "title": "Шакшука",
-      "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/89c7f47e99292414f3099a708a22f98d.png",
-      "type": "Ужин",
-      "calories": "114",
-      "suitableFor": [
-        "набрать вес",
-        "поддержание формы"
-      ],
-      "dietCategory": [
-        "вегетарианство"
-      ],
-      "ingredients": [
-        "яйца",
-        "репчатый лук",
-        "желтый болгарский перец",
-        "зеленый болгарский перец",
-        "перец чили",
-        "помидоры"
-      ],
-      "price": 300
+      "image_url": "https://karamelcafe.ru/wp-content/uploads/d/3/f/d3f19f7ae6d559892dcf048acaf4a5e3.jpeg",
+      "type": "ужин",
+      "calories": "667",
+      "dietCategory": "сыроеды",
+      "ingredients": "репчатый лук, желтый болгарский перец, зеленый болгарский перец, перец чили, помидоры",
+      "price": "760",
+      "goal": "3"
     },
     {
+      "id": "002",
       "title": "Овсянка",
-      "imageUrl": "",
-      "type": "",
-      "calories": "",
+      "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/445de8fe4f1e3b2cffe01835db6395f0.png",
+      "type": "завтрак",
+      "calories": 150,
+      "goal": "похудеть",
       "dietCategory": "вегетарианство",
-      "price": "",
-      "id": "002"
+      "ingredients": [
+        1,
+        8,
+        3,
+        2,
+        4
+      ],
+      "price": 700
     },
     {
       "id": "003",
@@ -167,7 +163,7 @@
       "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/89c7f47e99292414f3099a708a22f98d.png",
       "type": "Ужин",
       "calories": "114",
-      "suitableFor": [
+      "goal": [
         "набрать вес",
         "поддержание формы"
       ],
@@ -188,7 +184,7 @@
       "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/6ca491a009cbf8c605f7ed563c4b0874.png",
       "type": "Ужин",
       "calories": "149",
-      "suitableFor": [
+      "goal": [
         "похудеть"
       ],
       "dietCategory": [
@@ -200,7 +196,7 @@
         "кукурузный крахмал",
         "кокосовая стружка"
       ],
-      "price": 100
+      "price": "200"
     },
     {
       "id": "005",
@@ -208,7 +204,7 @@
       "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/445de8fe4f1e3b2cffe01835db6395f0.png",
       "type": "Обед",
       "calories": "157",
-      "suitableFor": [
+      "goal": [
         "поддержание формы"
       ],
       "dietCategory": [
@@ -229,7 +225,7 @@
       "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/a258c17959dbeb7b56e55956bc19b9f1.png",
       "type": "Завтрак",
       "calories": "148",
-      "suitableFor": [
+      "goal": [
         "набрать вес"
       ],
       "dietCategory": [
@@ -257,7 +253,7 @@
       "id": 1
     },
     {
-      "hash": "0.90587516475544505034633857576409354805946350097656",
+      "hash": "0.72841438763372856612932082498446106910705566406250",
       "user": {
         "id": "JahlbFP",
         "login": "anton",
@@ -276,6 +272,27 @@
         ]
       },
       "id": 2
+    },
+    {
+      "hash": "0.20512413926944228492743604874704033136367797851563",
+      "user": {
+        "id": "JahlbFP",
+        "login": "anton",
+        "password": "qwe123",
+        "registeredAt": "2024-01-10 17:15",
+        "roleId": 0,
+        "fullName": "Den kutepov",
+        "weight": 65,
+        "goal": 1,
+        "height": 127,
+        "age": 38,
+        "email": "upfood.ru@yandex.ru",
+        "dietCategory": 1,
+        "allergenicIngredients": [
+          "1"
+        ]
+      },
+      "id": 3
     }
   ]
 }

@@ -10,3 +10,6 @@ export * from './delete-session';
 export * from './get-session';
 export * from './set-user';
 export * from './get-meals';
+export * from './set-meal';
+export * from './add-meal';
+export * from './update-meal';
