@@ -10,3 +10,4 @@ export * from './fetch-meals';
 export * from './update-user';
 export * from './update-meal';
 export * from './save-meal';
+export * from './remove-meal';

@@ -4,41 +4,38 @@ import {
 	XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectMealEditing } from '../../../selectors';
+import { selectUserRole } from '../../../selectors';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { updateMeal } from '../../../bff/operations';
+import { CLOSE_MODAL, openModal, removeMealAsync } from '../../../actions';
+import { useServerRequest } from '../../../hooks';
+import { checkAccess } from '../../../utils';
+import { ROLE } from '../../../bff/constants';
+import { Modal } from '../../../components';
 
 export const MealContent = ({
 	meal: { id, title, imageUrl, type, calories, dietCategory, price },
 }) => {
 	const dispatch = useDispatch();
-	const isEditing = useSelector(selectMealEditing);
 	const navigate = useNavigate();
-	const [editedData, setEditedData] = useState({
-		id,
-		title,
-		imageUrl,
-		type,
-		calories,
-		dietCategory,
-		price,
-	});
+	const requestServer = useServerRequest();
+	const userRole = useSelector(selectUserRole);
 
-	const handleSave = () => {
-		dispatch(updateMeal(id, editedData));
-	};
-	const handleInputChange = e => {
-		const { name, value } = e.target;
-		setEditedData(prevData => ({
-			...prevData,
-			[name]: value,
-		}));
+	const onMealRemove = id => {
+		dispatch(
+			openModal({
+				text: 'Удалить блюдо?',
+				onConfirm: () => {
+					dispatch(removeMealAsync(requestServer, id)).then(() => {
+						navigate('/');
+					});
+					dispatch(CLOSE_MODAL);
+				},
+				onCancel: () => dispatch(CLOSE_MODAL),
+			}),
+		);
 	};
 
-	const handleGoBack = () => {
-		navigate.goBack();
-	};
+	const isAdmin = checkAccess([ROLE.ADMIN], userRole);
 
 	return (
 		<div className="mb-6 flex rounded-md bg-white p-6 shadow-lg">
@@ -51,30 +48,22 @@ export const MealContent = ({
 			</div>
 			<div className="ml-8 flex flex-col">
 				<div className="flex">
-					{isEditing ? (
-						<>
-							<XMarkIcon
-								// onClick={handleCancelEdit}
-								className="h-6 w-6 cursor-pointer rounded-lg text-base font-semibold leading-7 text-gray-900 hover:text-gray-400"
-							/>
-							<button onClick={handleSave}>Сохранить</button>
-						</>
-					) : (
+					{isAdmin && (
 						<>
 							<PencilSquareIcon
 								onClick={() => navigate(`/meal/${id}/edit`)}
 								className="block h-6 w-6 cursor-pointer rounded-lg text-base font-semibold leading-7 text-gray-900 hover:text-emerald-900"
 							/>
-							<TrashIcon
-								// onClick={() =>
-								// 	// dispatch(deleteMealAsync(meal.id))
-								// }
-								className="ml-2 block h-6 w-6 cursor-pointer rounded-lg text-base font-semibold leading-7 text-gray-900 hover:text-red-800"
-							/>
-							<XMarkIcon
-								onClick={handleGoBack}
-								className="ml-64 h-6 w-6 cursor-pointer rounded-lg text-base font-semibold leading-7 text-gray-900 hover:text-gray-400"
-							/>
+							<>
+								<TrashIcon
+									onClick={() => onMealRemove(id)}
+									className="ml-2 block h-6 w-6 cursor-pointer rounded-lg text-base font-semibold leading-7 text-gray-900 hover:text-red-800"
+								/>
+								<XMarkIcon
+									onClick={() => navigate(`/`)}
+									className="ml-64 h-6 w-6 cursor-pointer rounded-lg text-base font-semibold leading-7 text-gray-900 hover:text-gray-400"
+								/>
+							</>
 						</>
 					)}
 				</div>
@@ -99,6 +88,7 @@ export const MealContent = ({
 					Добавить
 				</button>
 			</div>
+			<Modal />
 		</div>
 	);
 };

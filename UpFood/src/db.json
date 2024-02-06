@@ -130,17 +130,6 @@
   ],
   "meals": [
     {
-      "id": "001",
-      "title": "Шакшука",
-      "image_url": "https://karamelcafe.ru/wp-content/uploads/d/3/f/d3f19f7ae6d559892dcf048acaf4a5e3.jpeg",
-      "type": "ужин",
-      "calories": "667",
-      "dietCategory": "сыроеды",
-      "ingredients": "репчатый лук, желтый болгарский перец, зеленый болгарский перец, перец чили, помидоры",
-      "price": "760",
-      "goal": "3"
-    },
-    {
       "id": "002",
       "title": "Овсянка",
       "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/445de8fe4f1e3b2cffe01835db6395f0.png",

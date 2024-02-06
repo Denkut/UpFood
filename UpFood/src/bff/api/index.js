@@ -13,3 +13,5 @@ export * from './get-meals';
 export * from './set-meal';
 export * from './add-meal';
 export * from './update-meal';
+export * from './get-meal';
+export * from './delete-meal';

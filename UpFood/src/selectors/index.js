@@ -7,3 +7,7 @@ export * from './select-meal-by-id';
 export * from './select-user';
 export * from './select-selected-meal';
 export * from './select-meals';
+export * from './select-modal-is-open';
+export * from './select-modal-on-cancel';
+export * from './select-modal-on-confirm';
+export * from './select-modal-text';

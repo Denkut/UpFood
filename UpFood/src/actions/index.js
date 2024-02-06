@@ -8,3 +8,7 @@ export * from './load-meals-async';
 export * from './set-user';
 export * from './save-meal-async';
 export * from './update-meal';
+export * from './remove-meal-async';
+export * from './close-modal';
+export * from './open-modal';
+export * from './reset-meal-data';
