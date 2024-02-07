@@ -138,11 +138,9 @@
       "goal": "похудеть",
       "dietCategory": "вегетарианство",
       "ingredients": [
+        4,
         1,
-        8,
-        3,
-        2,
-        4
+        2
       ],
       "price": 700
     },
@@ -227,6 +225,65 @@
         "сахарозаменитель"
       ],
       "price": 200
+    },
+    {
+      "image_url": "https://karamelcafe.ru/wp-content/uploads/d/3/f/d3f19f7ae6d559892dcf048acaf4a5e3.jpeg",
+      "title": "Пирожок",
+      "type": "завтрак",
+      "calories": 234,
+      "dietCategory": "мясоеды",
+      "ingredients": [],
+      "price": 45,
+      "goal": "поддержание формы",
+      "id": "U07OAOH"
+    },
+    {
+      "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/a258c17959dbeb7b56e55956bc19b9f1.png",
+      "title": "Пирог",
+      "type": "завтрак",
+      "calories": 120,
+      "dietCategory": "сыроеды",
+      "price": 555,
+      "ingredients": [
+        11,
+        17,
+        19
+      ],
+      "id": "nQuqmGA",
+      "goal": "набрать вес"
+    },
+    {
+      "image_url": "https://karamelcafe.ru/wp-content/uploads/d/3/f/d3f19f7ae6d559892dcf048acaf4a5e3.jpeg",
+      "title": "Дошик",
+      "type": "завтрак",
+      "calories": 114,
+      "dietCategory": "вегетарианство",
+      "price": 225,
+      "ingredients": [
+        1,
+        2
+      ],
+      "goal": "набрать вес",
+      "id": "UlUy7Il"
+    },
+    {
+      "image_url": "https://karamelcafe.ru/wp-content/uploads/d/3/f/d3f19f7ae6d559892dcf048acaf4a5e3.jpeg",
+      "title": "Борщ",
+      "type": "обед",
+      "calories": 155,
+      "dietCategory": "вегетарианство",
+      "price": 56,
+      "ingredients": [
+        1,
+        6,
+        8,
+        11,
+        12,
+        13,
+        14
+      ],
+      "goal": "набрать вес",
+      "id": "iI8jboM"
     }
   ],
   "sessions": [

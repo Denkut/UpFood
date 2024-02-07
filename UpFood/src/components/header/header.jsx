@@ -77,7 +77,7 @@ export const Header = () => {
 					</div>
 					<div className="hidden lg:flex lg:flex-1 lg:justify-end">
 						<Link
-							to="/add-meal"
+							to="/meal"
 							className="-mx-3 block rounded-lg px-3 text-sm  font-semibold leading-7 text-gray-900 hover:bg-gray-50"
 						>
 							Добавить блюдо

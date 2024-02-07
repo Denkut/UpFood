@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import {
-	// AddMeal,
 	Authorization,
 	Main,
 	Meal,
@@ -43,15 +42,14 @@ export const App = () => {
 					<Route path="/register" element={<Registration />} />
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/users" element={<Users />} />
-					<Route path="/rations" element={<div>Рационы</div>} />
+					<Route path="/ration" element={<div>Рационы</div>} />
 					<Route
-						path="/rations/:id"
+						path="/ration/:id"
 						element={<div>Новый рацион</div>}
 					/>
 					<Route path="/meal" element={<Meal />} />
 					<Route path="/meal/:id" element={<Meal />} />
 					<Route path="/meal/:id/edit" element={<Meal />} />
-					{/* <Route path="/add-meal" element={<AddMeal />} /> */}
 					<Route path="/basket" element={<div>Корзина</div>} />
 					<Route path="*" element={<div>Ошибка</div>} />
 				</Routes>

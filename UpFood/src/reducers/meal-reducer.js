@@ -8,7 +8,7 @@ const initialMealState = {
 	calories: '',
 	dietCategory: [],
 	price: '',
-	isEditing: false,
+	// isEditing: false,
 };
 
 export const mealReducer = (state = initialMealState, action) => {

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useRef, useState, useCallback, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveMealAsync } from '../../../actions';
 import { useServerRequest } from '../../../hooks';
@@ -24,6 +24,7 @@ export const MealEdit = ({
 		ingredients,
 		goal,
 	},
+	isCreating,
 }) => {
 	const titleRef = useRef(null);
 	const imageUrlRef = useRef(null);
@@ -66,6 +67,47 @@ export const MealEdit = ({
 		[],
 	);
 
+	useLayoutEffect(() => {
+		if (isCreating) {
+			setEditedData({
+				id: null,
+				title: '',
+				imageUrl: '',
+				type: '',
+				calories: 0,
+				goal: '',
+				dietCategory: '',
+				price: 0,
+				ingredients: [],
+			});
+			setSelectedIngredients([]);
+		} else {
+			setEditedData({
+				id,
+				title,
+				imageUrl,
+				type,
+				calories, 
+				goal,
+				dietCategory,
+				price,
+				ingredients,
+			});
+			setSelectedIngredients(ingredients || []);
+		}
+	}, [
+		isCreating,
+		id,
+		title,
+		imageUrl,
+		type,
+		calories,
+		goal,
+		dietCategory,
+		price,
+		ingredients,
+	]);
+
 	const handleSave = () => {
 		dispatch(saveMealAsync(requestServer, editedData)).then(({ id }) =>
 			navigate(`/meal/${id}`),
@@ -82,14 +124,17 @@ export const MealEdit = ({
 	};
 
 	const handleIngredientChange = id => {
-		setEditedData(prevData => ({
-			...prevData,
-			ingredients: selectedIngredients.includes(id)
-				? prevData.ingredients.filter(
-						ingredientId => ingredientId !== id,
-					)
-				: [...prevData.ingredients, id],
-		}));
+		setEditedData(prevData => {
+			const currentIngredients = prevData.ingredients || [];
+			const updatedIngredients = currentIngredients.includes(id)
+				? currentIngredients.filter(ingredientId => ingredientId !== id)
+				: [...currentIngredients, id];
+
+			return {
+				...prevData,
+				ingredients: updatedIngredients,
+			};
+		});
 
 		setSelectedIngredients(prevSelected => {
 			const isSelected = prevSelected.includes(id);
@@ -158,7 +203,6 @@ export const MealEdit = ({
 						<select
 							ref={typeRef}
 							name="type"
-							value={editedData.type}
 							onChange={handleInputChange}
 							className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none"
 						>
@@ -189,7 +233,6 @@ export const MealEdit = ({
 						<select
 							ref={dietCategoryRef}
 							name="dietCategory"
-							value={editedData.dietCategory}
 							onChange={handleInputChange}
 							className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none"
 						>
@@ -265,7 +308,9 @@ export const MealEdit = ({
 									allIngredients.find(item => item.id === id)
 										?.name
 								}
-								{index !== ingredients.length - 1 && ','}
+								{index !==
+									(editedData.ingredients || []).length - 1 &&
+									','}
 							</li>
 						))}
 					</ul>

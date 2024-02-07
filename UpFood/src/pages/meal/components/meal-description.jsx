@@ -19,12 +19,13 @@ export const MealDescription = ({ ingredients, goal }) => {
 					Ингредиенты:
 				</span>
 				<ul className="mr-2 flex items-center text-lg">
-					{ingredients.map((id, index) => (
-						<li key={id} className="mr-2">
-							{getIngredientNameById(id)}
-							{index !== ingredients.length - 1 && ','}
-						</li>
-					))}
+					{ingredients &&
+						ingredients.map((id, index) => (
+							<li key={id} className="mr-2">
+								{getIngredientNameById(id)}
+								{index !== ingredients.length - 1 && ','}
+							</li>
+						))}
 				</ul>
 			</div>
 		</div>
