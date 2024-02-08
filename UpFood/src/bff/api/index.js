@@ -4,7 +4,6 @@ export * from './get-roles';
 export * from './get-user';
 export * from './get-users';
 export * from './set-user-role';
-export * from './get-meal';
 export * from './add-session';
 export * from './delete-session';
 export * from './get-session';

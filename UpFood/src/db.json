@@ -130,40 +130,75 @@
   ],
   "meals": [
     {
-      "id": "002",
-      "title": "Овсянка",
-      "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/445de8fe4f1e3b2cffe01835db6395f0.png",
-      "type": "завтрак",
-      "calories": 150,
-      "goal": "похудеть",
-      "dietCategory": "вегетарианство",
-      "ingredients": [
-        4,
-        1,
-        2
+      "id": "001",
+      "title": "Омлет с овощами",
+      "image_url": "https://mykaleidoscope.ru/uploads/posts/2020-02/1581015361_18-p-omleti-na-zavtrak-51.jpg",
+      "type": "Завтрак",
+      "calories": "300",
+      "goal": [
+        "похудеть"
       ],
-      "price": 700
+      "dietCategory": [
+        "вегетарианство"
+      ],
+      "ingredients": [
+        1,
+        2,
+        6,
+        10,
+        28,
+        29,
+        36
+      ],
+      "price": "250"
+    },
+    {
+      "id": "002",
+      "title": "Куриный салат с оливье",
+      "image_url": "https://bye-bye-calories.ru/wp-content/uploads/d/8/4/d8445f1654cad1807346a459db7b3187.jpeg",
+      "type": "Обед",
+      "calories": "450",
+      "goal": [
+        "наращивание массы"
+      ],
+      "dietCategory": [
+        "мясоеды"
+      ],
+      "ingredients": [
+        7,
+        6,
+        4,
+        14,
+        28,
+        29,
+        36,
+        37,
+        38
+      ],
+      "price": "350"
     },
     {
       "id": "003",
-      "title": "Шакшука",
-      "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/89c7f47e99292414f3099a708a22f98d.png",
+      "title": "Паста с томатным соусом",
+      "image_url": "https://karamelcafe.ru/wp-content/uploads/b/e/d/bedd8f74fd1847770a0bcdde9669ae61.jpeg",
       "type": "Ужин",
-      "calories": "114",
+      "calories": "400",
       "goal": [
-        "набрать вес",
-        "поддержание формы"
+        "похудеть"
       ],
-      "dietCategory": "вегетарианство",
+      "dietCategory": [
+        "вегетарианство"
+      ],
       "ingredients": [
-        "яйца",
-        "репчатый лук",
-        "желтый болгарский перец",
-        "зеленый болгарский перец",
-        "перец чили",
-        "помидоры"
+        26,
+        6,
+        16,
+        29,
+        28,
+        29,
+        36
       ],
-      "price": 300
+      "price": "300"
     },
     {
       "id": "004",
@@ -178,10 +213,8 @@
         "вегетарианство"
       ],
       "ingredients": [
-        "нежирного творога",
-        "яйцо",
-        "кукурузный крахмал",
-        "кокосовая стружка"
+        1,
+        2
       ],
       "price": "200"
     },
@@ -198,11 +231,8 @@
         "вегетарианство"
       ],
       "ingredients": [
-        "Кефир",
-        "геркулес",
-        "яйца",
-        "сода",
-        "сахарозаменитель"
+        1,
+        2
       ],
       "price": 400
     },
@@ -219,71 +249,311 @@
         "вегетарианство"
       ],
       "ingredients": [
-        "творог",
-        "изюм",
-        "яйца",
-        "сахарозаменитель"
+        1,
+        2
       ],
       "price": 200
     },
     {
-      "image_url": "https://karamelcafe.ru/wp-content/uploads/d/3/f/d3f19f7ae6d559892dcf048acaf4a5e3.jpeg",
-      "title": "Пирожок",
-      "type": "завтрак",
-      "calories": 234,
-      "dietCategory": "мясоеды",
-      "ingredients": [],
-      "price": 45,
-      "goal": "поддержание формы",
-      "id": "U07OAOH"
-    },
-    {
-      "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/a258c17959dbeb7b56e55956bc19b9f1.png",
-      "title": "Пирог",
-      "type": "завтрак",
-      "calories": 120,
-      "dietCategory": "сыроеды",
-      "price": 555,
-      "ingredients": [
-        11,
-        17,
-        19
+      "id": "007",
+      "title": "Куриные крылья в кисло-сладком соусе",
+      "image_url": "https://volgastory.ru/wp-content/uploads/9/f/e/9fe5d52d509812bcf993b43cc7ef133d.jpeg",
+      "type": "Обед",
+      "calories": "280",
+      "goal": [
+        "похудеть"
       ],
-      "id": "nQuqmGA",
-      "goal": "набрать вес"
-    },
-    {
-      "image_url": "https://karamelcafe.ru/wp-content/uploads/d/3/f/d3f19f7ae6d559892dcf048acaf4a5e3.jpeg",
-      "title": "Дошик",
-      "type": "завтрак",
-      "calories": 114,
-      "dietCategory": "вегетарианство",
-      "price": 225,
-      "ingredients": [
-        1,
-        2
+      "dietCategory": [
+        "мясоеды"
       ],
-      "goal": "набрать вес",
-      "id": "UlUy7Il"
+      "ingredients": [
+        7,
+        27,
+        28,
+        29,
+        30,
+        37
+      ],
+      "price": "250"
     },
     {
-      "image_url": "https://karamelcafe.ru/wp-content/uploads/d/3/f/d3f19f7ae6d559892dcf048acaf4a5e3.jpeg",
-      "title": "Борщ",
-      "type": "обед",
-      "calories": 155,
-      "dietCategory": "вегетарианство",
-      "price": 56,
+      "id": "008",
+      "title": "Суп с креветками и кокосовым молоком",
+      "image_url": "https://karamelcafe.ru/wp-content/uploads/8/f/f/8ffc039a02b71e39efe895f056daa3b7.jpeg",
+      "type": "Ужин",
+      "calories": "300",
+      "goal": [
+        "похудеть"
+      ],
+      "dietCategory": [
+        "рыбоядение"
+      ],
       "ingredients": [
-        1,
+        23,
+        34,
+        35,
+        36,
+        40
+      ],
+      "price": "350"
+    },
+    {
+      "id": "009",
+      "title": "Спагетти с морепродуктами и томатным соусом",
+      "image_url": "https://attuale.ru/wp-content/uploads/2018/06/s1200-18.jpg",
+      "type": "Ужин",
+      "calories": "400",
+      "goal": [
+        "наращивание массы"
+      ],
+      "dietCategory": [
+        "рыбоядение"
+      ],
+      "ingredients": [
+        23,
+        24,
+        26,
+        27,
+        40
+      ],
+      "price": "380"
+    },
+    {
+      "id": "010",
+      "title": "Овощной тайский карри",
+      "image_url": "https://avatars.dzeninfra.ru/get-zen_doc/10349846/pub_64a015a9939a601a8dffcf5c_64a015e1e6999e462f432427/scale_1200",
+      "type": "Обед",
+      "calories": "320",
+      "goal": [
+        "похудеть"
+      ],
+      "dietCategory": [
+        "вегетарианство"
+      ],
+      "ingredients": [
+        3,
         6,
-        8,
         11,
         12,
-        13,
-        14
+        17,
+        27,
+        45
       ],
-      "goal": "набрать вес",
-      "id": "iI8jboM"
+      "price": "280"
+    },
+    {
+      "id": "011",
+      "title": "Фруктовый салат с медовым соусом",
+      "image_url": "https://example.com/fruit-salad.jpg",
+      "type": "Завтрак",
+      "calories": "200",
+      "goal": [
+        "похудеть"
+      ],
+      "dietCategory": [
+        "фрукторианство"
+      ],
+      "ingredients": [
+        18,
+        31,
+        32,
+        33,
+        42,
+        43
+      ],
+      "price": "180"
+    },
+    {
+      "id": "012",
+      "title": "Лосось с авокадо и лимоном",
+      "image_url": "https://example.com/salmon-avocado.jpg",
+      "type": "Ужин",
+      "calories": "350",
+      "goal": [
+        "похудеть"
+      ],
+      "dietCategory": [
+        "рыбоядение"
+      ],
+      "ingredients": [
+        24,
+        17,
+        35,
+        36
+      ],
+      "price": "320"
+    },
+    {
+      "id": "013",
+      "title": "Картошка по-деревенски с кетчупом",
+      "image_url": "https://example.com/potatoes.jpg",
+      "type": "Обед",
+      "calories": "250",
+      "goal": [
+        "наращивание массы"
+      ],
+      "dietCategory": [
+        "мясоеды"
+      ],
+      "ingredients": [
+        11,
+        28,
+        29,
+        36,
+        37
+      ],
+      "price": "220"
+    },
+    {
+      "id": "014",
+      "title": "Фасолевый суп с томатами",
+      "image_url": "https://example.com/bean-soup.jpg",
+      "type": "Ужин",
+      "calories": "280",
+      "goal": [
+        "похудеть"
+      ],
+      "dietCategory": [
+        "вегетарианство"
+      ],
+      "ingredients": [
+        6,
+        12,
+        14,
+        26,
+        27,
+        28
+      ],
+      "price": "250"
+    },
+    {
+      "id": "015",
+      "title": "Греческий салат с оливками и фетой",
+      "image_url": "https://example.com/greek-salad.jpg",
+      "type": "Обед",
+      "calories": "300",
+      "goal": [
+        "похудеть"
+      ],
+      "dietCategory": [
+        "вегетарианство"
+      ],
+      "ingredients": [
+        6,
+        16,
+        17,
+        28,
+        29,
+        37
+      ],
+      "price": "270"
+    },
+    {
+      "id": "016",
+      "title": "Куриный суп с лапшой",
+      "image_url": "https://example.com/chicken-noodle-soup.jpg",
+      "type": "Ужин",
+      "calories": "320",
+      "goal": [
+        "похудеть"
+      ],
+      "dietCategory": [
+        "мясоеды"
+      ],
+      "ingredients": [
+        7,
+        26,
+        27,
+        29,
+        37,
+        39
+      ],
+      "price": "300"
+    },
+    {
+      "id": "017",
+      "title": "Паста с томатным соусом и беконом",
+      "image_url": "https://example.com/pasta-bacon.jpg",
+      "type": "Обед",
+      "calories": "400",
+      "goal": [
+        "наращивание массы"
+      ],
+      "dietCategory": [
+        "мясоеды"
+      ],
+      "ingredients": [
+        26,
+        27,
+        28,
+        36,
+        37,
+        39
+      ],
+      "price": "350"
+    },
+    {
+      "id": "018",
+      "title": "Фаршированные перцы с мясом и рисом",
+      "image_url": "https://example.com/stuffed-peppers.jpg",
+      "type": "Ужин",
+      "calories": "350",
+      "goal": [
+        "похудеть"
+      ],
+      "dietCategory": [
+        "мясоеды"
+      ],
+      "ingredients": [
+        3,
+        7,
+        24,
+        25,
+        29,
+        36
+      ],
+      "price": "320"
+    },
+    {
+      "id": "019",
+      "title": "Чесночные креветки с оливковым маслом",
+      "image_url": "https://example.com/garlic-shrimp.jpg",
+      "type": "Обед",
+      "calories": "300",
+      "goal": [
+        "похудеть"
+      ],
+      "dietCategory": [
+        "рыбоядение"
+      ],
+      "ingredients": [
+        23,
+        36,
+        37,
+        39
+      ],
+      "price": "280"
+    },
+    {
+      "id": "020",
+      "title": "Картошка с грибами и сметаной",
+      "image_url": "https://example.com/potatoes-mushrooms.jpg",
+      "type": "Ужин",
+      "calories": "320",
+      "goal": [
+        "наращивание массы"
+      ],
+      "dietCategory": [
+        "вегетарианство"
+      ],
+      "ingredients": [
+        11,
+        21,
+        36,
+        37,
+        36
+      ],
+      "price": "300"
     }
   ],
   "sessions": [

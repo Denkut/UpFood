@@ -8,6 +8,13 @@ export const dietCategories = [
 	{ id: 1, name: 'вегетарианство' },
 	{ id: 2, name: 'сыроеды' },
 	{ id: 3, name: 'мясоеды' },
+	{ id: 4, name: 'веганство' },
+	{ id: 5, name: 'палео-диета' },
+	{ id: 6, name: 'кето-диета' },
+	{ id: 7, name: 'глютен-фри' },
+	{ id: 8, name: 'лактоза-фри' },
+	{ id: 9, name: 'макробиотика' },
+	{ id: 10, name: 'пеган' },
 ];
 
 export const goals = [

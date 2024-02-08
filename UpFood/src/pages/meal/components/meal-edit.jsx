@@ -87,7 +87,7 @@ export const MealEdit = ({
 				title,
 				imageUrl,
 				type,
-				calories, 
+				calories,
 				goal,
 				dietCategory,
 				price,

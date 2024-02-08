@@ -39,7 +39,7 @@ const MainContainer = ({ className }) => {
 						{posts.map(
 							({ id, title, imageUrl, publishedAt, commentsCount }) => (
 								<PostCard
-									key={id}
+									key={id} 
 									id={id}
 									title={title}
 									imageUrl={imageUrl}

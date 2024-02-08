@@ -38,21 +38,17 @@ export const Meal = () => {
 	}
 	return (
 		<div>
-			{/* {meal.id && ( */}
-			<>
-				{isCreating || isEditing ? (
-					<MealEdit meal={meal} />
-				) : (
-					<>
-						<MealContent meal={meal} />
-						<MealDescription
-							ingredients={meal.ingredients}
-							goal={meal.goal}
-						/>
-					</>
-				)}
-			</>
-			{/* )} */}
+			{isCreating || isEditing ? (
+				<MealEdit meal={meal} />
+			) : (
+				<>
+					<MealContent meal={meal} />
+					<MealDescription
+						ingredients={meal.ingredients}
+						goal={meal.goal}
+					/>
+				</>
+			)}
 		</div>
 	);
 };

@@ -1,10 +1,16 @@
 import { getMeals } from '../api';
 
-export const fetchMeals = async searchPhrase => {
-	const pizzas = await getMeals(searchPhrase);
+export const fetchMeals = async (searchPhrase, page, limit) => {
+	const response = await getMeals(searchPhrase, page, limit);
+	const meals = response.meals;
 
 	return {
 		error: null,
-		res: pizzas,
+		res: {
+			meals: meals.map(meal => ({
+				...meal,
+			})),
+			links: response.links,
+		},
 	};
 };
