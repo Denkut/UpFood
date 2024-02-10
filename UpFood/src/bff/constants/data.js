@@ -1,7 +1,7 @@
 export const mealTypes = [
-	{ id: 1, name: 'завтрак' },
-	{ id: 2, name: 'обед' },
-	{ id: 3, name: 'ужин' },
+	{ id: 1, name: 'Завтрак' },
+	{ id: 2, name: 'Обед' },
+	{ id: 3, name: 'Ужин' },
 ];
 
 export const dietCategories = [

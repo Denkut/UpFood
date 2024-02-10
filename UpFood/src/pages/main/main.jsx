@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom';
 import Rations from '../../assets/picture/Rations.jpg';
 import { useEffect, useMemo, useState } from 'react';
 import { useServerRequest } from '../../hooks';
-import { Search, MealCard } from '../main/components';
+import { Search, MealCard, Pagination } from '../main/components';
 import debounce from 'lodash.debounce';
+import { getLastPageFromLinks } from './utils';
+import { PAGINATION_LIMIT } from '../../constants';
 
 export const Main = () => {
 	const [meals, setMeals] = useState([]);
@@ -13,9 +15,10 @@ export const Main = () => {
 	const [shouldSearch, setShouldSearch] = useState(false);
 	const requestServer = useServerRequest();
 	useEffect(() => {
-		requestServer('fetchMeals', searchPhrase, page).then(
+		requestServer('fetchMeals', searchPhrase, page, PAGINATION_LIMIT).then(
 			({ res: { meals, links } }) => {
 				setMeals(meals);
+				setLastPage(getLastPageFromLinks(links));
 			},
 		);
 	}, [requestServer, page, shouldSearch]);
@@ -125,6 +128,9 @@ export const Main = () => {
 				</div>
 			) : (
 				<p>Загрузка блюд...</p>
+			)}
+			{lastPage > 1 && meals.length > 0 && (
+				<Pagination setPage={setPage} page={page} lastPage={lastPage} />
 			)}
 		</div>
 	);

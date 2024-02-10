@@ -5,3 +5,4 @@ export * from './profile/profile';
 export * from './users/users';
 export * from './meal/meal';
 export * from './main/main';
+export * from './meal/meal-list';

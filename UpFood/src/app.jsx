@@ -3,6 +3,7 @@ import {
 	Authorization,
 	Main,
 	Meal,
+	MealList,
 	Profile,
 	Registration,
 	Users,
@@ -48,6 +49,7 @@ export const App = () => {
 						element={<div>Новый рацион</div>}
 					/>
 					<Route path="/meal" element={<Meal />} />
+					<Route path="/meals" element={<MealList />} />
 					<Route path="/meal/:id" element={<Meal />} />
 					<Route path="/meal/:id/edit" element={<Meal />} />
 					<Route path="/basket" element={<div>Корзина</div>} />

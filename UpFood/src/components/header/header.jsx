@@ -20,7 +20,7 @@ import { HeaderMobile } from './components';
 
 const navigation = [
 	{ name: 'Главная', to: '/' },
-	{ name: 'Блюда', to: '/meal' },
+	{ name: 'Блюда', to: '/meals' },
 	{ name: 'Рационы', to: '/rations' },
 	{ name: 'Пользователи', to: '/users' },
 ];

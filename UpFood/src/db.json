@@ -227,9 +227,7 @@
       "goal": [
         "поддержание формы"
       ],
-      "dietCategory": [
-        "вегетарианство"
-      ],
+      "dietCategory": "глютен-фри",
       "ingredients": [
         1,
         2
@@ -344,15 +342,13 @@
     {
       "id": "011",
       "title": "Фруктовый салат с медовым соусом",
-      "image_url": "https://example.com/fruit-salad.jpg",
+      "image_url": "https://darfix.ru/wp-content/uploads/c/1/a/c1a9247c67dbd4087fc28e9d97413c89.jpeg",
       "type": "Завтрак",
       "calories": "200",
       "goal": [
         "похудеть"
       ],
-      "dietCategory": [
-        "фрукторианство"
-      ],
+      "dietCategory": "сыроеды",
       "ingredients": [
         18,
         31,
@@ -366,7 +362,7 @@
     {
       "id": "012",
       "title": "Лосось с авокадо и лимоном",
-      "image_url": "https://example.com/salmon-avocado.jpg",
+      "image_url": "https://100foto.club/uploads/posts/2022-08/1660571363_13-100foto-club-p-salat-s-semgoi-slabosolenoi-i-greipfrutom-28.jpg",
       "type": "Ужин",
       "calories": "350",
       "goal": [
@@ -386,8 +382,8 @@
     {
       "id": "013",
       "title": "Картошка по-деревенски с кетчупом",
-      "image_url": "https://example.com/potatoes.jpg",
-      "type": "Обед",
+      "image_url": "https://bogatyr.club/uploads/posts/2023-03/thumbs/1677935379_bogatyr-club-p-kartoshka-po-derevenski-foni-instagram-82.jpg",
+      "type": "Обеда",
       "calories": "250",
       "goal": [
         "наращивание массы"
@@ -407,7 +403,7 @@
     {
       "id": "014",
       "title": "Фасолевый суп с томатами",
-      "image_url": "https://example.com/bean-soup.jpg",
+      "image_url": "https://stella-clothes.ru/wp-content/uploads/4/a/1/4a1629c41da8e8a2e8e94d27fcb311c3.jpeg",
       "type": "Ужин",
       "calories": "280",
       "goal": [
@@ -429,7 +425,7 @@
     {
       "id": "015",
       "title": "Греческий салат с оливками и фетой",
-      "image_url": "https://example.com/greek-salad.jpg",
+      "image_url": "http://tmp.parmezan.ru/upload/resize_cache/iblock/ea3/825_825_1d7a58ff99b324185ccb5ad5dfbdb5e85/b7967a9fca255235ef1867e20a26a303.jpg",
       "type": "Обед",
       "calories": "300",
       "goal": [
@@ -451,7 +447,7 @@
     {
       "id": "016",
       "title": "Куриный суп с лапшой",
-      "image_url": "https://example.com/chicken-noodle-soup.jpg",
+      "image_url": "https://recept-borscha.ru/wp-content/uploads/5/3/b/53b0517c59dd9833627e982e2598ce41.jpeg",
       "type": "Ужин",
       "calories": "320",
       "goal": [
@@ -473,7 +469,7 @@
     {
       "id": "017",
       "title": "Паста с томатным соусом и беконом",
-      "image_url": "https://example.com/pasta-bacon.jpg",
+      "image_url": "https://ohotamyasa.ru/wp-content/uploads/3/2/c/32c5815c8eaf97f61cfb7ed525fa21af.jpeg",
       "type": "Обед",
       "calories": "400",
       "goal": [
@@ -495,7 +491,7 @@
     {
       "id": "018",
       "title": "Фаршированные перцы с мясом и рисом",
-      "image_url": "https://example.com/stuffed-peppers.jpg",
+      "image_url": "https://qulady.ru/images/qulady/2017/08/fp8.jpg",
       "type": "Ужин",
       "calories": "350",
       "goal": [
@@ -517,7 +513,7 @@
     {
       "id": "019",
       "title": "Чесночные креветки с оливковым маслом",
-      "image_url": "https://example.com/garlic-shrimp.jpg",
+      "image_url": "https://zvezdnychas.ru/wp-content/uploads/d/8/8/d88a872d4a2fc318a72430f3ae25adb6.jpeg",
       "type": "Обед",
       "calories": "300",
       "goal": [
@@ -537,7 +533,7 @@
     {
       "id": "020",
       "title": "Картошка с грибами и сметаной",
-      "image_url": "https://example.com/potatoes-mushrooms.jpg",
+      "image_url": "https://gotovka24.ru/wp-content/uploads/2022/02/grybu-troskinys-71885930.jpg",
       "type": "Ужин",
       "calories": "320",
       "goal": [
@@ -554,6 +550,22 @@
         36
       ],
       "price": "300"
+    },
+    {
+      "image_url": "https://proprikol.ru/wp-content/uploads/2020/04/kartinki-borshh-11.jpg",
+      "title": "Борщ",
+      "type": "Обед",
+      "calories": 120,
+      "dietCategory": "лактоза-фри",
+      "price": 150,
+      "ingredients": [
+        1,
+        6,
+        11,
+        43
+      ],
+      "id": "fl7K2na",
+      "goal": "поддержание формы"
     }
   ],
   "sessions": [

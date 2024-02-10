@@ -26,34 +26,38 @@ export const MealCard = ({
 	const ellipsis = ingredients.length > 2 ? <span>...</span> : null;
 
 	return (
-		<div className="mx-auto max-w-md transform overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl ">
-			<Link to={`/meal/${id}`}>
+		<div className="mx-auto flex h-full w-96 transform flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl">
+			<Link className="flex h-full flex-col" to={`/meal/${id}`}>
 				<img
 					className="h-48 w-full object-cover object-center"
 					src={imageUrl}
 					alt={title}
 				/>
-			</Link>
-			<div className="p-6">
-				<Link to={`/meal/${id}`}>
+				<div className="flex flex-grow flex-col justify-between p-6">
 					<h4 className="mb-2 text-xl font-bold">{title}</h4>
-				</Link>
-				<p className="mb-2 text-gray-700">{type}</p>
-				<div className="mb-4 flex items-center">
-					<span className="text-gray-500">Каллории: {calories}</span>
-					<span className="mx-2">&#8226;</span>
-					<span className="text-gray-500">Диета: {dietCategory}</span>
+
+					<p className="mb-2 text-gray-700">{type}</p>
+					<div className="mb-4 flex items-center">
+						<span className="text-gray-500">
+							Каллории: {calories}
+						</span>
+						<span className="mx-2">&#8226;</span>
+						<span className="text-gray-500">
+							Диета: {dietCategory}
+						</span>
+					</div>
+					<div className="mt-4">
+						<p className="mb-2 text-gray-700">
+							Ингредиенты: {displayIngredients} {ellipsis}
+						</p>
+					</div>
 				</div>
-				<div className="mt-4">
-					<p className="mb-2 text-gray-700">
-						Ингредиенты: {displayIngredients} {ellipsis}
-					</p>
+				<div className="flex items-center justify-between bg-emerald-500 px-6 py-4">
+					<span className="font-bold text-white">₽{price}</span>
+					<span className="text-gray-200">{goal}</span>
 				</div>
-			</div>
-			<div className="flex items-center justify-between bg-emerald-500 px-6 py-4">
-				<span className="font-bold text-white">₽{price}</span>
-				<span className="text-gray-200">{goal}</span>
-			</div>
+			</Link>
+
 			<div className="bg-gray-100 p-4">
 				<button
 					onClick={handleAddToCart}
