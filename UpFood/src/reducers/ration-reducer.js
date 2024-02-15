@@ -1,23 +1,35 @@
-// import { ACTION_TYPE } from '../actions';
-import { ROLE } from '../constants';
+import { ACTION_TYPE } from '../actions';
 
 const initialRationState = {
-	id: null,
-	login: null,
-	roleId: ROLE.GUEST,
-	session: null,
+	id: '',
+	title: '',
+	imageUrl: '',
+	content: '',
+	totalCalories: '',
+	fitnessGoal: '',
+	price: '',
+	meals: [],
 };
 
 export const rationReducer = (state = initialRationState, action) => {
 	switch (action.type) {
-		// case ACTION_TYPE.SET_USER:
-		// 	return {
-		// 		...state,
-		// 		...action.payload,
-		// 	};
-		// case ACTION_TYPE.LOGOUT: {
-		// 	return initialRationState;
-		// }
+		case ACTION_TYPE.SET_RATION_DATA:
+			return {
+				...state,
+				...action.payload,
+			};
+		case ACTION_TYPE.RESET_RATION_DATA:
+			return initialRationState;
+		case ACTION_TYPE.ADD_MEAL_TO_RATION:
+			return {
+				...state,
+				meals: [...state.meals, action.payload],
+			};
+		case ACTION_TYPE.REMOVE_MEAL_FROM_RATION:
+			return {
+				...state,
+				meals: state.meals.filter(meal => meal.id !== action.payload),
+			};
 		default:
 			return state;
 	}

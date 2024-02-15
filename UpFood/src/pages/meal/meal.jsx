@@ -16,7 +16,6 @@ export const Meal = () => {
 	const requestServer = useServerRequest();
 	const meal = useSelector(selectMeal);
 
-	console.log('meal', meal);
 	useLayoutEffect(() => {
 		dispatch(RESET_MEAL_DATA);
 	}, [dispatch, isCreating]);
@@ -38,6 +37,11 @@ export const Meal = () => {
 	}
 	return (
 		<div>
+			{error && (
+				<div className="mb-4 bg-red-200 p-4 text-red-800">
+					Ошибка: {error.message}
+				</div>
+			)}
 			{isCreating || isEditing ? (
 				<MealEdit meal={meal} />
 			) : (

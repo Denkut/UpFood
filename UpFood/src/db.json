@@ -9,7 +9,7 @@
       "allergenicIngredients": [
         "1"
       ],
-      "dietCategory": 1,
+      "dietCategory": 4,
       "email": "upfood.ru@yandex.ru",
       "age": 38,
       "height": 127,
@@ -51,59 +51,59 @@
       "id": "001",
       "title": "Рацион 1",
       "total_callories": "",
-      "fitnessGoal": "похудеть",
+      "goal": "поддержание формы",
       "meals": [
         {
-          "name": "Завтрак",
+          "type": "Завтрак",
           "items": [
             {
-              "meal_id": "meal123",
-              "price_id": "price123"
-            }
-          ]
-        },
-        {
-          "name": "Обед",
-          "items": [
-            {
-              "meal_id": "meal456",
-              "price_id": "price456",
+              "mealId": "006",
               "quantity": 1
             }
           ]
         },
         {
-          "name": "Ужин",
+          "type": "Обед",
           "items": [
             {
-              "meal_id": "meal789",
-              "price_id": "price789",
+              "mealId": "007",
               "quantity": 1
+            }
+          ]
+        },
+        {
+          "type": "Ужин",
+          "items": [
+            {
+              "mealId": "018",
+              "quantity": 3
             }
           ]
         }
       ],
-      "price": "",
+      "total_price": "",
       "image_url": "https://fastly.picsum.photos/id/1081/280/150.jpg?hmac=pbyjow5jXeX9ZTGEW0dSW9DV7M7_bO6SP4KMb7tB-do",
-      "content": "С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение существенных финансовых и административных условий."
+      "content": "Рацион 1 подходит для поддержания формы",
+      "total_calories": 0
     },
     {
       "id": "002",
       "title": "Рацион 2",
       "total_callories": "",
-      "fitnessGoal": "набрать вес",
+      "goal": "набрать вес",
       "meals": [
         {
-          "name": "Завтрак",
+          "type": "Завтрак",
           "items": [
             {
               "meal_id": "meal123",
-              "price_id": "price123"
+              "price_id": "price123",
+              "quantity": 1
             }
           ]
         },
         {
-          "name": "Обед",
+          "type": "Обед",
           "items": [
             {
               "meal_id": "meal456",
@@ -113,7 +113,7 @@
           ]
         },
         {
-          "name": "Ужин",
+          "type": "Ужин",
           "items": [
             {
               "meal_id": "meal789",
@@ -148,7 +148,8 @@
         10,
         28,
         29,
-        36
+        36,
+        3
       ],
       "price": "250"
     },
@@ -383,7 +384,7 @@
       "id": "013",
       "title": "Картошка по-деревенски с кетчупом",
       "image_url": "https://bogatyr.club/uploads/posts/2023-03/thumbs/1677935379_bogatyr-club-p-kartoshka-po-derevenski-foni-instagram-82.jpg",
-      "type": "Обеда",
+      "type": "Обед",
       "calories": "250",
       "goal": [
         "наращивание массы"
@@ -511,26 +512,6 @@
       "price": "320"
     },
     {
-      "id": "019",
-      "title": "Чесночные креветки с оливковым маслом",
-      "image_url": "https://zvezdnychas.ru/wp-content/uploads/d/8/8/d88a872d4a2fc318a72430f3ae25adb6.jpeg",
-      "type": "Обед",
-      "calories": "300",
-      "goal": [
-        "похудеть"
-      ],
-      "dietCategory": [
-        "рыбоядение"
-      ],
-      "ingredients": [
-        23,
-        36,
-        37,
-        39
-      ],
-      "price": "280"
-    },
-    {
       "id": "020",
       "title": "Картошка с грибами и сметаной",
       "image_url": "https://gotovka24.ru/wp-content/uploads/2022/02/grybu-troskinys-71885930.jpg",
@@ -566,43 +547,26 @@
       ],
       "id": "fl7K2na",
       "goal": "поддержание формы"
+    },
+    {
+      "image_url": "https://mb.web.sapo.io/d1e4c24a683970aa05b3419c507cba52018af73e.jpg",
+      "title": "Мороженое ",
+      "type": "Обед",
+      "calories": 26,
+      "dietCategory": "веганство",
+      "price": 45,
+      "ingredients": [
+        8,
+        9,
+        44
+      ],
+      "goal": "поддержание формы",
+      "id": "_kjohXR"
     }
   ],
   "sessions": [
     {
-      "hash": "0.01269400890928396030687963502714410424232482910156",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "password": "qwe123",
-        "registeredAt": "2024-01-10 17:15",
-        "roleId": 0
-      },
-      "id": 1
-    },
-    {
-      "hash": "0.72841438763372856612932082498446106910705566406250",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "password": "qwe123",
-        "registeredAt": "2024-01-10 17:15",
-        "roleId": 0,
-        "fullName": "Den kutepov",
-        "weight": 65,
-        "goal": 2,
-        "height": 127,
-        "age": 38,
-        "email": "upfood.ru@yandex.ru",
-        "dietCategory": 1,
-        "allergenicIngredients": [
-          "1"
-        ]
-      },
-      "id": 2
-    },
-    {
-      "hash": "0.20512413926944228492743604874704033136367797851563",
+      "hash": "0.31512708369731345925401910790242254734039306640625",
       "user": {
         "id": "JahlbFP",
         "login": "anton",
@@ -615,12 +579,33 @@
         "height": 127,
         "age": 38,
         "email": "upfood.ru@yandex.ru",
-        "dietCategory": 1,
+        "dietCategory": 4,
         "allergenicIngredients": [
           "1"
         ]
       },
-      "id": 3
+      "id": 1
+    },
+    {
+      "hash": "0.35613957565126486137785377650288864970207214355469",
+      "user": {
+        "id": "JahlbFP",
+        "login": "anton",
+        "password": "qwe123",
+        "registeredAt": "2024-01-10 17:15",
+        "roleId": 0,
+        "fullName": "Den kutepov",
+        "weight": 65,
+        "goal": 1,
+        "height": 127,
+        "age": 38,
+        "email": "upfood.ru@yandex.ru",
+        "dietCategory": 4,
+        "allergenicIngredients": [
+          "1"
+        ]
+      },
+      "id": 2
     }
   ]
 }

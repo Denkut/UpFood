@@ -8,6 +8,7 @@ export const useResetForm = reset => {
 		let currentWasLogout = store.getState().app.wasLogout;
 
 		return store.subscribe(() => {
+			// eslint-disable-next-line prefer-const
 			let previousWasLogout = currentWasLogout;
 			currentWasLogout = store.getState().app.wasLogout;
 

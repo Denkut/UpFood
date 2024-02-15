@@ -5,6 +5,8 @@ import {
 	Meal,
 	MealList,
 	Profile,
+	Ration,
+	RationList,
 	Registration,
 	Users,
 } from './pages';
@@ -43,11 +45,10 @@ export const App = () => {
 					<Route path="/register" element={<Registration />} />
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/users" element={<Users />} />
-					<Route path="/ration" element={<div>Рационы</div>} />
-					<Route
-						path="/ration/:id"
-						element={<div>Новый рацион</div>}
-					/>
+					<Route path="/ration" element={<Ration />} />
+					<Route path="/ration/:id" element={<Ration />} />
+					<Route path="/ration/:id/edit" element={<Ration />} />
+					<Route path="/rations" element={<RationList />} />
 					<Route path="/meal" element={<Meal />} />
 					<Route path="/meals" element={<MealList />} />
 					<Route path="/meal/:id" element={<Meal />} />
