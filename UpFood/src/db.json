@@ -57,7 +57,7 @@
           "type": "Завтрак",
           "items": [
             {
-              "mealId": "006",
+              "mealId": "011",
               "quantity": 1
             }
           ]
@@ -67,7 +67,7 @@
           "items": [
             {
               "mealId": "007",
-              "quantity": 1
+              "quantity": 2
             }
           ]
         },
@@ -76,7 +76,7 @@
           "items": [
             {
               "mealId": "018",
-              "quantity": 3
+              "quantity": 1
             }
           ]
         }
@@ -84,7 +84,7 @@
       "total_price": "",
       "image_url": "https://fastly.picsum.photos/id/1081/280/150.jpg?hmac=pbyjow5jXeX9ZTGEW0dSW9DV7M7_bO6SP4KMb7tB-do",
       "content": "Рацион 1 подходит для поддержания формы",
-      "total_calories": 0
+      "total_calories": 1110
     },
     {
       "id": "002",
