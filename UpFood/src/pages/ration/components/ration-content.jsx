@@ -7,11 +7,22 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserRole } from '../../../selectors';
 import { Link, useNavigate } from 'react-router-dom';
-import { CLOSE_MODAL, openModal, removeMealAsync } from '../../../actions';
+import {
+	CLOSE_MODAL,
+	openModal,
+	removeMealAsync,
+	removeRationAsync,
+} from '../../../actions';
 import { checkAccess } from '../../../utils';
 import { ROLE } from '../../../bff/constants';
 import { Modal } from '../../../components';
 import { useServerRequest } from '../../../hooks';
+import {
+	calculateTotalCalories,
+	calculateTotalPrice,
+	getMealImage,
+	getMealTitle,
+} from './utils';
 
 export const RationContent = ({ ration, meals }) => {
 	const dispatch = useDispatch();
@@ -22,9 +33,9 @@ export const RationContent = ({ ration, meals }) => {
 	const onMealRemove = mealId => {
 		dispatch(
 			openModal({
-				text: 'Удалить блюдо?',
+				text: 'Удалить рацион?',
 				onConfirm: () => {
-					dispatch(removeMealAsync(requestServer, mealId)).then(
+					dispatch(removeRationAsync(requestServer, mealId)).then(
 						() => {
 							navigate('/');
 						},
@@ -34,55 +45,6 @@ export const RationContent = ({ ration, meals }) => {
 				onCancel: () => dispatch(CLOSE_MODAL),
 			}),
 		);
-	};
-
-	const calculateTotalPrice = () => {
-		if (!meals) return 0;
-
-		const totalPrice = ration.meals.reduce((acc, mealType) => {
-			mealType.items.forEach(item => {
-				const selectedMeal = meals.find(
-					meal => meal.id === item.mealId,
-				);
-				if (selectedMeal) {
-					acc += selectedMeal.price * item.quantity;
-				}
-			});
-			return acc;
-		}, 0);
-
-		return totalPrice;
-	};
-
-	const getMealTitle = mealId => {
-		const selectedMeal = meals.find(meal => meal.id === mealId);
-		return selectedMeal ? selectedMeal.title : 'Название не найдено';
-	};
-
-	const getMealImage = mealId => {
-		const selectedMeal = meals.find(meal => meal.id === mealId);
-		return selectedMeal
-			? selectedMeal.imageUrl
-			: 'https://placehold.it/100x100';
-	};
-
-	const calculateTotalCalories = () => {
-		if (!meals) return 0;
-
-		let totalCalories = 0;
-
-		ration.meals.forEach(mealType => {
-			mealType.items.forEach(item => {
-				const selectedMeal = meals.find(
-					meal => meal.id === item.mealId,
-				);
-				if (selectedMeal) {
-					totalCalories += selectedMeal.calories * item.quantity;
-				}
-			});
-		});
-
-		return totalCalories;
 	};
 
 	const isAdmin = checkAccess([ROLE.ADMIN], userRole);
@@ -121,7 +83,7 @@ export const RationContent = ({ ration, meals }) => {
 						{ration.goal}
 					</div>
 					<span className="mr-2">
-						{calculateTotalCalories()} ккал.
+						{calculateTotalCalories({ ration, meals })} ккал.
 					</span>
 				</div>
 
@@ -139,12 +101,21 @@ export const RationContent = ({ ration, meals }) => {
 											{mealType.type}
 										</h3>
 										<img
-											src={getMealImage(item.mealId)}
-											alt={getMealTitle(item.mealId)}
+											src={getMealImage({
+												meals,
+												mealId: item.mealId,
+											})}
+											alt={getMealTitle({
+												meals,
+												mealId: item.mealId,
+											})}
 											className="h-48 w-full object-cover object-center p-4"
 										/>
 										<p className="text-center">
-											{getMealTitle(item.mealId)}
+											{getMealTitle({
+												meals,
+												mealId: item.mealId,
+											})}
 										</p>
 										<p className="text-center">
 											Количество: {item.quantity}
@@ -157,7 +128,7 @@ export const RationContent = ({ ration, meals }) => {
 				</div>
 
 				<div className="m-4 text-3xl font-bold text-gray-900">
-					{calculateTotalPrice()} ₽
+					{calculateTotalPrice({ ration, meals })} ₽
 				</div>
 				<button className="focus:shadow-outline-blue h-[65px]  w-[156px] items-center rounded-3xl bg-emerald-800 px-4 py-2 text-xl font-bold text-emerald-50 hover:bg-emerald-900 focus:outline-none active:bg-emerald-800">
 					Добавить

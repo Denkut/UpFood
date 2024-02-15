@@ -88,6 +88,45 @@
     },
     {
       "id": "002",
+      "title": "Рацион 3",
+      "total_callories": "",
+      "goal": "поддержание формы",
+      "meals": [
+        {
+          "type": "Завтрак",
+          "items": [
+            {
+              "mealId": "012",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "type": "Обед",
+          "items": [
+            {
+              "mealId": "014",
+              "quantity": 2
+            }
+          ]
+        },
+        {
+          "type": "Ужин",
+          "items": [
+            {
+              "mealId": "018",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "total_price": "",
+      "image_url": "https://fastly.picsum.photos/id/1081/280/150.jpg?hmac=pbyjow5jXeX9ZTGEW0dSW9DV7M7_bO6SP4KMb7tB-do",
+      "content": "Рацион 1 подходит для поддержания формы",
+      "total_calories": 1110
+    },
+    {
+      "id": "006",
       "title": "Рацион 2",
       "total_callories": "",
       "goal": "набрать вес",

@@ -21,3 +21,4 @@ export * from './reset-ration-data';
 export * from './save-ration-async';
 export * from './set-ration';
 export * from './update-ration';
+export * from './remove-ration-async';

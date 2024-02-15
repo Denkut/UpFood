@@ -15,3 +15,4 @@ export * from './fetch-ration';
 export * from './fetch-all-meals';
 export * from './save-ration';
 export * from './fetch-rations';
+export * from './remove-ration';
