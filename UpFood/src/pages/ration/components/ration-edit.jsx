@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveRationAsync } from '../../../actions';
 import { useServerRequest } from '../../../hooks';
@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { goals } from '../../../bff/constants';
 
-export const RationEdit = ({ ration, meals }) => {
+export const RationEdit = ({ ration, meals, isCreating }) => {
 	const [editedData, setEditedData] = useState({
 		...ration,
 		total_calories: 0,
@@ -16,9 +16,35 @@ export const RationEdit = ({ ration, meals }) => {
 	const requestServer = useServerRequest();
 	const goalRef = useRef(null);
 
+	useLayoutEffect(() => {
+		if (isCreating) {
+			setEditedData({
+				id: '',
+				title: '',
+				imageUrl: '',
+				content: '',
+				total_calories: 0,
+				fitnessGoal: '',
+				price: '',
+				meals: [],
+			});
+		} else {
+			setEditedData({
+				id: ration.id,
+				title: ration.title,
+				imageUrl: ration.imageUrl,
+				content: ration.content,
+				total_calories: ration.total_calories || 0,
+				goal: ration.goal,
+				price: ration.price,
+				meals: ration.meals || [],
+			});
+		}
+	}, [isCreating, ration, meals]);
+
 	const handleSave = () => {
-		dispatch(saveRationAsync(requestServer, editedData)).then(() =>
-			navigate(`/ration/${editedData.id}`),
+		dispatch(saveRationAsync(requestServer, editedData)).then(({ id }) =>
+			navigate(`/ration/${id}`),
 		);
 	};
 
@@ -198,6 +224,72 @@ export const RationEdit = ({ ration, meals }) => {
 								</button>
 							</div>
 						))}
+						{!isCreating && editedData.meals.length < 3 && (
+							<div className="mt-4">
+								<span>
+									Блюдо {editedData.meals.length + 1}:
+								</span>
+								<select
+									value=""
+									onChange={e =>
+										handleMealChange(
+											editedData.meals.length,
+											e.target.value,
+											1, // Здесь задайте начальное количество
+										)
+									}
+									className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none"
+								>
+									<option value="">Выберите блюдо</option>
+									{meals.map(meal => (
+										<option key={meal.id} value={meal.id}>
+											{meal.title} - {meal.calories} ккал{' '}
+											{meal.type}
+										</option>
+									))}
+								</select>
+								<button
+									onClick={() =>
+										handleMealChange(
+											editedData.meals.length,
+											// Здесь можете также передавать начальное значение
+											editedData.meals.length > 0
+												? editedData.meals[
+														editedData.meals
+															.length - 1
+													].items[0].mealId
+												: '',
+											1,
+										)
+									}
+									className="ml-2 mt-2 rounded bg-emerald-800 p-2 text-white"
+								>
+									+
+								</button>
+								<span className="ml-2">1</span>
+								<button
+									onClick={() =>
+										handleMealChange(
+											editedData.meals.length,
+											// Здесь можете также передавать начальное значение
+											editedData.meals[
+												editedData.meals.length - 1
+											].items[0].mealId
+												? editedData.meals[
+														editedData.meals
+															.length - 1
+													].items[0].mealId
+												: '',
+											0,
+										)
+									}
+									className="ml-2 rounded bg-red-800 p-2 text-white"
+									disabled={editedData.meals.length === 0}
+								>
+									-
+								</button>
+							</div>
+						)}
 					</div>
 					<div className="mb-2 flex items-center text-lg">
 						<span className="mr-2 items-center text-xl font-semibold text-emerald-900">

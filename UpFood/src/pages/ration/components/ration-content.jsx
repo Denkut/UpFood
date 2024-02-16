@@ -7,12 +7,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserRole } from '../../../selectors';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-	CLOSE_MODAL,
-	openModal,
-	removeMealAsync,
-	removeRationAsync,
-} from '../../../actions';
+import { CLOSE_MODAL, openModal, removeRationAsync } from '../../../actions';
 import { checkAccess } from '../../../utils';
 import { ROLE } from '../../../bff/constants';
 import { Modal } from '../../../components';

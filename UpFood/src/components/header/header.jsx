@@ -76,12 +76,22 @@ export const Header = () => {
 						))}
 					</div>
 					<div className="hidden lg:flex lg:flex-1 lg:justify-end">
-						<Link
-							to="/meal"
-							className="-mx-3 block rounded-lg px-3 text-sm  font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-						>
-							Добавить блюдо
-						</Link>
+						{roleId === ROLE.ADMIN && (
+							<>
+								<Link
+									to="/meal"
+									className="-mx-3 block rounded-lg px-3 text-sm  font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+								>
+									Добавить блюдо
+								</Link>
+								<Link
+									to="/ration"
+									className="mx-3 block rounded-lg px-3 text-sm  font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+								>
+									Добавить рацион
+								</Link>
+							</>
+						)}
 						<div>
 							<Link to="/basket">
 								<ShoppingCartIcon className=" block h-6 w-auto rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:text-emerald-800" />

@@ -58,7 +58,7 @@
           "items": [
             {
               "mealId": "011",
-              "quantity": 1
+              "quantity": 2
             }
           ]
         },
@@ -67,7 +67,7 @@
           "items": [
             {
               "mealId": "007",
-              "quantity": 2
+              "quantity": 1
             }
           ]
         },
@@ -84,7 +84,7 @@
       "total_price": "",
       "image_url": "https://fastly.picsum.photos/id/1081/280/150.jpg?hmac=pbyjow5jXeX9ZTGEW0dSW9DV7M7_bO6SP4KMb7tB-do",
       "content": "Рацион 1 подходит для поддержания формы",
-      "total_calories": 1110
+      "total_calories": 1030
     },
     {
       "id": "002",
@@ -97,7 +97,7 @@
           "items": [
             {
               "mealId": "012",
-              "quantity": 1
+              "quantity": 2
             }
           ]
         },
@@ -123,7 +123,7 @@
       "total_price": "",
       "image_url": "https://fastly.picsum.photos/id/1081/280/150.jpg?hmac=pbyjow5jXeX9ZTGEW0dSW9DV7M7_bO6SP4KMb7tB-do",
       "content": "Рацион 1 подходит для поддержания формы",
-      "total_calories": 1110
+      "total_calories": 1610
     },
     {
       "id": "006",
@@ -165,6 +165,40 @@
       "price": "",
       "image_url": "https://fastly.picsum.photos/id/1081/280/150.jpg?hmac=pbyjow5jXeX9ZTGEW0dSW9DV7M7_bO6SP4KMb7tB-do",
       "content": " КБЖУ в рационе: Данамически задать. С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение существенных финансовых и административных условий."
+    },
+    {
+      "title": "Рациона 4",
+      "total_calories": 1150,
+      "goal": "похудеть",
+      "meals": [
+        {
+          "items": [
+            {
+              "mealId": "001",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "mealId": "002",
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "mealId": "003",
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "content": "Рацион 4. Худеем",
+      "imageUrl": "",
+      "id": "N4hSbLn"
     }
   ],
   "meals": [
@@ -626,7 +660,7 @@
       "id": 1
     },
     {
-      "hash": "0.35613957565126486137785377650288864970207214355469",
+      "hash": "0.48245157332273258532495674444362521171569824218750",
       "user": {
         "id": "JahlbFP",
         "login": "anton",
