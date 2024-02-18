@@ -1,36 +1,43 @@
 export const updateRation = ({
 	id,
 	title,
-	total_calories,
+	totalCalories,
 	goal,
 	meals,
-	total_price,
+	totalPrices,
 	image_url,
 	content,
 }) => {
 	const formattedMeals = meals.map(meal => ({
-		...meal,
 		items: meal.items.map(item => ({
 			mealId: item.mealId,
 			quantity: item.quantity,
+			type: item.type,
+			title: item.title,
+			calories: item.calories,
+			price: item.price,
 		})),
 	}));
 
-	fetch(`http://localhost:3005/rations/${id}`, {
+	return fetch(`http://localhost:3005/rations/${id}`, {
 		method: 'PATCH',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',
 		},
 		body: JSON.stringify({
+			id,
 			title,
-			total_calories,
+			total_calories: totalCalories,
 			goal,
 			meals: formattedMeals,
-			total_price,
+			total_prices: totalPrices,
 			image_url,
 			content,
 		}),
 	})
-		.then(createdRation => createdRation.json())
-		.catch(error => console.log('Ошибка добавления ration', error));
+		.then(response => response.json())
+		.catch(error => {
+			console.error('Ошибка обновления ration', error);
+			throw error;
+		});
 };

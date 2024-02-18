@@ -1,4 +1,4 @@
-export const calculateTotalPrice = ({ ration, meals }) => {
+export const calculateTotalPrices = ({ ration, meals }) => {
 	if (!meals) return 0;
 
 	const totalPrice = ration.meals.reduce((acc, mealType) => {

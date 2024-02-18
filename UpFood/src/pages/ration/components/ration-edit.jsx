@@ -11,6 +11,7 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 		...ration,
 		total_calories: 0,
 	});
+	const imageUrlRef = useRef(null);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const requestServer = useServerRequest();
@@ -24,8 +25,8 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 				imageUrl: '',
 				content: '',
 				total_calories: 0,
-				fitnessGoal: '',
-				price: '',
+				goal: '',
+				total_prices: '',
 				meals: [],
 			});
 		} else {
@@ -36,7 +37,7 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 				content: ration.content,
 				total_calories: ration.total_calories || 0,
 				goal: ration.goal,
-				price: ration.price,
+				total_prices: ration.total_price,
 				meals: ration.meals || [],
 			});
 		}
@@ -61,12 +62,18 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 		const updatedMeals = [...editedData.meals];
 		const updatedQuantity = quantity < 1 ? 1 : quantity;
 
+		const selectedMeal = meals.find(meal => meal.id === mealId);
+
 		updatedMeals[index] = {
 			...updatedMeals[index],
 			items: [
 				{
 					mealId,
 					quantity: updatedQuantity,
+					title: selectedMeal.title,
+					calories: selectedMeal.calories,
+					price: selectedMeal.price,
+					type: selectedMeal.type,
 				},
 			],
 		};
@@ -93,6 +100,13 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 		setEditedData(prevData => ({
 			...prevData,
 			content: value,
+		}));
+	};
+	const handleGoalChange = e => {
+		const { value } = e.target;
+		setEditedData(prevData => ({
+			...prevData,
+			goal: value,
 		}));
 	};
 
@@ -137,7 +151,7 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 					<select
 						ref={goalRef}
 						name="goal"
-						onChange={handleInputChange}
+						onChange={handleGoalChange}
 						className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none"
 					>
 						<option value="" disabled={!editedData.goal}>
@@ -182,6 +196,10 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 											id,
 											e.target.value,
 											meal.items[0].quantity,
+											meal.items[0].title,
+											meal.items[0].calories,
+											meal.items[0].price,
+											meal.items[0].type,
 										)
 									}
 									className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none"
@@ -200,6 +218,10 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 											id,
 											meal.items[0].mealId,
 											meal.items[0].quantity + 1,
+											meal.items[0].title,
+											meal.items[0].calories,
+											meal.items[0].price,
+											meal.items[0].type,
 										)
 									}
 									className="ml-2 mt-2 rounded bg-emerald-800 p-2 text-white"
@@ -215,6 +237,10 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 											id,
 											meal.items[0].mealId,
 											meal.items[0].quantity - 1,
+											meal.items[0].title,
+											meal.items[0].calories,
+											meal.items[0].price,
+											meal.items[0].type,
 										)
 									}
 									className="ml-2 rounded bg-red-800 p-2 text-white"
@@ -235,7 +261,11 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 										handleMealChange(
 											editedData.meals.length,
 											e.target.value,
-											1, // Здесь задайте начальное количество
+											1,
+											'',
+											'',
+											'',
+											'',
 										)
 									}
 									className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none"
@@ -252,7 +282,6 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 									onClick={() =>
 										handleMealChange(
 											editedData.meals.length,
-											// Здесь можете также передавать начальное значение
 											editedData.meals.length > 0
 												? editedData.meals[
 														editedData.meals
@@ -260,6 +289,10 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 													].items[0].mealId
 												: '',
 											1,
+											'',
+											'',
+											'',
+											'',
 										)
 									}
 									className="ml-2 mt-2 rounded bg-emerald-800 p-2 text-white"
@@ -271,7 +304,6 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 									onClick={() =>
 										handleMealChange(
 											editedData.meals.length,
-											// Здесь можете также передавать начальное значение
 											editedData.meals[
 												editedData.meals.length - 1
 											].items[0].mealId
@@ -281,6 +313,10 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 													].items[0].mealId
 												: '',
 											0,
+											'',
+											'',
+											'',
+											'',
 										)
 									}
 									className="ml-2 rounded bg-red-800 p-2 text-white"
@@ -300,6 +336,25 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 							onChange={handleContentChange}
 							className="focus:shadow-outline w-full rounded-md border px-3 py-2 focus:outline-none"
 							rows="3"
+						/>
+					</div>
+					<div className="flex-shrink-0">
+						<label className="mt-2 block text-sm font-medium text-gray-700">
+							Ссылка на фото:
+							<input
+								ref={imageUrlRef}
+								type="text"
+								name="image_url"
+								value={editedData.image_url || ''}
+								placeholder="Изображение..."
+								onChange={handleInputChange}
+								className="mt-1 w-full rounded-md border p-2"
+							/>
+						</label>
+						<img
+							src={editedData.image_url}
+							alt={editedData.title}
+							className="mb-4 h-[400px] w-[400px] rounded-md object-cover"
 						/>
 					</div>
 				</div>

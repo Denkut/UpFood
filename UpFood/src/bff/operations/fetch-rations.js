@@ -1,7 +1,7 @@
-import { getRation } from '../api';
+import { getRations } from '../api';
 
 export const fetchRations = async (searchPhrase, page, limit) => {
-	const response = await getRation(searchPhrase, page, limit);
+	const response = await getRations(searchPhrase, page, limit);
 	const rations = response.rations;
 
 	return {

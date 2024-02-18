@@ -6,8 +6,8 @@ const initialRationState = {
 	imageUrl: '',
 	content: '',
 	totalCalories: '',
-	fitnessGoal: '',
-	price: '',
+	goal: '',
+	totalPrices: '',
 	meals: [],
 };
 

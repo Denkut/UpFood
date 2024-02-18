@@ -13,3 +13,4 @@ export * from './select-modal-on-confirm';
 export * from './select-modal-text';
 export * from './select-ration';
 export * from './select-meals-data';
+export * from './select-rations';

@@ -5,25 +5,32 @@ export const RationCard = ({
 	id,
 	title,
 	imageUrl,
+	goal,
 	type,
 	totalCalories,
-	goal,
-	meals,
-	totalPrice,
+	totalPrices,
+	mealTitles,
 	content,
 }) => {
 	const handleAddToCart = () => {
 		console.log(`Рацион ${title} добавлен в корзину!`);
+		console.log(`Общие калории: ${totalCalories}`);
+		console.log(`Общая стоимость: ₽${totalPrices}`);
+		console.log(`Список блюд: ${mealTitles.join(', ')}`);
 	};
 
-	const displayMeals = meals.slice(0, 2).map((meal, index) => (
-		<span key={meal.mealId}>
-			{meal.title}
-			{index !== 1 && ', '}
-		</span>
-	));
+	const displayMeals =
+		mealTitles && mealTitles.length > 0
+			? mealTitles.slice(0, 2).map((meal, index) => (
+					<span key={index}>
+						{meal}
+						{index !== mealTitles.length - 1 && ', '}
+					</span>
+				))
+			: null;
 
-	const ellipsis = meals.length > 2 ? <span>...</span> : null;
+	const ellipsis =
+		mealTitles && mealTitles.length > 2 ? <span>...</span> : null;
 
 	return (
 		<div className="mx-auto flex h-full w-96 transform flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl">
@@ -46,17 +53,22 @@ export const RationCard = ({
 							Блюда: {displayMeals} {ellipsis}
 						</p>
 					</div>
+					{content && (
+						<div className="mb-4">
+							<p className="text-gray-700">{content}</p>
+						</div>
+					)}
 				</div>
-				<div className="flex items-center justify-between bg-emerald-500 px-6 py-4">
-					<span className="font-bold text-white">₽{totalPrice}</span>
-					<span className="text-gray-200">{goal}</span>
+				<div className="flex items-center justify-between bg-amber-600  px-6 py-4">
+					<span className="font-bold text-white">₽{totalPrices}</span>
+					<span className="text-gray-200">Цель: {goal}</span>
 				</div>
 			</Link>
 
 			<div className="bg-gray-100 p-4">
 				<button
 					onClick={handleAddToCart}
-					className="w-full rounded-full bg-emerald-800 px-4 py-2 font-bold text-white hover:bg-emerald-700 focus:outline-none"
+					className="w-full rounded-full bg-amber-800   px-4 py-2 font-bold text-white hover:bg-amber-700 focus:outline-none"
 				>
 					Добавить в корзину
 				</button>

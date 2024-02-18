@@ -1,19 +1,24 @@
 export const addRation = ({
 	title,
-	total_calories,
+	totalCalories,
 	goal,
 	meals,
-	total_price,
-	image_url,
+	totalPrice,
 	content,
+	image_url,
 	imageUrl,
+	price,
+	calories,
+	type,
 }) => {
-	const formattedMeals = meals.map(meal => ({
-		...meal,
-		items: meal.items.map(item => ({
-			...item,
+	const formattedMeals = meals.map(mealType => ({
+		items: mealType.items.map(item => ({
+			type: item.type,
 			mealId: item.mealId,
 			quantity: item.quantity,
+			title: item.title,
+			calories: item.calories,
+			price: item.price,
 		})),
 	}));
 
@@ -24,13 +29,16 @@ export const addRation = ({
 		},
 		body: JSON.stringify({
 			title,
-			total_calories,
+			total_calories: totalCalories,
 			goal,
 			meals: formattedMeals,
-			total_price,
-			image_url,
+			total_price: totalPrice,
 			content,
+			price,
+			image_url,
 			imageUrl,
+			calories,
+			type,
 		}),
 	})
 		.then(createdRation => createdRation.json())

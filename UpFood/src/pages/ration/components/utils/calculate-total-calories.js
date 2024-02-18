@@ -1,4 +1,4 @@
-export const calculateTotalCalories = ({ ration, meals }) => {
+export const calculatetotalCalories = ({ ration, meals }) => {
 	if (!meals) return 0;
 
 	let totalCalories = 0;

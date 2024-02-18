@@ -13,8 +13,8 @@ import { ROLE } from '../../../bff/constants';
 import { Modal } from '../../../components';
 import { useServerRequest } from '../../../hooks';
 import {
-	calculateTotalCalories,
-	calculateTotalPrice,
+	calculateTotalPrices,
+	calculatetotalCalories,
 	getMealImage,
 	getMealTitle,
 } from './utils';
@@ -24,7 +24,6 @@ export const RationContent = ({ ration, meals }) => {
 	const navigate = useNavigate();
 	const requestServer = useServerRequest();
 	const userRole = useSelector(selectUserRole);
-
 	const onMealRemove = mealId => {
 		dispatch(
 			openModal({
@@ -73,28 +72,37 @@ export const RationContent = ({ ration, meals }) => {
 				<h2 className="mt-2 max-w-72  text-3xl font-semibold">
 					{ration.title}
 				</h2>
+				{ration.imageUrl && (
+					<img
+						src={ration.imageUrl}
+						alt={ration.title}
+						className="my-2 h-32 w-32 rounded-md object-cover object-center"
+					/>
+				)}
 				<div className="mb-2 flex items-center text-gray-500">
 					<div className="mr-2 text-base  text-emerald-700">
 						{ration.goal}
 					</div>
 					<span className="mr-2">
-						{calculateTotalCalories({ ration, meals })} ккал.
+						{calculatetotalCalories({ ration, meals })} ккал.
 					</span>
 				</div>
 
 				<div className="flex flex-wrap">
 					{ration.meals.map((mealType, id) => (
 						<div key={id} className="mb-4">
-							<div className="mx-auto flex h-full w-96 transform flex-col overflow-hidden rounded-xl shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl">
-								{mealType.items.map((item, itemId) => (
+							{mealType.items.map((item, itemId) => (
+								<div
+									key={itemId}
+									className="mx-auto mr-6 flex h-full w-96 transform flex-col overflow-hidden rounded-xl shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl"
+								>
+									<h3 className="m-2 text-xl font-bold">
+										{item.type}
+									</h3>
 									<Link
-										key={itemId}
 										className="flex h-full flex-col"
 										to={`/meal/${item.mealId}`}
 									>
-										<h3 className="mb-2 text-xl font-bold">
-											{mealType.type}
-										</h3>
 										<img
 											src={getMealImage({
 												meals,
@@ -116,14 +124,14 @@ export const RationContent = ({ ration, meals }) => {
 											Количество: {item.quantity}
 										</p>
 									</Link>
-								))}
-							</div>
+								</div>
+							))}
 						</div>
 					))}
 				</div>
 
 				<div className="m-4 text-3xl font-bold text-gray-900">
-					{calculateTotalPrice({ ration, meals })} ₽
+					{calculateTotalPrices({ ration, meals })} ₽
 				</div>
 				<button className="focus:shadow-outline-blue h-[65px]  w-[156px] items-center rounded-3xl bg-emerald-800 px-4 py-2 text-xl font-bold text-emerald-50 hover:bg-emerald-900 focus:outline-none active:bg-emerald-800">
 					Добавить

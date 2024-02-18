@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useServerRequest } from '../../hooks';
-import { Search, RationCard, Pagination } from '../main/components';
+import { Search, Pagination, RationCard } from '../main/components';
 import debounce from 'lodash.debounce';
 import { PAGINATION_LIMIT } from '../../constants';
 import { getLastPageFromLinks } from '../main/utils';
@@ -35,7 +35,6 @@ export const RationList = () => {
 		() => debounce(setShouldSearch, 2000),
 		[],
 	);
-
 	const onSearch = ({ target }) => {
 		setSearchPhrase(target.value);
 		startDelayedSearch(!shouldSearch);
@@ -90,7 +89,8 @@ export const RationList = () => {
 							calories,
 							goal,
 							totalCalories,
-							price,
+							totalPrices,
+							content,
 						}) => (
 							<RationCard
 								key={id}
@@ -101,9 +101,11 @@ export const RationList = () => {
 								calories={calories}
 								goal={goal}
 								totalCalories={totalCalories}
-								price={price}
+								totalPrices={totalPrices}
+								content={content}
 							/>
 						),
+						console.log('rations', rations),
 					)}
 				</div>
 			) : (

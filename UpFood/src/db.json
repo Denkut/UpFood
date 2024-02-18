@@ -48,157 +48,140 @@
   ],
   "rations": [
     {
-      "id": "001",
-      "title": "Рацион 1",
-      "total_callories": "",
-      "goal": "поддержание формы",
-      "meals": [
-        {
-          "type": "Завтрак",
-          "items": [
-            {
-              "mealId": "011",
-              "quantity": 2
-            }
-          ]
-        },
-        {
-          "type": "Обед",
-          "items": [
-            {
-              "mealId": "007",
-              "quantity": 1
-            }
-          ]
-        },
-        {
-          "type": "Ужин",
-          "items": [
-            {
-              "mealId": "018",
-              "quantity": 1
-            }
-          ]
-        }
-      ],
-      "total_price": "",
-      "image_url": "https://fastly.picsum.photos/id/1081/280/150.jpg?hmac=pbyjow5jXeX9ZTGEW0dSW9DV7M7_bO6SP4KMb7tB-do",
-      "content": "Рацион 1 подходит для поддержания формы",
-      "total_calories": 1030
-    },
-    {
       "id": "002",
       "title": "Рацион 3",
-      "total_callories": "",
+      "total_calories": "",
       "goal": "поддержание формы",
       "meals": [
         {
-          "type": "Завтрак",
           "items": [
             {
-              "mealId": "012",
-              "quantity": 2
+              "mealId": "005",
+              "quantity": 1,
+              "type": "Обед",
+              "title": "Овсяные оладьи",
+              "calories": "157",
+              "price": 400
             }
           ]
         },
         {
-          "type": "Обед",
+          "items": [
+            {
+              "mealId": "008",
+              "quantity": 1,
+              "type": "Ужин",
+              "title": "Суп с креветками и кокосовым молоком",
+              "calories": "300",
+              "price": "350"
+            }
+          ]
+        },
+        {
           "items": [
             {
               "mealId": "014",
-              "quantity": 2
-            }
-          ]
-        },
-        {
-          "type": "Ужин",
-          "items": [
-            {
-              "mealId": "018",
-              "quantity": 1
+              "quantity": 1,
+              "type": "Завтрак",
+              "title": "Сырники из творога с кокосом",
+              "calories": "280",
+              "price": "250"
             }
           ]
         }
       ],
       "total_price": "",
-      "image_url": "https://fastly.picsum.photos/id/1081/280/150.jpg?hmac=pbyjow5jXeX9ZTGEW0dSW9DV7M7_bO6SP4KMb7tB-do",
-      "content": "Рацион 1 подходит для поддержания формы",
-      "total_calories": 1610
+      "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/a258c17959dbeb7b56e55956bc19b9f1.png",
+      "content": "Рацион 1 подходит для поддержания формы"
     },
     {
       "id": "006",
       "title": "Рацион 2",
-      "total_callories": "",
+      "total_calories": "",
       "goal": "набрать вес",
       "meals": [
         {
-          "type": "Завтрак",
           "items": [
             {
-              "meal_id": "meal123",
-              "price_id": "price123",
-              "quantity": 1
+              "mealId": "004",
+              "quantity": 1,
+              "title": "Сырники из творога с кокосом",
+              "calories": "149",
+              "price": "200"
             }
           ]
         },
         {
-          "type": "Обед",
           "items": [
             {
-              "meal_id": "meal456",
-              "price_id": "price456",
-              "quantity": 1
+              "mealId": "007",
+              "quantity": 2,
+              "title": "Куриные крылья в кисло-сладком соусе",
+              "calories": "280",
+              "price": "250"
             }
           ]
         },
         {
-          "type": "Ужин",
           "items": [
             {
-              "meal_id": "meal789",
-              "price_id": "price789",
-              "quantity": 1
+              "mealId": "018",
+              "quantity": 1,
+              "title": "Фаршированные перцы с мясом и рисом",
+              "calories": "350",
+              "price": "320"
             }
           ]
         }
       ],
       "price": "",
-      "image_url": "https://fastly.picsum.photos/id/1081/280/150.jpg?hmac=pbyjow5jXeX9ZTGEW0dSW9DV7M7_bO6SP4KMb7tB-do",
+      "image_url": "https://psychbook.ru/assets/i/ai/4/4/1/i/2988970.jpg",
       "content": " КБЖУ в рационе: Данамически задать. С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение существенных финансовых и административных условий."
     },
     {
-      "title": "Рациона 4",
-      "total_calories": 1150,
-      "goal": "похудеть",
+      "title": "Рацион 1 - Набрать вес",
+      "goal": "набрать вес",
       "meals": [
         {
           "items": [
             {
-              "mealId": "001",
-              "quantity": 1
+              "mealId": "016",
+              "quantity": 1,
+              "type": "Ужин",
+              "title": "Куриный суп с лапшой",
+              "calories": "320",
+              "price": "300"
             }
           ]
         },
         {
           "items": [
             {
-              "mealId": "002",
-              "quantity": 1
+              "mealId": "007",
+              "quantity": 1,
+              "type": "Обед",
+              "title": "Куриные крылья в кисло-сладком соусе",
+              "calories": "280",
+              "price": "250"
             }
           ]
         },
         {
           "items": [
             {
-              "mealId": "003",
-              "quantity": 1
+              "mealId": "018",
+              "quantity": 1,
+              "type": "Ужин",
+              "title": "Фаршированные перцы с мясом и рисом",
+              "calories": "350",
+              "price": "320"
             }
           ]
         }
       ],
-      "content": "Рацион 4. Худеем",
-      "imageUrl": "",
-      "id": "N4hSbLn"
+      "content": "Данный рацион содержит 950ккал",
+      "id": "fcVL-HY",
+      "image_url": "https://wegym.ru/uploads/large_1634632033_165415_473c81a9c3.webp"
     }
   ],
   "meals": [
@@ -211,9 +194,7 @@
       "goal": [
         "похудеть"
       ],
-      "dietCategory": [
-        "вегетарианство"
-      ],
+      "dietCategory": "сыроеды",
       "ingredients": [
         1,
         2,

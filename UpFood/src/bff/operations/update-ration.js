@@ -10,16 +10,17 @@ export const updateRation = async (ration, rationEditData) => {
 			title: ration.title,
 			imageUrl: ration.image_url,
 			totalCalories: ration.total_calories,
+			totalPrices: ration.total_prices,
 			goal: ration.goal,
 			meals: ration.meals.map(meal => ({
-				type: meal.type,
 				items: meal.items.map(item => ({
+					type: item.type,
 					mealId: item.meal_id,
-					priceId: item.price_id,
+					price: item.price,
+					calories: item.calories,
 					quantity: item.quantity || 1,
 				})),
 			})),
-			price: ration.price,
 			content: ration.content,
 		},
 	};

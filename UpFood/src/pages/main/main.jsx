@@ -2,18 +2,20 @@ import { Link } from 'react-router-dom';
 import Rations from '../../assets/picture/Rations.jpg';
 import { useEffect, useMemo, useState } from 'react';
 import { useServerRequest } from '../../hooks';
-import { Search, MealCard, Pagination } from '../main/components';
+import { Search, MealCard, Pagination, RationCard } from '../main/components';
 import debounce from 'lodash.debounce';
 import { getLastPageFromLinks } from './utils';
 import { PAGINATION_LIMIT } from '../../constants';
 
 export const Main = () => {
 	const [meals, setMeals] = useState([]);
+	const [rations, setRations] = useState([]);
 	const [page, setPage] = useState(1);
 	const [lastPage, setLastPage] = useState(1);
 	const [searchPhrase, setSearchPhrase] = useState('');
 	const [shouldSearch, setShouldSearch] = useState(false);
 	const requestServer = useServerRequest();
+
 	useEffect(() => {
 		requestServer('fetchMeals', searchPhrase, page, PAGINATION_LIMIT).then(
 			({ res: { meals, links } }) => {
@@ -21,6 +23,18 @@ export const Main = () => {
 				setLastPage(getLastPageFromLinks(links));
 			},
 		);
+	}, [requestServer, page, shouldSearch]);
+
+	useEffect(() => {
+		requestServer(
+			'fetchRations',
+			searchPhrase,
+			page,
+			PAGINATION_LIMIT,
+		).then(({ res: { rations, links } }) => {
+			setRations(rations);
+			setLastPage(getLastPageFromLinks(links));
+		});
 	}, [requestServer, page, shouldSearch]);
 
 	const startDelayedSearch = useMemo(
@@ -94,6 +108,51 @@ export const Main = () => {
 					}}
 				/>
 			</div>
+			<h2 className="mb-6 mt-10 text-3xl font-bold text-gray-900">
+				Наши рационы
+			</h2>
+			{rations.length > 0 ? (
+				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+					{rations.map(
+						({ id, title, imageUrl, goal, meals, content }) => {
+							const totalCalories = meals.reduce(
+								(sum, meal) =>
+									sum +
+									Number(meal.items[0].calories) *
+										meal.items[0].quantity,
+								0,
+							);
+							const totalPrices = meals.reduce(
+								(sum, meal) =>
+									sum +
+									Number(meal.items[0].price) *
+										meal.items[0].quantity,
+								0,
+							);
+							const mealTitles = meals.map(
+								meal => meal.items[0].title,
+							);
+
+							return (
+								<RationCard
+									key={id}
+									id={id}
+									title={title}
+									imageUrl={imageUrl}
+									goal={goal}
+									totalCalories={totalCalories}
+									totalPrices={totalPrices}
+									mealTitles={mealTitles}
+									content={content}
+								/>
+							);
+						},
+					)}
+				</div>
+			) : (
+				<p>Загрузка рационов...</p>
+			)}
+
 			<h2 className="mb-6 mt-10 text-3xl font-bold text-gray-900">
 				Наши блюда
 			</h2>

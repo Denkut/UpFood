@@ -5,7 +5,6 @@ import { ROLE } from '../constants';
 export const saveRation = async (hash, newRationData) => {
 	const accessRoles = [ROLE.ADMIN];
 	const access = await sessions.access(hash, accessRoles);
-
 	if (!access) {
 		return {
 			error: 'Доступ запрещен',
@@ -17,7 +16,6 @@ export const saveRation = async (hash, newRationData) => {
 		newRationData.id === ''
 			? await addRation(newRationData)
 			: await updateRation(newRationData);
-
 	return {
 		error: null,
 		res: savedRation,
