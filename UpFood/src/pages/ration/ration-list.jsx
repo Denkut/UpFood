@@ -81,31 +81,39 @@ export const RationList = () => {
 			{rations.length > 0 ? (
 				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
 					{rations.map(
-						({
-							id,
-							title,
-							imageUrl,
-							type,
-							calories,
-							goal,
-							totalCalories,
-							totalPrices,
-							content,
-						}) => (
-							<RationCard
-								key={id}
-								id={id}
-								title={title}
-								imageUrl={imageUrl}
-								type={type}
-								calories={calories}
-								goal={goal}
-								totalCalories={totalCalories}
-								totalPrices={totalPrices}
-								content={content}
-							/>
-						),
-						console.log('rations', rations),
+						({ id, title, imageUrl, goal, meals, content }) => {
+							const totalCalories = meals.reduce(
+								(sum, meal) =>
+									sum +
+									Number(meal.items[0].calories) *
+										meal.items[0].quantity,
+								0,
+							);
+							const totalPrices = meals.reduce(
+								(sum, meal) =>
+									sum +
+									Number(meal.items[0].price) *
+										meal.items[0].quantity,
+								0,
+							);
+							const mealTitles = meals.map(
+								meal => meal.items[0].title,
+							);
+
+							return (
+								<RationCard
+									key={id}
+									id={id}
+									title={title}
+									imageUrl={imageUrl}
+									goal={goal}
+									totalCalories={totalCalories}
+									totalPrices={totalPrices}
+									mealTitles={mealTitles}
+									content={content}
+								/>
+							);
+						},
 					)}
 				</div>
 			) : (
