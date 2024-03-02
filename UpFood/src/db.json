@@ -15,21 +15,45 @@
       "height": 127,
       "goal": 1,
       "weight": 65,
-      "fullName": "Den kutepov"
+      "fullName": "Den kutepov",
+      "carts": {
+        "meals": [
+          {
+            "cartId": "005",
+            "count": 1
+          },
+          {
+            "cartId": "001",
+            "count": 1
+          }
+        ],
+        "rations": [
+          {
+            "cartId": "002",
+            "count": 1
+          },
+          {
+            "cartId": "006",
+            "count": 1
+          }
+        ]
+      }
     },
     {
       "login": "Denis",
       "password": "qwe123",
       "registered_at": "2024-01-10 17:15",
       "role_id": 1,
-      "id": "JahlbFf"
+      "id": "JahlbFf",
+      "cart": []
     },
     {
       "login": "alina",
       "password": "qwe123",
       "registered_at": "2024-01-13 13:14",
       "role_id": 1,
-      "id": "kLUjcAb"
+      "id": "kLUjcAb",
+      "cart": []
     }
   ],
   "roles": [
@@ -50,7 +74,6 @@
     {
       "id": "002",
       "title": "Рацион 3",
-      "total_calories": "",
       "goal": "поддержание формы",
       "meals": [
         {
@@ -90,14 +113,12 @@
           ]
         }
       ],
-      "total_price": "",
-      "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/a258c17959dbeb7b56e55956bc19b9f1.png",
+      "image_url": "https://wegym.ru/uploads/large_1634632033_165415_473c81a9c3.webp",
       "content": "Рацион 1 подходит для поддержания формы"
     },
     {
       "id": "006",
       "title": "Рацион 2",
-      "total_calories": "",
       "goal": "набрать вес",
       "meals": [
         {
@@ -134,7 +155,6 @@
           ]
         }
       ],
-      "price": "",
       "image_url": "https://psychbook.ru/assets/i/ai/4/4/1/i/2988970.jpg",
       "content": " КБЖУ в рационе: Данамически задать. С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение существенных финансовых и административных условий."
     },
@@ -641,7 +661,7 @@
       "id": 1
     },
     {
-      "hash": "0.48245157332273258532495674444362521171569824218750",
+      "hash": "0.15946545485785890150509658269584178924560546875000",
       "user": {
         "id": "JahlbFP",
         "login": "anton",
@@ -657,7 +677,29 @@
         "dietCategory": 4,
         "allergenicIngredients": [
           "1"
-        ]
+        ],
+        "cart": {
+          "meals": [
+            {
+              "id": "005",
+              "count": 1
+            },
+            {
+              "id": "001",
+              "count": 1
+            }
+          ],
+          "rations": [
+            {
+              "id": "002",
+              "count": 1
+            },
+            {
+              "id": "006",
+              "count": 1
+            }
+          ]
+        }
       },
       "id": 2
     }

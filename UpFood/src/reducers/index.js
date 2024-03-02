@@ -5,3 +5,4 @@ export * from './meal-reducer';
 export * from './meals-reducer';
 export * from './ration-reducer';
 export * from './rations-reducer';
+export * from './cart-reducer';

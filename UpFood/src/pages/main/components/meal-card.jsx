@@ -26,7 +26,7 @@ export const MealCard = ({
 	const ellipsis = ingredients.length > 2 ? <span>...</span> : null;
 
 	return (
-		<div className="mx-auto flex h-full w-96 transform flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl">
+		<div className="mx-auto flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl">
 			<Link className="flex h-full flex-col" to={`/meal/${id}`}>
 				<img
 					className="h-48 w-full object-cover object-center"

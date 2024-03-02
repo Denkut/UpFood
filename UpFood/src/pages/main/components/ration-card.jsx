@@ -1,5 +1,8 @@
-import React from 'react';
+// import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useServerRequest } from '../../../hooks';
+import { addToCart } from '../../../actions'; // Замените на правильный путь к экшену addToCart
 
 export const RationCard = ({
 	id,
@@ -12,11 +15,24 @@ export const RationCard = ({
 	mealTitles,
 	content,
 }) => {
+	const dispatch = useDispatch();
+	const requestServer = useServerRequest();
+
 	const handleAddToCart = () => {
-		console.log(`Рацион ${title} добавлен в корзину!`);
-		console.log(`Общие калории: ${totalCalories}`);
-		console.log(`Общая стоимость: ₽${totalPrices}`);
-		console.log(`Список блюд: ${mealTitles.join(', ')}`);
+		// const cartItem = {
+		// 	id,
+		// 	title,
+		// 	quantity,
+		// 	price,
+		// 	imageUrl,
+		// 	content,
+
+		// };
+
+		requestServer('fetchCart').then(({ res: { cartItem } }) => {
+			dispatch(addToCart(cartItem));
+			console.log(`Товар ${title} добавлен в корзину!`);
+		});
 	};
 
 	const displayMeals =
@@ -33,7 +49,7 @@ export const RationCard = ({
 		mealTitles && mealTitles.length > 2 ? <span>...</span> : null;
 
 	return (
-		<div className="mx-auto flex h-full w-96 transform flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl">
+		<div className="mx-auto flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl">
 			<Link className="flex h-full flex-col" to={`/ration/${id}`}>
 				<img
 					className="h-48 w-full object-cover object-center"

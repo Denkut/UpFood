@@ -14,6 +14,7 @@ const initialUserState = {
 	email: null,
 	dietCategory: null,
 	allergenicIngredients: null,
+	cart: null,
 };
 
 export const userReducer = (state = initialUserState, action) => {

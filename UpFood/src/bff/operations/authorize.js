@@ -24,6 +24,7 @@ export const authorize = async (authLogin, authPassword) => {
 		email,
 		dietCategory,
 		allergenicIngredients,
+		cart,
 	} = user;
 
 	if (authPassword !== password) {
@@ -47,6 +48,7 @@ export const authorize = async (authLogin, authPassword) => {
 			email,
 			dietCategory,
 			allergenicIngredients,
+			cart,
 			session: sessions.create(user),
 		},
 	};

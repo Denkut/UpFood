@@ -1,23 +1,23 @@
-// import { ACTION_TYPE } from '../actions';
-import { ROLE } from '../constants';
+import { ACTION_TYPE } from '../actions';
 
 const initialRationsState = {
-	id: null,
-	login: null,
-	roleId: ROLE.GUEST,
-	session: null,
+	rations: [],
+	selectedRation: null,
 };
 
 export const rationsReducer = (state = initialRationsState, action) => {
 	switch (action.type) {
-		// case ACTION_TYPE.SET_USER:
-		// 	return {
-		// 		...state,
-		// 		...action.payload,
-		// 	};
-		// case ACTION_TYPE.LOGOUT: {
-		// 	return initialRationsState;
-		// }
+		case ACTION_TYPE.ADD_RATION_SUCCESS:
+			return {
+				...state,
+				rations: [action.payload, ...state.rations],
+			};
+		case ACTION_TYPE.SET_RATIONS:
+			return {
+				...state,
+				rations: action.payload,
+			};
+
 		default:
 			return state;
 	}

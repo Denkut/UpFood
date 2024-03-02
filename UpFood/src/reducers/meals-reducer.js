@@ -22,6 +22,11 @@ export const mealsReducer = (state = initialMealsState, action) => {
 				...state,
 				meals: [action.payload, ...state.meals],
 			};
+		case ACTION_TYPE.SET_MEALS:
+			return {
+				...state,
+				meals: action.payload,
+			};
 		default:
 			return state;
 	}

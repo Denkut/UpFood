@@ -8,7 +8,7 @@ import { server } from '../../bff';
 import { Button, Input } from '../../components';
 import { selectUserRole } from '../../selectors';
 import { ROLE } from '../../constants';
-import { setUser } from '../../actions';
+import { setCart, setUser } from '../../actions';
 import { useResetForm } from '../../hooks';
 
 export const authFormSchema = yup.object().shape({
@@ -61,6 +61,12 @@ export const Authorization = () => {
 
 			dispatch(setUser(res));
 			sessionStorage.setItem('userData', JSON.stringify(res));
+			if (
+				(res.cart && res.cart.meals && res.cart.meals.length) ||
+				(res.cart && res.cart.rations && res.cart.rations.length)
+			) {
+				dispatch(setCart(res.cart));
+			}
 		});
 	};
 

@@ -17,24 +17,34 @@ export const Main = () => {
 	const requestServer = useServerRequest();
 
 	useEffect(() => {
-		requestServer('fetchMeals', searchPhrase, page, PAGINATION_LIMIT).then(
-			({ res: { meals, links } }) => {
-				setMeals(meals);
-				setLastPage(getLastPageFromLinks(links));
-			},
-		);
-	}, [requestServer, page, shouldSearch]);
+		const fetchMealsAndRations = async () => {
+			const mealsResponse = await requestServer(
+				'fetchMeals',
+				searchPhrase,
+				page,
+				PAGINATION_LIMIT,
+			);
+			const rationsResponse = await requestServer(
+				'fetchRations',
+				searchPhrase,
+				page,
+				PAGINATION_LIMIT,
+			);
 
-	useEffect(() => {
-		requestServer(
-			'fetchRations',
-			searchPhrase,
-			page,
-			PAGINATION_LIMIT,
-		).then(({ res: { rations, links } }) => {
+			const { meals, links: mealsLinks } = mealsResponse.res;
+			const { rations, links: rationsLinks } = rationsResponse.res;
+
+			setMeals(meals);
 			setRations(rations);
-			setLastPage(getLastPageFromLinks(links));
-		});
+
+			const mealsLastPage = getLastPageFromLinks(mealsLinks);
+			const rationsLastPage = getLastPageFromLinks(rationsLinks);
+			const combinedLastPage = Math.max(mealsLastPage, rationsLastPage);
+
+			setLastPage(combinedLastPage);
+		};
+
+		fetchMealsAndRations();
 	}, [requestServer, page, shouldSearch]);
 
 	const startDelayedSearch = useMemo(
@@ -188,7 +198,7 @@ export const Main = () => {
 			) : (
 				<p>Загрузка блюд...</p>
 			)}
-			{lastPage > 1 && meals.length > 0 && (
+			{lastPage > 1 && (meals.length > 0 || rations.length > 0) && (
 				<Pagination setPage={setPage} page={page} lastPage={lastPage} />
 			)}
 		</div>

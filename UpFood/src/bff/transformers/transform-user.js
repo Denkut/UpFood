@@ -12,4 +12,5 @@ export const transformUser = dbUser => ({
 	email: dbUser.email,
 	dietCategory: dbUser.dietCategory,
 	allergenicIngredients: dbUser.allergenicIngredients,
+	cart: dbUser.cart,
 });

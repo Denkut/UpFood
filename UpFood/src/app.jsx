@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import {
 	Authorization,
+	Cart,
 	Main,
 	Meal,
 	MealList,
@@ -53,7 +54,7 @@ export const App = () => {
 					<Route path="/meals" element={<MealList />} />
 					<Route path="/meal/:id" element={<Meal />} />
 					<Route path="/meal/:id/edit" element={<Meal />} />
-					<Route path="/basket" element={<div>Корзина</div>} />
+					<Route path="/cart" element={<Cart />} />
 					<Route path="*" element={<div>Ошибка</div>} />
 				</Routes>
 			</div>

@@ -14,9 +14,12 @@ export const useServerRequest = () => {
 				'updateUser',
 				'fetchMeal',
 				'fetchMeals',
+				'fetchMealsCart',
 				'fetchAllMeals',
 				'fetchRation',
 				'fetchRations',
+				'fetchRationsCart',
+				'fetchCart',
 			].includes(operation)
 				? params
 				: [session, ...params];

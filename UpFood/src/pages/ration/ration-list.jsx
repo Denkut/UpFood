@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useServerRequest } from '../../hooks';
-import { Search, Pagination, RationCard } from '../main/components';
+import { Search, RationCard, Pagination } from '../main/components';
 import debounce from 'lodash.debounce';
-import { PAGINATION_LIMIT } from '../../constants';
 import { getLastPageFromLinks } from '../main/utils';
+import { PAGINATION_LIMIT } from '../../constants';
 
 export const RationList = () => {
 	const [rations, setRations] = useState([]);

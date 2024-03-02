@@ -25,16 +25,25 @@ export const HeaderMobile = ({ navigation, onLogout }) => {
 						</Link>
 					))}
 				</div>
-
 				<div className="py-6">
-					<Link
-						to="/meal"
-						className="-mx-3 block rounded-lg px-3 py-1 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-					>
-						Добавить блюдо
-					</Link>
+					{roleId === ROLE.ADMIN && (
+						<>
+							<Link
+								to="/meal"
+								className="-mx-3 block rounded-lg px-3 py-1 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+							>
+								Добавить блюдо
+							</Link>
+							<Link
+								to="/ration"
+								className="-mx-3 block rounded-lg px-3 py-1 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+							>
+								Добавить рацион
+							</Link>
+						</>
+					)}
 					<div>
-						<Link to="/basket">
+						<Link to="/cart">
 							<ShoppingCartIcon className=" block h-10 w-auto rounded-lg py-1 text-base font-semibold leading-7 text-gray-900 hover:text-emerald-800" />
 						</Link>
 					</div>

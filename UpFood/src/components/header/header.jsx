@@ -75,7 +75,7 @@ export const Header = () => {
 							</Link>
 						))}
 					</div>
-					<div className="hidden lg:flex lg:flex-1 lg:justify-end">
+					<div className="ml-12 hidden lg:flex lg:flex-1 lg:justify-end">
 						{roleId === ROLE.ADMIN && (
 							<>
 								<Link
@@ -92,32 +92,32 @@ export const Header = () => {
 								</Link>
 							</>
 						)}
-						<div>
-							<Link to="/basket">
+						<div className="flex items-center">
+							<Link to="/cart">
 								<ShoppingCartIcon className=" block h-6 w-auto rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:text-emerald-800" />
 							</Link>
-						</div>
-						{roleId === ROLE.GUEST ? (
-							<Link
-								to="/login"
-								className="rounded-lg px-2.5 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-							>
-								Войти
-							</Link>
-						) : (
-							<>
+							{roleId === ROLE.GUEST ? (
 								<Link
-									to="/profile"
-									className="-mx-3 block rounded-lg px-3 text-lg  font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+									to="/login"
+									className="rounded-lg px-2.5 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
 								>
-									{login}
+									Войти
 								</Link>
-								<ArrowLeftEndOnRectangleIcon
-									onClick={onLogout}
-									className=" block h-6 w-auto rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
-								/>
-							</>
-						)}
+							) : (
+								<>
+									<Link
+										to="/profile"
+										className="-mx-3 block rounded-lg px-3 text-lg  font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+									>
+										{login}
+									</Link>
+									<ArrowLeftEndOnRectangleIcon
+										onClick={onLogout}
+										className=" block h-6 w-auto rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
+									/>
+								</>
+							)}
+						</div>
 					</div>
 				</nav>
 				<Dialog
