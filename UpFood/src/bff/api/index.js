@@ -23,3 +23,4 @@ export * from './get-rations';
 export * from './delete-cart-item';
 export * from './get-meals-cart';
 export * from './get-rations-cart';
+export * from './update-cart';

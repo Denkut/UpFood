@@ -14,7 +14,7 @@ import {
 import { Footer, Header } from './components';
 import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUser } from './actions';
+import { setCart, setUser } from './actions';
 
 export const App = () => {
 	const dispatch = useDispatch();
@@ -34,6 +34,10 @@ export const App = () => {
 				roleId: Number(currentUserData.roleId),
 			}),
 		);
+
+		if (currentUserData.cart) {
+			dispatch(setCart(currentUserData.cart));
+		}
 	}, [dispatch]);
 
 	return (

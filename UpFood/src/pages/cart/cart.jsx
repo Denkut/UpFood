@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-	removeItemFromCartAsync,
-	setMeals,
-	setRations,
-	updateCartItemQuantityAsync,
-} from '../../actions';
+import { setCart, updateCartItemQuantityAsync } from '../../actions';
 import { useServerRequest } from '../../hooks';
-import { selectCart } from '../../selectors';
+import { selectCart, selectUser } from '../../selectors';
+import { server } from '../../bff';
+import { MealItem, RationItem } from './сomponents';
 
 export const Cart = () => {
 	const dispatch = useDispatch();
 	const userCart = useSelector(selectCart);
+	const user = useSelector(selectUser);
 	const mealsCart = userCart.meals || [];
 	const rationsCart = userCart.rations || [];
 	const cartItems = [...mealsCart, ...rationsCart];
+	const [serverError, setServerError] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 	const [totalPrice, setTotalPrice] = useState(0);
 	const requestServer = useServerRequest();
 	const [filteredMeals, setFilteredMeals] = useState([]);
 	const [filteredRations, setFilteredRations] = useState([]);
 	const [mealsData, setMealsData] = useState({});
 	const [visibleMeals, setVisibleMeals] = useState({});
-
 	const toggleVisibleMeals = rationId => {
 		setVisibleMeals(prevVisibleMeals => ({
 			...prevVisibleMeals,
@@ -37,13 +36,13 @@ export const Cart = () => {
 			const { rations } = rationsResponse.res || {};
 
 			const mealsToDisplay = meals.filter(meal =>
-				cartItems.some(item => item.id === meal.id),
+				mealsCart.some(item => item.id === meal.id),
 			);
+
 			setFilteredMeals(mealsToDisplay);
-			dispatch(setMeals(mealsToDisplay));
 
 			const rationsToDisplay = rations.filter(ration =>
-				cartItems.some(item => item.id === ration.id),
+				rationsCart.some(item => item.id === ration.id),
 			);
 			setFilteredRations(
 				rationsToDisplay.map(ration => ({
@@ -58,7 +57,6 @@ export const Cart = () => {
 					}, 0),
 				})),
 			);
-			dispatch(setRations(rationsToDisplay));
 
 			const mealsObj = meals.reduce((acc, meal) => {
 				acc[meal.id] = meal;
@@ -68,7 +66,7 @@ export const Cart = () => {
 		};
 
 		fetchMealsAndRations();
-	}, [requestServer]);
+	}, [requestServer, cartItems]);
 
 	useEffect(() => {
 		const newTotalPrice =
@@ -83,12 +81,61 @@ export const Cart = () => {
 		setTotalPrice(newTotalPrice);
 	}, [filteredMeals, filteredRations]);
 
-	const handleRemoveItem = itemId => {
-		dispatch(removeItemFromCartAsync(requestServer, itemId));
-	};
+	const handleRemoveItem = async (itemId, type) => {
+		setIsLoading(true);
 
-	const handleRemoveRation = rationId => {
-		dispatch(removeItemFromCartAsync(requestServer, rationId));
+		try {
+			const { error, res } = await server.removeCartItem(
+				itemId,
+				type,
+				user.id,
+				userCart,
+			);
+
+			if (error) {
+				setServerError(`Ошибка запроса: ${error}`);
+				setIsLoading(false);
+				return;
+			}
+
+			const updatedCartItems = [...res.meals, ...res.rations];
+			dispatch(setCart(res));
+
+			const currentUserDataJSON = sessionStorage.getItem('userData');
+			if (currentUserDataJSON) {
+				const currentUserData = JSON.parse(currentUserDataJSON);
+				currentUserData.cart = res;
+
+				sessionStorage.setItem(
+					'userData',
+					JSON.stringify(currentUserData),
+				);
+			}
+
+			setFilteredMeals(
+				updatedCartItems.filter(item => item.type === 'meal'),
+			);
+			setFilteredRations(
+				updatedCartItems
+					.filter(item => item.type === 'ration')
+					.map(ration => ({
+						...ration,
+						totalPrice: ration.meals.reduce((total, meal) => {
+							const mealPrice = meal.items.reduce(
+								(subtotal, item) =>
+									subtotal + item.price * item.quantity,
+								0,
+							);
+							return total + mealPrice;
+						}, 0),
+					})),
+			);
+
+			setIsLoading(false);
+		} catch (error) {
+			setServerError(`Ошибка запроса: ${error.message}`);
+			setIsLoading(false);
+		}
 	};
 
 	const handleUpdateQuantity = (id, newQuantity) => {
@@ -98,184 +145,33 @@ export const Cart = () => {
 	return (
 		<div className="container mx-auto mt-8">
 			<h2 className="mb-4 text-3xl font-bold">Корзина</h2>
+			{isLoading && <p>Загрузка...</p>}
+			{serverError && <p>{serverError}</p>}
+
 			{filteredMeals.length === 0 && filteredRations.length === 0 ? (
 				<p>Корзина пуста</p>
 			) : (
 				<div>
 					{filteredMeals.map(item => (
-						<div key={item.id} className="mb-4 flex items-center">
-							<img
-								src={item.imageUrl}
-								alt={item.title}
-								className="mr-4 h-16 w-16 rounded object-cover"
-							/>
-							<div className="flex-1">
-								<p className="text-lg font-bold">
-									{item.title}
-								</p>
-							</div>
-							<div className="flex items-center space-x-4">
-								<p className="text-lg font-bold">
-									{item.price} ₽
-								</p>
-								<div className="flex items-center">
-									<button
-										onClick={() =>
-											handleUpdateQuantity(
-												item.id,
-												item.count - 1,
-											)
-										}
-										disabled={item.count <= 1}
-										className="text-gray-500 hover:text-emerald-500 focus:outline-none"
-									>
-										-
-									</button>
-									<span className="mx-2">{item.count}</span>
-									<button
-										onClick={() =>
-											handleUpdateQuantity(
-												item.id,
-												item.count + 1,
-											)
-										}
-										className="text-emerald-500 hover:text-emerald-700 focus:outline-none"
-									>
-										+
-									</button>
-								</div>
-								<button
-									onClick={() => handleRemoveItem(item.id)}
-									className="ml-4 text-red-500 hover:text-red-700 focus:outline-none"
-								>
-									Удалить
-								</button>
-							</div>
-						</div>
+						<MealItem
+							key={item.id}
+							item={item}
+							handleUpdateQuantity={handleUpdateQuantity}
+							handleRemoveItem={handleRemoveItem}
+							isLoading={isLoading}
+							mealsData={mealsData}
+						/>
 					))}
 					{filteredRations.map(ration => (
-						<div key={ration.id} className="mb-4  items-center">
-							<div className="mb-4 flex items-center">
-								<img
-									onClick={() =>
-										toggleVisibleMeals(ration.id)
-									}
-									src={ration.imageUrl}
-									alt={ration.title}
-									className="mr-4 h-24 w-24 cursor-pointer rounded object-cover"
-								/>
-								<div className="flex-1">
-									<p
-										onClick={() =>
-											toggleVisibleMeals(ration.id)
-										}
-										className="cursor-pointer text-lg font-bold hover:text-emerald-700"
-									>
-										{ration.title}
-									</p>
-								</div>
-								<div className="flex items-center space-x-4">
-									<p className="text-lg font-bold">
-										{ration.totalPrice} ₽
-									</p>
-									<button
-										onClick={() =>
-											handleRemoveRation(ration.id)
-										}
-										className=" text-red-500 hover:text-red-700 focus:outline-none"
-									>
-										Удалить рацион{' '}
-									</button>
-								</div>
-							</div>
-							{visibleMeals[ration.id] && (
-								<div>
-									{ration.meals.map((meal, index) => (
-										<div
-											key={index}
-											className="mb-4 ml-4 flex items-center"
-										>
-											{meal.items.map(
-												(mealItem, mealIndex) => (
-													<img
-														key={mealIndex}
-														src={
-															mealsData[
-																mealItem.mealId
-															].imageUrl
-														}
-														alt={`Meal ${
-															mealIndex + 1
-														}`}
-														className="mr-4 h-16 w-16 rounded object-cover"
-													/>
-												),
-											)}
-											<div className="flex-1">
-												<p className="text-lg font-bold">
-													{meal.items[0].title}
-												</p>
-											</div>
-											<div className="flex items-center space-x-4">
-												<p className="text-lg font-bold">
-													{meal.items[0].price} ₽
-												</p>
-											</div>
-											<div className="m-2 flex items-center">
-												<div className="flex items-center space-x-4">
-													<button
-														onClick={() =>
-															handleUpdateQuantity(
-																meal.items[0]
-																	.mealId,
-																meal.items[0]
-																	.quantity -
-																	1,
-															)
-														}
-														disabled={
-															meal.items[0]
-																.quantity <= 1
-														}
-														className="text-gray-500 hover:text-emerald-500 focus:outline-none"
-													>
-														-
-													</button>
-													<span className="mx-2">
-														{meal.items[0].quantity}
-													</span>
-													<button
-														onClick={() =>
-															handleUpdateQuantity(
-																meal.items[0]
-																	.mealId,
-																meal.items[0]
-																	.quantity +
-																	1,
-															)
-														}
-														className="text-emerald-500 hover:text-emerald-700 focus:outline-none"
-													>
-														+
-													</button>
-												</div>
-												<button
-													onClick={() =>
-														handleRemoveItem(
-															meal.items[0]
-																.mealId,
-														)
-													}
-													className="ml-4 text-red-500 hover:text-red-700 focus:outline-none"
-												>
-													Удалить
-												</button>
-											</div>
-										</div>
-									))}
-								</div>
-							)}
-						</div>
+						<RationItem
+							key={ration.id}
+							ration={ration}
+							visibleMeals={visibleMeals}
+							toggleVisibleMeals={toggleVisibleMeals}
+							handleRemoveItem={handleRemoveItem}
+							isLoading={isLoading}
+							mealsData={mealsData}
+						/>
 					))}
 					<div className="mt-4">
 						<p className="text-xl font-semibold">

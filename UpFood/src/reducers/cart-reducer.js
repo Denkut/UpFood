@@ -1,51 +1,45 @@
 import { ACTION_TYPE } from '../actions';
 
 const initialState = {
-	user: {
-		cart: {
-			meals: [],
-			rations: [],
-		},
-	},
+	meals: [],
+	rations: [],
 };
 
-const cartReducer = (state = initialState, action) => {
+export const cartReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ACTION_TYPE.SET_CART:
 			return {
 				...state,
-				user: {
-					...state.user,
-					cart: action.payload,
-				},
+				...action.payload,
 			};
 		case ACTION_TYPE.ADD_TO_CART:
 			return {
 				...state,
-				cartItems: [...state.cartItems, action.payload],
+				[action.payload.type]: [
+					...state[action.payload.type],
+					action.payload.item,
+				],
 			};
+		case ACTION_TYPE.UPDATE_CART_ITEM_QUANTITY: {
+			const updatedMeals = state.meals.map(item =>
+				item.id === action.payload.itemId
+					? { ...item, count: action.payload.quantity }
+					: item,
+			);
+			const updatedRations = state.rations.map(item =>
+				item.id === action.payload.itemId
+					? { ...item, count: action.payload.quantity }
+					: item,
+			);
 
-		case ACTION_TYPE.REMOVE_ITEM_FROM_CART:
 			return {
 				...state,
-				cartItems: state.cartItems.filter(
-					item => item.id !== action.payload,
-				),
+				meals: updatedMeals,
+				rations: updatedRations,
 			};
-
-		case ACTION_TYPE.UPDATE_CART_ITEM_QUANTITY:
-			return {
-				...state,
-				cartItems: state.cartItems.map(item =>
-					item.id === action.payload.itemId
-						? { ...item, quantity: action.payload.quantity }
-						: item,
-				),
-			};
+		}
 
 		default:
 			return state;
 	}
 };
-
-export default cartReducer;

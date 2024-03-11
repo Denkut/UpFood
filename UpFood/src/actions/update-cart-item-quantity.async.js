@@ -1,5 +1,5 @@
 export const updateCartItemQuantityAsync = ({ id, count }) =>
-	fetch(`http://localhost:3005/carts/${id}`, {
+	fetch(`http://localhost:3005/cart/${id}`, {
 		method: 'PATCH',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',

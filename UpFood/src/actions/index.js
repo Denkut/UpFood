@@ -5,6 +5,7 @@ export * from './set-meal-data';
 export * from './set-meals';
 export * from './load-meal-async';
 export * from './load-meals-async';
+export * from './load-rations-async';
 export * from './set-user';
 export * from './save-meal-async';
 export * from './update-meal';

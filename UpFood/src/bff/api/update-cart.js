@@ -1,4 +1,4 @@
-export const setUser = async (userId, user) => {
+export const updateCart = async (userId, user) => {
 	const response = await fetch(`http://localhost:3005/users/${userId}`, {
 		method: 'PATCH',
 		headers: {
@@ -11,5 +11,5 @@ export const setUser = async (userId, user) => {
 		throw new Error(`Ошибка: ${response.status}`);
 	}
 	const updatedUser = await response.json();
-	return updatedUser;
+	return updatedUser.cart;
 };

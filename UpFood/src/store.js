@@ -8,6 +8,7 @@ import {
 	mealsReducer,
 	rationsReducer,
 	rationReducer,
+	cartReducer,
 } from './reducers';
 
 const reducer = combineReducers({
@@ -18,6 +19,7 @@ const reducer = combineReducers({
 	meals: mealsReducer,
 	ration: rationReducer,
 	rations: rationsReducer,
+	cart: cartReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

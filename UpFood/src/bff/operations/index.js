@@ -19,3 +19,4 @@ export * from './remove-ration';
 export * from './remove-cart-item';
 export * from './fetch-meals-cart';
 export * from './fetch-rations-cart';
+export * from './update-user-cart';

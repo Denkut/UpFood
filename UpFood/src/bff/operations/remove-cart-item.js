@@ -1,22 +1,23 @@
-import { deleteCartItem } from '../api';
-import { sessions } from '../sessions';
-import { ROLE } from '../constants';
+import { updateCart } from '../api';
 
-export const removeCartItem = async (hash, id) => {
-	const accessRoles = [ROLE.ADMIN, ROLE.CLIENT];
+export const removeCartItem = async (itemId, type, userId, userCart) => {
+	// eslint-disable-next-line prefer-const
+	let newCart = { ...userCart };
 
-	const access = await sessions.access(hash, accessRoles);
-	if (!access) {
-		return {
-			error: 'Доступ запрещен',
-			res: null,
-		};
+	const cartType = type === 'meal' ? 'meals' : 'rations';
+
+	if (newCart[cartType]) {
+		newCart[cartType] = newCart[cartType].filter(
+			item => item.id !== itemId,
+		);
 	}
 
-	deleteCartItem(id);
+	const newCartFromServer = await updateCart(userId, {
+		cart: newCart,
+	});
 
 	return {
 		error: null,
-		res: true,
+		res: newCartFromServer,
 	};
 };

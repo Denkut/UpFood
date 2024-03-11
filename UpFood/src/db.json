@@ -7,7 +7,8 @@
       "role_id": 0,
       "id": "JahlbFP",
       "allergenicIngredients": [
-        "1"
+        "1",
+        "2"
       ],
       "dietCategory": 4,
       "email": "upfood.ru@yandex.ru",
@@ -16,24 +17,24 @@
       "goal": 1,
       "weight": 65,
       "fullName": "Den kutepov",
-      "carts": {
+      "cart": {
         "meals": [
           {
-            "cartId": "005",
+            "id": "005",
             "count": 1
           },
           {
-            "cartId": "001",
+            "id": "001",
             "count": 1
           }
         ],
         "rations": [
           {
-            "cartId": "002",
+            "id": "006",
             "count": 1
           },
           {
-            "cartId": "006",
+            "id": "002",
             "count": 1
           }
         ]
@@ -202,6 +203,52 @@
       "content": "Данный рацион содержит 950ккал",
       "id": "fcVL-HY",
       "image_url": "https://wegym.ru/uploads/large_1634632033_165415_473c81a9c3.webp"
+    },
+    {
+      "title": "Рацион 4",
+      "goal": "похудеть",
+      "meals": [
+        {
+          "items": [
+            {
+              "mealId": "006",
+              "quantity": 1,
+              "type": "Завтрак",
+              "title": "Творожная запеканка с изюмом",
+              "calories": "148",
+              "price": 200
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "mealId": "010",
+              "quantity": 1,
+              "type": "Обед",
+              "title": "Овощной тайский карри",
+              "calories": "320",
+              "price": "280"
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "mealId": "012",
+              "quantity": 1,
+              "type": "Ужин",
+              "title": "Лосось с авокадо и лимоном",
+              "calories": "350",
+              "price": "320"
+            }
+          ]
+        }
+      ],
+      "content": "Для похудения",
+      "image_url": "https://psychbook.ru/assets/i/ai/4/4/1/i/2988970.jpg",
+      "imageUrl": "",
+      "id": "3L5SA7_"
     }
   ],
   "meals": [
@@ -640,7 +687,7 @@
   ],
   "sessions": [
     {
-      "hash": "0.31512708369731345925401910790242254734039306640625",
+      "hash": "0.43242347348628062952968775789486244320869445800781",
       "user": {
         "id": "JahlbFP",
         "login": "anton",
@@ -655,28 +702,8 @@
         "email": "upfood.ru@yandex.ru",
         "dietCategory": 4,
         "allergenicIngredients": [
-          "1"
-        ]
-      },
-      "id": 1
-    },
-    {
-      "hash": "0.15946545485785890150509658269584178924560546875000",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "password": "qwe123",
-        "registeredAt": "2024-01-10 17:15",
-        "roleId": 0,
-        "fullName": "Den kutepov",
-        "weight": 65,
-        "goal": 1,
-        "height": 127,
-        "age": 38,
-        "email": "upfood.ru@yandex.ru",
-        "dietCategory": 4,
-        "allergenicIngredients": [
-          "1"
+          "1",
+          "2"
         ],
         "cart": {
           "meals": [
@@ -691,17 +718,193 @@
           ],
           "rations": [
             {
-              "id": "002",
+              "id": "006",
               "count": 1
             },
             {
+              "id": "002",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "id": 1
+    },
+    {
+      "hash": "0.68887898397385916027246821613516658544540405273438",
+      "user": {
+        "id": "JahlbFP",
+        "login": "anton",
+        "password": "qwe123",
+        "registeredAt": "2024-01-10 17:15",
+        "roleId": 0,
+        "fullName": "Den kutepov",
+        "weight": 65,
+        "goal": 1,
+        "height": 127,
+        "age": 38,
+        "email": "upfood.ru@yandex.ru",
+        "dietCategory": 4,
+        "allergenicIngredients": [
+          "1",
+          "2"
+        ],
+        "cart": {
+          "meals": [
+            {
+              "id": "005",
+              "count": 1
+            },
+            {
+              "id": "001",
+              "count": 1
+            }
+          ],
+          "rations": [
+            {
               "id": "006",
+              "count": 1
+            },
+            {
+              "id": "002",
               "count": 1
             }
           ]
         }
       },
       "id": 2
+    },
+    {
+      "hash": "0.82642650130474359926324723346624523401260375976563",
+      "user": {
+        "id": "JahlbFP",
+        "login": "anton",
+        "password": "qwe123",
+        "registeredAt": "2024-01-10 17:15",
+        "roleId": 0,
+        "fullName": "Den kutepov",
+        "weight": 65,
+        "goal": 1,
+        "height": 127,
+        "age": 38,
+        "email": "upfood.ru@yandex.ru",
+        "dietCategory": 4,
+        "allergenicIngredients": [
+          "1",
+          "2"
+        ],
+        "cart": {
+          "meals": [
+            {
+              "id": "005",
+              "count": 1
+            },
+            {
+              "id": "001",
+              "count": 1
+            }
+          ],
+          "rations": [
+            {
+              "id": "006",
+              "count": 1
+            },
+            {
+              "id": "002",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "id": 3
+    },
+    {
+      "hash": "0.14824765025999453449401244142791256308555603027344",
+      "user": {
+        "id": "JahlbFP",
+        "login": "anton",
+        "password": "qwe123",
+        "registeredAt": "2024-01-10 17:15",
+        "roleId": 0,
+        "fullName": "Den kutepov",
+        "weight": 65,
+        "goal": 1,
+        "height": 127,
+        "age": 38,
+        "email": "upfood.ru@yandex.ru",
+        "dietCategory": 4,
+        "allergenicIngredients": [
+          "1",
+          "2"
+        ],
+        "cart": {
+          "meals": [
+            {
+              "id": "005",
+              "count": 1
+            },
+            {
+              "id": "001",
+              "count": 1
+            }
+          ],
+          "rations": [
+            {
+              "id": "006",
+              "count": 1
+            },
+            {
+              "id": "002",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "id": 4
+    },
+    {
+      "hash": "0.33874673029993029871320686652325093746185302734375",
+      "user": {
+        "id": "JahlbFP",
+        "login": "anton",
+        "password": "qwe123",
+        "registeredAt": "2024-01-10 17:15",
+        "roleId": 0,
+        "fullName": "Den kutepov",
+        "weight": 65,
+        "goal": 1,
+        "height": 127,
+        "age": 38,
+        "email": "upfood.ru@yandex.ru",
+        "dietCategory": 4,
+        "allergenicIngredients": [
+          "1",
+          "2"
+        ],
+        "cart": {
+          "meals": [
+            {
+              "id": "005",
+              "count": 1
+            },
+            {
+              "id": "001",
+              "count": 1
+            }
+          ],
+          "rations": [
+            {
+              "id": "006",
+              "count": 1
+            },
+            {
+              "id": "002",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "id": 5
     }
   ]
 }

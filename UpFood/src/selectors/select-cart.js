@@ -1,1 +1,1 @@
-export const selectCart = state => state.user?.cart || {};
+export const selectCart = ({ cart }) => cart;

@@ -99,7 +99,6 @@ export const Profile = () => {
 				setServerError(`Ошибка запроса: ${error}`);
 				return;
 			}
-
 			dispatch(setUser(res));
 			saveUserDataToSessionStorage(res);
 

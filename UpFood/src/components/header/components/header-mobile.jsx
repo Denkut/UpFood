@@ -64,7 +64,7 @@ export const HeaderMobile = ({ navigation, onLogout }) => {
 							</Link>
 							<ArrowLeftEndOnRectangleIcon
 								onClick={onLogout}
-								className=" block h-6 w-auto rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
+								className=" block h-6 w-auto cursor-pointer rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
 							/>
 						</>
 					)}
