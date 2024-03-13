@@ -24,6 +24,10 @@
             "count": 1
           },
           {
+            "id": "008",
+            "count": 1
+          },
+          {
             "id": "001",
             "count": 1
           }
@@ -687,7 +691,7 @@
   ],
   "sessions": [
     {
-      "hash": "0.43242347348628062952968775789486244320869445800781",
+      "hash": "0.20999674425927428167426569416420534253120422363281",
       "user": {
         "id": "JahlbFP",
         "login": "anton",
@@ -709,6 +713,10 @@
           "meals": [
             {
               "id": "005",
+              "count": 1
+            },
+            {
+              "id": "008",
               "count": 1
             },
             {
@@ -729,182 +737,6 @@
         }
       },
       "id": 1
-    },
-    {
-      "hash": "0.68887898397385916027246821613516658544540405273438",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "password": "qwe123",
-        "registeredAt": "2024-01-10 17:15",
-        "roleId": 0,
-        "fullName": "Den kutepov",
-        "weight": 65,
-        "goal": 1,
-        "height": 127,
-        "age": 38,
-        "email": "upfood.ru@yandex.ru",
-        "dietCategory": 4,
-        "allergenicIngredients": [
-          "1",
-          "2"
-        ],
-        "cart": {
-          "meals": [
-            {
-              "id": "005",
-              "count": 1
-            },
-            {
-              "id": "001",
-              "count": 1
-            }
-          ],
-          "rations": [
-            {
-              "id": "006",
-              "count": 1
-            },
-            {
-              "id": "002",
-              "count": 1
-            }
-          ]
-        }
-      },
-      "id": 2
-    },
-    {
-      "hash": "0.82642650130474359926324723346624523401260375976563",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "password": "qwe123",
-        "registeredAt": "2024-01-10 17:15",
-        "roleId": 0,
-        "fullName": "Den kutepov",
-        "weight": 65,
-        "goal": 1,
-        "height": 127,
-        "age": 38,
-        "email": "upfood.ru@yandex.ru",
-        "dietCategory": 4,
-        "allergenicIngredients": [
-          "1",
-          "2"
-        ],
-        "cart": {
-          "meals": [
-            {
-              "id": "005",
-              "count": 1
-            },
-            {
-              "id": "001",
-              "count": 1
-            }
-          ],
-          "rations": [
-            {
-              "id": "006",
-              "count": 1
-            },
-            {
-              "id": "002",
-              "count": 1
-            }
-          ]
-        }
-      },
-      "id": 3
-    },
-    {
-      "hash": "0.14824765025999453449401244142791256308555603027344",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "password": "qwe123",
-        "registeredAt": "2024-01-10 17:15",
-        "roleId": 0,
-        "fullName": "Den kutepov",
-        "weight": 65,
-        "goal": 1,
-        "height": 127,
-        "age": 38,
-        "email": "upfood.ru@yandex.ru",
-        "dietCategory": 4,
-        "allergenicIngredients": [
-          "1",
-          "2"
-        ],
-        "cart": {
-          "meals": [
-            {
-              "id": "005",
-              "count": 1
-            },
-            {
-              "id": "001",
-              "count": 1
-            }
-          ],
-          "rations": [
-            {
-              "id": "006",
-              "count": 1
-            },
-            {
-              "id": "002",
-              "count": 1
-            }
-          ]
-        }
-      },
-      "id": 4
-    },
-    {
-      "hash": "0.33874673029993029871320686652325093746185302734375",
-      "user": {
-        "id": "JahlbFP",
-        "login": "anton",
-        "password": "qwe123",
-        "registeredAt": "2024-01-10 17:15",
-        "roleId": 0,
-        "fullName": "Den kutepov",
-        "weight": 65,
-        "goal": 1,
-        "height": 127,
-        "age": 38,
-        "email": "upfood.ru@yandex.ru",
-        "dietCategory": 4,
-        "allergenicIngredients": [
-          "1",
-          "2"
-        ],
-        "cart": {
-          "meals": [
-            {
-              "id": "005",
-              "count": 1
-            },
-            {
-              "id": "001",
-              "count": 1
-            }
-          ],
-          "rations": [
-            {
-              "id": "006",
-              "count": 1
-            },
-            {
-              "id": "002",
-              "count": 1
-            }
-          ]
-        }
-      },
-      "id": 5
     }
   ]
 }

@@ -1,11 +1,11 @@
 import { ACTION_TYPE } from '../actions';
 
-const initialState = {
+const initialCartState = {
 	meals: [],
 	rations: [],
 };
 
-export const cartReducer = (state = initialState, action) => {
+export const cartReducer = (state = initialCartState, action) => {
 	switch (action.type) {
 		case ACTION_TYPE.SET_CART:
 			return {
@@ -31,12 +31,14 @@ export const cartReducer = (state = initialState, action) => {
 					? { ...item, count: action.payload.quantity }
 					: item,
 			);
-
 			return {
 				...state,
 				meals: updatedMeals,
 				rations: updatedRations,
 			};
+		}
+		case ACTION_TYPE.LOGOUT: {
+			return initialCartState;
 		}
 
 		default:

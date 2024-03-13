@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCart, updateCartItemQuantityAsync } from '../../actions';
+import { logout, setCart, updateCartItemQuantityAsync } from '../../actions';
 import { useServerRequest } from '../../hooks';
-import { selectCart, selectUser } from '../../selectors';
+import { selectCart, selectUser, selectUserSession } from '../../selectors';
 import { server } from '../../bff';
 import { MealItem, RationItem } from './сomponents';
 
@@ -10,9 +10,9 @@ export const Cart = () => {
 	const dispatch = useDispatch();
 	const userCart = useSelector(selectCart);
 	const user = useSelector(selectUser);
+	const session = useSelector(selectUserSession);
 	const mealsCart = userCart.meals || [];
 	const rationsCart = userCart.rations || [];
-	const cartItems = [...mealsCart, ...rationsCart];
 	const [serverError, setServerError] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [totalPrice, setTotalPrice] = useState(0);
@@ -30,43 +30,56 @@ export const Cart = () => {
 
 	useEffect(() => {
 		const fetchMealsAndRations = async () => {
-			const mealsResponse = await requestServer('fetchMealsCart');
-			const rationsResponse = await requestServer('fetchRationsCart');
-			const { meals } = mealsResponse.res || {};
-			const { rations } = rationsResponse.res || {};
+			if (user) {
+				setIsLoading(true);
+				try {
+					const mealsResponse = await requestServer('fetchMealsCart');
+					const rationsResponse =
+						await requestServer('fetchRationsCart');
+					const { meals } = mealsResponse.res || {};
+					const { rations } = rationsResponse.res || {};
 
-			const mealsToDisplay = meals.filter(meal =>
-				mealsCart.some(item => item.id === meal.id),
-			);
+					const mealsToDisplay = meals.filter(meal =>
+						mealsCart.some(item => item.id === meal.id),
+					);
 
-			setFilteredMeals(mealsToDisplay);
+					setFilteredMeals(mealsToDisplay);
 
-			const rationsToDisplay = rations.filter(ration =>
-				rationsCart.some(item => item.id === ration.id),
-			);
-			setFilteredRations(
-				rationsToDisplay.map(ration => ({
-					...ration,
-					totalPrice: ration.meals.reduce((total, meal) => {
-						const mealPrice = meal.items.reduce(
-							(subtotal, item) =>
-								subtotal + item.price * item.quantity,
-							0,
-						);
-						return total + mealPrice;
-					}, 0),
-				})),
-			);
+					const rationsToDisplay = rations.filter(ration =>
+						rationsCart.some(item => item.id === ration.id),
+					);
+					setFilteredRations(
+						rationsToDisplay.map(ration => ({
+							...ration,
+							totalPrice: ration.meals.reduce((total, meal) => {
+								const mealPrice = meal.items.reduce(
+									(subtotal, item) =>
+										subtotal + item.price * item.quantity,
+									0,
+								);
+								return total + mealPrice;
+							}, 0),
+						})),
+					);
 
-			const mealsObj = meals.reduce((acc, meal) => {
-				acc[meal.id] = meal;
-				return acc;
-			}, {});
-			setMealsData(mealsObj);
+					const mealsObj = meals.reduce((acc, meal) => {
+						acc[meal.id] = meal;
+						return acc;
+					}, {});
+					setMealsData(mealsObj);
+				} catch (error) {
+					setServerError(`Ошибка запроса: ${error.message}`);
+				} finally {
+					setIsLoading(false);
+				}
+			} else {
+				dispatch(logout(session));
+				sessionStorage.removeItem('userData');
+			}
 		};
 
 		fetchMealsAndRations();
-	}, [requestServer, cartItems]);
+	}, [requestServer, user, mealsCart, rationsCart, dispatch]);
 
 	useEffect(() => {
 		const newTotalPrice =
