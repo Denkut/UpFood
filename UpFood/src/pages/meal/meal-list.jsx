@@ -4,9 +4,11 @@ import { Search, MealCard, Pagination } from '../main/components';
 import debounce from 'lodash.debounce';
 import { PAGINATION_LIMIT } from '../../constants';
 import { getLastPageFromLinks } from '../main/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectMeals } from '../../selectors';
+import { setMeals } from '../../actions';
 
 export const MealList = () => {
-	const [meals, setMeals] = useState([]);
 	const [page, setPage] = useState(1);
 	const [lastPage, setLastPage] = useState(1);
 	const [searchPhrase, setSearchPhrase] = useState('');
@@ -14,6 +16,8 @@ export const MealList = () => {
 	const [filterType, setFilterType] = useState('');
 	const [filterCalories, setFilterCalories] = useState('');
 	const requestServer = useServerRequest();
+	const dispatch = useDispatch();
+	const meals = useSelector(selectMeals);
 
 	useEffect(() => {
 		const fetchMeals = async () => {
@@ -25,7 +29,7 @@ export const MealList = () => {
 				filterType,
 				filterCalories,
 			).then(({ res: { meals, links } }) => {
-				setMeals(meals);
+				dispatch(setMeals(meals));
 				setLastPage(getLastPageFromLinks(links));
 			});
 		};

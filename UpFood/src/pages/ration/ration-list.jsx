@@ -4,15 +4,19 @@ import { Search, RationCard, Pagination } from '../main/components';
 import debounce from 'lodash.debounce';
 import { getLastPageFromLinks } from '../main/utils';
 import { PAGINATION_LIMIT } from '../../constants';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectRations } from '../../selectors';
+import { setRations } from '../../actions';
 
 export const RationList = () => {
-	const [rations, setRations] = useState([]);
 	const [page, setPage] = useState(1);
 	const [lastPage, setLastPage] = useState(1);
 	const [searchPhrase, setSearchPhrase] = useState('');
 	const [shouldSearch, setShouldSearch] = useState(false);
 	const [filterGoal, setFilterGoal] = useState('');
 	const requestServer = useServerRequest();
+	const dispatch = useDispatch();
+	const rations = useSelector(selectRations);
 
 	useEffect(() => {
 		const fetchRations = async () => {
@@ -23,13 +27,13 @@ export const RationList = () => {
 				PAGINATION_LIMIT,
 				filterGoal,
 			).then(({ res: { rations, links } }) => {
-				setRations(rations);
+				dispatch(setRations(rations));
 				setLastPage(getLastPageFromLinks(links));
 			});
 		};
 
 		fetchRations();
-	}, [requestServer, page, shouldSearch, filterGoal]);
+	}, [requestServer, page, shouldSearch, filterGoal, dispatch]);
 
 	const startDelayedSearch = useMemo(
 		() => debounce(setShouldSearch, 2000),

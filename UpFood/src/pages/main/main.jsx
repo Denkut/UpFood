@@ -6,15 +6,19 @@ import { Search, MealCard, Pagination, RationCard } from '../main/components';
 import debounce from 'lodash.debounce';
 import { getLastPageFromLinks } from './utils';
 import { PAGINATION_LIMIT } from '../../constants';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectMeals, selectRations } from '../../selectors';
+import { setMeals, setRations } from '../../actions';
 
 export const Main = () => {
-	const [meals, setMeals] = useState([]);
-	const [rations, setRations] = useState([]);
 	const [page, setPage] = useState(1);
 	const [lastPage, setLastPage] = useState(1);
 	const [searchPhrase, setSearchPhrase] = useState('');
 	const [shouldSearch, setShouldSearch] = useState(false);
 	const requestServer = useServerRequest();
+	const dispatch = useDispatch();
+	const meals = useSelector(selectMeals);
+	const rations = useSelector(selectRations);
 
 	useEffect(() => {
 		const fetchMealsAndRations = async () => {
@@ -34,8 +38,8 @@ export const Main = () => {
 			const { meals, links: mealsLinks } = mealsResponse.res;
 			const { rations, links: rationsLinks } = rationsResponse.res;
 
-			setMeals(meals);
-			setRations(rations);
+			dispatch(setMeals(meals));
+			dispatch(setRations(rations));
 
 			const mealsLastPage = getLastPageFromLinks(mealsLinks);
 			const rationsLastPage = getLastPageFromLinks(rationsLinks);
@@ -160,7 +164,9 @@ export const Main = () => {
 					)}
 				</div>
 			) : (
-				<p>Загрузка рационов...</p>
+				<p className=" cursor-pointer text-lg hover:text-emerald-700">
+					Собери свой рацион
+				</p>
 			)}
 
 			<h2 className="mb-6 mt-10 text-3xl font-bold text-gray-900">

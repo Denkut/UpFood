@@ -1,3 +1,1 @@
-export const selectMeals = state => {
-	return state.meals.res;
-};
+export const selectMeals = state => state.meals.meals;

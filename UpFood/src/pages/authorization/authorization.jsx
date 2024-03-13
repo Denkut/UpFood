@@ -58,7 +58,6 @@ export const Authorization = () => {
 				setServerError(`Ошибка запроса: ${error}`);
 				return;
 			}
-			//TODO наверное при авторизации всё сохраняется, а при обновлении страницы уже нет. Может нужно dispatch(setCart(res.cart)); сделать в App?
 			dispatch(setUser(res));
 			sessionStorage.setItem('userData', JSON.stringify(res));
 			if (
@@ -74,7 +73,7 @@ export const Authorization = () => {
 	const errorMessage = formError || serverError;
 
 	if (roleId !== ROLE.GUEST) {
-		return <Navigate to="/profile" />;
+		return <Navigate to="/" />;
 	}
 
 	return (

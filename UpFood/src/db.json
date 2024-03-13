@@ -26,7 +26,24 @@
           {
             "id": "008",
             "count": 1
-          },
+          }
+        ],
+        "rations": [
+          {
+            "id": "006",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "login": "Denis",
+      "password": "qwe123",
+      "registered_at": "2024-01-10 17:15",
+      "role_id": 1,
+      "id": "JahlbFf",
+      "cart": {
+        "meals": [
           {
             "id": "001",
             "count": 1
@@ -45,20 +62,12 @@
       }
     },
     {
-      "login": "Denis",
-      "password": "qwe123",
-      "registered_at": "2024-01-10 17:15",
-      "role_id": 1,
-      "id": "JahlbFf",
-      "cart": []
-    },
-    {
       "login": "alina",
       "password": "qwe123",
       "registered_at": "2024-01-13 13:14",
       "role_id": 1,
       "id": "kLUjcAb",
-      "cart": []
+      "cart": {}
     }
   ],
   "roles": [
@@ -691,7 +700,7 @@
   ],
   "sessions": [
     {
-      "hash": "0.20999674425927428167426569416420534253120422363281",
+      "hash": "0.82387949582952946236957814107881858944892883300781",
       "user": {
         "id": "JahlbFP",
         "login": "anton",
@@ -718,19 +727,11 @@
             {
               "id": "008",
               "count": 1
-            },
-            {
-              "id": "001",
-              "count": 1
             }
           ],
           "rations": [
             {
               "id": "006",
-              "count": 1
-            },
-            {
-              "id": "002",
               "count": 1
             }
           ]
