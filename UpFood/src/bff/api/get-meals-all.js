@@ -1,6 +1,6 @@
 import { transformMeal } from '../transformers';
 
-export const getAllMeals = () =>
+export const getMealsAll = () =>
 	fetch('http://localhost:3005/meals')
 		.then(loadedMeals => loadedMeals.json())
 		.then(loadedMeals => ({

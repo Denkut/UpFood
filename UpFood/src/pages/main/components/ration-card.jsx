@@ -2,7 +2,7 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useServerRequest } from '../../../hooks';
-import { addToCart } from '../../../actions'; // Замените на правильный путь к экшену addToCart
+import { addToCart } from '../../../actions';
 
 export const RationCard = ({
 	id,
@@ -19,15 +19,19 @@ export const RationCard = ({
 	const requestServer = useServerRequest();
 
 	const handleAddToCart = () => {
-		// const cartItem = {
-		// 	id,
-		// 	title,
-		// 	quantity,
-		// 	price,
-		// 	imageUrl,
-		// 	content,
-
-		// };
+		const rationItem = {
+			type: 'rations', // указываем тип (rations) для корректного добавления в корзину
+			item: {
+				id,
+				title,
+				imageUrl,
+				goal,
+				totalCalories,
+				totalPrices,
+				mealTitles,
+				content,
+			},
+		};
 
 		requestServer('fetchCart').then(({ res: { cartItem } }) => {
 			dispatch(addToCart(cartItem));

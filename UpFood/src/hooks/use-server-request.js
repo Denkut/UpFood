@@ -15,7 +15,7 @@ export const useServerRequest = () => {
 				'fetchMeal',
 				'fetchMeals',
 				'fetchMealsCart',
-				'fetchAllMeals',
+				'fetchMealsAll',
 				'fetchRation',
 				'fetchRations',
 				'fetchRationsCart',

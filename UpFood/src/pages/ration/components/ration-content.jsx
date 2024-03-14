@@ -24,6 +24,7 @@ export const RationContent = ({ ration, meals }) => {
 	const navigate = useNavigate();
 	const requestServer = useServerRequest();
 	const userRole = useSelector(selectUserRole);
+
 	const onMealRemove = mealId => {
 		dispatch(
 			openModal({

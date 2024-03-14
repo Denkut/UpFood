@@ -1,7 +1,7 @@
-import { getAllMeals } from '../api';
+import { getMealsAll } from '../api';
 
-export const fetchAllMeals = async () => {
-	const response = await getAllMeals();
+export const fetchMealsAll = async () => {
+	const response = await getMealsAll();
 	const meals = response.meals;
 
 	return {
