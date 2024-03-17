@@ -21,3 +21,4 @@ export * from './fetch-meals-cart';
 export * from './fetch-rations-cart';
 export * from './update-user-cart';
 export * from './fetch-cart';
+export * from './add-to-cart';

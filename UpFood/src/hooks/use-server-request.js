@@ -21,6 +21,7 @@ export const useServerRequest = () => {
 				'fetchRationsCart',
 				'fetchCart',
 				'removeCartItem',
+				'addToCart',
 			].includes(operation)
 				? params
 				: [session, ...params];

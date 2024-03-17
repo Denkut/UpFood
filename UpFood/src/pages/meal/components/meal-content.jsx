@@ -10,7 +10,7 @@ import { CLOSE_MODAL, openModal, removeMealAsync } from '../../../actions';
 import { useServerRequest } from '../../../hooks';
 import { checkAccess } from '../../../utils';
 import { ROLE } from '../../../bff/constants';
-import { Modal } from '../../../components';
+import { AddToCartButton, Modal } from '../../../components';
 
 export const MealContent = ({
 	meal: { id, title, imageUrl, type, calories, dietCategory, price },
@@ -84,9 +84,11 @@ export const MealContent = ({
 				<div className="mb-2 text-3xl font-bold text-gray-900">
 					{price} ₽
 				</div>
-				<button className="focus:shadow-outline-blue h-[65px]  w-[156px] items-center rounded-3xl bg-emerald-800 px-4 py-2 text-xl font-bold text-emerald-50 hover:bg-emerald-900 focus:outline-none active:bg-emerald-800">
-					Добавить
-				</button>
+				<AddToCartButton
+					itemId={id}
+					itemType="meal"
+					className="w-96 rounded-full bg-emerald-800 px-4 py-2 font-bold text-white hover:bg-emerald-700 focus:outline-none"
+				/>
 			</div>
 			<Modal />
 		</div>

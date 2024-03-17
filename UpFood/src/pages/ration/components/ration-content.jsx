@@ -10,7 +10,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CLOSE_MODAL, openModal, removeRationAsync } from '../../../actions';
 import { checkAccess } from '../../../utils';
 import { ROLE } from '../../../bff/constants';
-import { Modal } from '../../../components';
+import { AddToCartButton, Modal } from '../../../components';
 import { useServerRequest } from '../../../hooks';
 import {
 	calculateTotalPrices,
@@ -134,9 +134,11 @@ export const RationContent = ({ ration, meals }) => {
 				<div className="m-4 text-3xl font-bold text-gray-900">
 					{calculateTotalPrices({ ration, meals })} ₽
 				</div>
-				<button className="focus:shadow-outline-blue h-[65px]  w-[156px] items-center rounded-3xl bg-emerald-800 px-4 py-2 text-xl font-bold text-emerald-50 hover:bg-emerald-900 focus:outline-none active:bg-emerald-800">
-					Добавить
-				</button>
+				<AddToCartButton
+					itemId={ration.id}
+					itemType="ration"
+					className="w-56  rounded-full bg-amber-800   px-4 py-2 font-bold text-white hover:bg-amber-700 focus:outline-none"
+				/>
 			</div>
 			<Modal />
 		</div>

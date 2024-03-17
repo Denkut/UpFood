@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ingredients as allIngredients } from '../../../bff/constants';
+import { AddToCartButton } from '../../../components';
 
 export const MealCard = ({
 	id,
@@ -12,10 +13,6 @@ export const MealCard = ({
 	goal,
 	price,
 }) => {
-	const handleAddToCart = () => {
-		console.log(`Продукт ${title} добавлен в корзину!`);
-	};
-
 	const displayIngredients = ingredients.slice(0, 2).map((id, index) => (
 		<span key={id}>
 			{allIngredients.find(item => item.id === id)?.name}
@@ -59,12 +56,11 @@ export const MealCard = ({
 			</Link>
 
 			<div className="bg-gray-100 p-4">
-				<button
-					onClick={handleAddToCart}
+				<AddToCartButton
+					itemId={id}
+					itemType="meal"
 					className="w-full rounded-full bg-emerald-800 px-4 py-2 font-bold text-white hover:bg-emerald-700 focus:outline-none"
-				>
-					Добавить в корзину
-				</button>
+				/>
 			</div>
 		</div>
 	);

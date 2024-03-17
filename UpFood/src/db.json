@@ -20,67 +20,45 @@
       "cart": {
         "meals": [
           {
-            "id": "008",
+            "id": "fl7K2na",
             "count": 1
           },
           {
-            "id": "004",
+            "id": "020",
             "count": 1
           },
           {
-            "id": "007",
+            "id": "006",
             "count": 1
           }
         ],
         "rations": [
           {
-            "id": "006",
+            "id": "_YH-696",
             "count": 1
           },
           {
             "id": "fcVL-HY",
             "count": 1
           }
-        ],
-        "error": null,
-        "res": {
-          "error": null,
-          "res": {
-            "meals": [
-              {
-                "id": "001",
-                "count": 1
-              },
-              {
-                "id": "008",
-                "count": 1
-              },
-              {
-                "id": "004",
-                "count": 1
-              },
-              {
-                "id": "008",
-                "count": 1
-              }
-            ],
-            "rations": [
-              {
-                "id": "006",
-                "count": 1
-              },
-              {
-                "id": "fcVL-HY",
-                "count": 1
-              },
-              {
-                "id": "002",
-                "count": 1
-              }
-            ]
-          }
+        ]
+      },
+      "meals": [
+        {
+          "id": "fl7K2na",
+          "count": 1
+        },
+        {
+          "id": "020",
+          "count": 1
         }
-      }
+      ],
+      "rations": [
+        {
+          "id": "_YH-696",
+          "count": 1
+        }
+      ]
     },
     {
       "login": "Denis",
@@ -95,12 +73,7 @@
             "count": 1
           }
         ],
-        "rations": [
-          {
-            "id": "006",
-            "count": 1
-          }
-        ]
+        "rations": []
       }
     },
     {
@@ -159,17 +132,17 @@
         {
           "items": [
             {
-              "mealId": "014",
+              "mealId": "018",
               "quantity": 1,
-              "type": "Завтрак",
-              "title": "Сырники из творога с кокосом",
-              "calories": "280",
-              "price": "250"
+              "type": "Ужин",
+              "title": "Фаршированные перцы с мясом и рисом",
+              "calories": "350",
+              "price": "320"
             }
           ]
         }
       ],
-      "image_url": "https://wegym.ru/uploads/large_1634632033_165415_473c81a9c3.webp",
+      "image_url": "https://psychbook.ru/assets/i/ai/4/4/1/i/2988970.jpg",
       "content": "Рацион 1 подходит для поддержания формы"
     },
     {
@@ -180,12 +153,11 @@
         {
           "items": [
             {
-              "mealId": "003",
+              "mealId": "004",
               "quantity": 1,
-              "type": "Ужин",
-              "title": "Паста с томатным соусом",
-              "calories": "400",
-              "price": "300"
+              "title": "Сырники из творога с кокосом",
+              "calories": "149",
+              "price": "200"
             }
           ]
         },
@@ -193,8 +165,7 @@
           "items": [
             {
               "mealId": "007",
-              "quantity": 1,
-              "type": "Обед",
+              "quantity": 2,
               "title": "Куриные крылья в кисло-сладком соусе",
               "calories": "280",
               "price": "250"
@@ -306,6 +277,52 @@
       "image_url": "https://psychbook.ru/assets/i/ai/4/4/1/i/2988970.jpg",
       "imageUrl": "",
       "id": "3L5SA7_"
+    },
+    {
+      "title": "Рацион- похудеть",
+      "goal": "похудеть",
+      "meals": [
+        {
+          "items": [
+            {
+              "type": "Завтрак",
+              "mealId": "006",
+              "quantity": 1,
+              "title": "Творожная запеканка с изюмом",
+              "calories": "148",
+              "price": 200
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "type": "Обед",
+              "mealId": "015",
+              "quantity": 1,
+              "title": "Греческий салат с оливками и фетой",
+              "calories": "300",
+              "price": "270"
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "type": "Ужин",
+              "mealId": "020",
+              "quantity": 1,
+              "title": "Картошка с грибами и сметаной",
+              "calories": "320",
+              "price": "300"
+            }
+          ]
+        }
+      ],
+      "content": "Похудеть",
+      "image_url": "https://womfit.com/wp-content/uploads/2022/12/38a3f3afd324cd7b26991f79e334a3a4-2048x1366.jpeg",
+      "imageUrl": "",
+      "id": "_YH-696"
     }
   ],
   "meals": [
@@ -744,7 +761,7 @@
   ],
   "sessions": [
     {
-      "hash": "0.90673389103125989763043435232248157262802124023438",
+      "hash": "0.43180404689760054637304165225941687822341918945313",
       "user": {
         "id": "JahlbFP",
         "login": "anton",
@@ -769,62 +786,24 @@
               "count": 1
             },
             {
-              "id": "004",
+              "id": "002",
               "count": 1
             },
             {
-              "id": "007",
+              "id": "fl7K2na",
               "count": 1
             }
           ],
           "rations": [
             {
-              "id": "006",
+              "id": "_YH-696",
               "count": 1
             },
             {
-              "id": "fcVL-HY",
+              "id": "006",
               "count": 1
             }
-          ],
-          "error": null,
-          "res": {
-            "error": null,
-            "res": {
-              "meals": [
-                {
-                  "id": "001",
-                  "count": 1
-                },
-                {
-                  "id": "008",
-                  "count": 1
-                },
-                {
-                  "id": "004",
-                  "count": 1
-                },
-                {
-                  "id": "008",
-                  "count": 1
-                }
-              ],
-              "rations": [
-                {
-                  "id": "006",
-                  "count": 1
-                },
-                {
-                  "id": "fcVL-HY",
-                  "count": 1
-                },
-                {
-                  "id": "002",
-                  "count": 1
-                }
-              ]
-            }
-          }
+          ]
         }
       },
       "id": 1

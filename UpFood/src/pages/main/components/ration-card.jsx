@@ -1,44 +1,16 @@
-// import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useServerRequest } from '../../../hooks';
-import { addToCart } from '../../../actions';
-
+import { AddToCartButton } from '../../../components';
 export const RationCard = ({
 	id,
 	title,
 	imageUrl,
 	goal,
-	type,
 	totalCalories,
 	totalPrices,
 	mealTitles,
 	content,
+	type,
 }) => {
-	const dispatch = useDispatch();
-	const requestServer = useServerRequest();
-
-	const handleAddToCart = () => {
-		const rationItem = {
-			type: 'rations', // указываем тип (rations) для корректного добавления в корзину
-			item: {
-				id,
-				title,
-				imageUrl,
-				goal,
-				totalCalories,
-				totalPrices,
-				mealTitles,
-				content,
-			},
-		};
-
-		requestServer('fetchCart').then(({ res: { cartItem } }) => {
-			dispatch(addToCart(cartItem));
-			console.log(`Товар ${title} добавлен в корзину!`);
-		});
-	};
-
 	const displayMeals =
 		mealTitles && mealTitles.length > 0
 			? mealTitles.slice(0, 2).map((meal, index) => (
@@ -86,12 +58,11 @@ export const RationCard = ({
 			</Link>
 
 			<div className="bg-gray-100 p-4">
-				<button
-					onClick={handleAddToCart}
+				<AddToCartButton
+					itemId={id}
+					itemType="ration"
 					className="w-full rounded-full bg-amber-800   px-4 py-2 font-bold text-white hover:bg-amber-700 focus:outline-none"
-				>
-					Добавить в корзину
-				</button>
+				/>
 			</div>
 		</div>
 	);
