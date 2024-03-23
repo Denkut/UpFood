@@ -18,6 +18,7 @@ import {
 } from '../../selectors';
 import { logout } from '../../actions';
 import { HeaderMobile } from './components';
+import { getCartItemCount } from '../../utils';
 
 const navigation = [
 	{ name: 'Главная', to: '/' },
@@ -26,7 +27,6 @@ const navigation = [
 	{ name: 'Пользователи', to: '/users' },
 ];
 
-// Посчитать userCart колиество элементов в корзине, не учитывая count и вывести в кружочек
 export const Header = () => {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const dispatch = useDispatch();
@@ -34,12 +34,18 @@ export const Header = () => {
 	const login = useSelector(selectUserLogin);
 	const session = useSelector(selectUserSession);
 	const userCart = useSelector(selectCart);
-
+	const cartItemCount = getCartItemCount(userCart);
 	const onLogout = () => {
 		dispatch(logout(session));
 		sessionStorage.removeItem('userData');
 	};
 
+	let updatedNavigation = [...navigation];
+	if (roleId !== ROLE.ADMIN) {
+		updatedNavigation = updatedNavigation.filter(
+			item => item.name !== 'Пользователи',
+		);
+	}
 	return (
 		<div className="bg-white">
 			<header className="fixed inset-x-0 top-0 z-50 bg-white shadow-md">
@@ -68,7 +74,7 @@ export const Header = () => {
 						</button>
 					</div>
 					<div className="hidden lg:flex lg:gap-x-12">
-						{navigation.map(item => (
+						{updatedNavigation.map(item => (
 							<Link
 								key={item.name}
 								to={item.to}
@@ -95,37 +101,42 @@ export const Header = () => {
 								</Link>
 							</>
 						)}
-						<div className="flex items-center">
-							<Link to="/cart">
-								<ShoppingCartIcon
-									className=" block h-6 w-auto rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:text-emerald-800"
-									// {cartItemCount > 0 && (
-									// 	<span >{cartItemCount}</span>
-									// )}
-								/>
+						<div className="relative flex items-center">
+							<Link to="/cart" className="relative">
+								<ShoppingCartIcon className="block h-6 w-auto rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:text-emerald-800" />
+								{cartItemCount > 0 && (
+									<span className="absolute right-3 top-0 flex h-4 w-4 -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-red-500 text-xs text-white">
+										{cartItemCount}
+									</span>
+								)}
 							</Link>
-							{roleId === ROLE.GUEST ? (
-								<Link
-									to="/login"
-									className="rounded-lg px-2.5 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-								>
-									Войти
-								</Link>
-							) : (
-								<>
+						</div>
+
+						{roleId === ROLE.GUEST ? (
+							<Link
+								to="/login"
+								className="rounded-lg px-2.5 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
+							>
+								Войти
+							</Link>
+						) : (
+							<>
+								<div className="flex items-center">
 									<Link
 										to="/profile"
-										className="-mx-3 block rounded-lg px-3 text-lg  font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+										className="block rounded-lg px-2 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50"
 									>
 										{login}
 									</Link>
-									<ArrowLeftEndOnRectangleIcon
-										onClick={onLogout}
-										className=" block h-6 w-auto cursor-pointer rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
-									/>
-								</>
-							)}
-						</div>
+									<div className="relative">
+										<ArrowLeftEndOnRectangleIcon
+											onClick={onLogout}
+											className="block h-6 w-16 cursor-pointer rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-100"
+										/>
+									</div>
+								</div>
+							</>
+						)}
 					</div>
 				</nav>
 				<Dialog
@@ -159,8 +170,9 @@ export const Header = () => {
 						</div>
 
 						<HeaderMobile
-							navigation={navigation}
+							updatedNavigation={updatedNavigation}
 							onLogout={onLogout}
+							cartItemCount={cartItemCount}
 						/>
 					</Dialog.Panel>
 				</Dialog>

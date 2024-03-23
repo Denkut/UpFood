@@ -11,7 +11,6 @@ export const AddToCartButton = ({ itemId, itemType, className }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [serverError, setServerError] = useState(null);
 
-	//Исправить добавление двух одинаковых блюд. должен увеличиться count, если добавил одинаковые блюда
 	const handleAddToCartClick = async () => {
 		setIsLoading(true);
 		try {

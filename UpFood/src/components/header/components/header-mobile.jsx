@@ -7,7 +7,11 @@ import { ROLE } from '../../../constants';
 import { useSelector } from 'react-redux';
 import { selectUserLogin, selectUserRole } from '../../../selectors';
 
-export const HeaderMobile = ({ navigation, onLogout }) => {
+export const HeaderMobile = ({
+	updatedNavigation,
+	onLogout,
+	cartItemCount,
+}) => {
 	const roleId = useSelector(selectUserRole);
 	const login = useSelector(selectUserLogin);
 
@@ -15,7 +19,7 @@ export const HeaderMobile = ({ navigation, onLogout }) => {
 		<div className="mt-6 flow-root">
 			<div className="-my-6 divide-y divide-gray-500/10">
 				<div className="space-y-2 py-6">
-					{navigation.map(item => (
+					{updatedNavigation.map(item => (
 						<Link
 							key={item.name}
 							to={item.to}
@@ -43,8 +47,13 @@ export const HeaderMobile = ({ navigation, onLogout }) => {
 						</>
 					)}
 					<div>
-						<Link to="/cart">
-							<ShoppingCartIcon className=" block h-10 w-auto rounded-lg py-1 text-base font-semibold leading-7 text-gray-900 hover:text-emerald-800" />
+						<Link to="/cart" className="relative">
+							<ShoppingCartIcon className="block h-10 w-auto rounded-lg py-1 text-base font-semibold leading-7 text-gray-900 hover:text-emerald-800" />
+							{cartItemCount > 0 && (
+								<span className="absolute left-2 top-1 flex h-4 w-4 -translate-y-1/2 translate-x-1/2 transform items-center justify-center rounded-full bg-red-500 text-xs text-white">
+									{cartItemCount}
+								</span>
+							)}
 						</Link>
 					</div>
 					{roleId === ROLE.GUEST ? (

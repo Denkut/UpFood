@@ -20,16 +20,15 @@
       "cart": {
         "meals": [
           {
-            "id": "001",
+            "id": "002",
             "count": 1
-          }
-        ],
-        "rations": [
+          },
           {
-            "id": "006",
+            "id": "003",
             "count": 2
           }
-        ]
+        ],
+        "rations": []
       }
     },
     {
@@ -759,24 +758,13 @@
       "id": 1
     },
     {
-      "hash": "0.90073047866142497142050160618964582681655883789063",
+      "hash": "0.14032360615291539218674188305158168077468872070313",
       "user": {
-        "id": "JahlbFP",
-        "login": "anton",
+        "id": "JahlbFf",
+        "login": "Denis",
         "password": "qwe123",
         "registeredAt": "2024-01-10 17:15",
-        "roleId": 0,
-        "fullName": "Den kutepov",
-        "weight": 65,
-        "goal": 1,
-        "height": 127,
-        "age": 38,
-        "email": "upfood.ru@yandex.ru",
-        "dietCategory": 4,
-        "allergenicIngredients": [
-          "1",
-          "2"
-        ],
+        "roleId": 1,
         "cart": {
           "meals": [
             {
@@ -784,12 +772,7 @@
               "count": 1
             }
           ],
-          "rations": [
-            {
-              "id": "006",
-              "count": 1
-            }
-          ]
+          "rations": []
         }
       },
       "id": 2
