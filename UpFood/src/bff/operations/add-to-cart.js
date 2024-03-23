@@ -17,7 +17,6 @@ export const addToCart = async (itemId, type, userId, userCart) => {
 		}
 
 		const newCartFromServer = await updateCart(userId, {
-			...userCart,
 			cart: newCart,
 		});
 

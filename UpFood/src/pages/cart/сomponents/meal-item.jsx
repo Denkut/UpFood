@@ -1,11 +1,7 @@
 import React from 'react';
+import { UpdateQuantityButton } from '../../../components';
 
-export const MealItem = ({
-	item,
-	handleUpdateQuantity,
-	handleRemoveItem,
-	isLoading,
-}) => {
+export const MealItem = ({ item, handleRemoveItem, isLoading, count }) => {
 	return (
 		<div key={item.id} className="mb-4 flex items-center">
 			<img
@@ -18,26 +14,12 @@ export const MealItem = ({
 			</div>
 			<div className="flex items-center space-x-4">
 				<p className="text-lg font-bold">{item.price} ₽</p>
-				<div className="flex items-center">
-					<button
-						onClick={() =>
-							handleUpdateQuantity(item.id, item.count - 1)
-						}
-						disabled={item.count <= 1}
-						className="text-gray-500 hover:text-emerald-500 focus:outline-none"
-					>
-						-
-					</button>
-					<span className="mx-2">{item.count}</span>
-					<button
-						onClick={() =>
-							handleUpdateQuantity(item.id, item.count + 1)
-						}
-						className="text-emerald-500 hover:text-emerald-700 focus:outline-none"
-					>
-						+
-					</button>
-				</div>
+				<UpdateQuantityButton
+					itemId={item.id}
+					count={count}
+					itemType="meal"
+					className="text-gray-500 hover:text-emerald-500 focus:outline-none"
+				/>
 				<button
 					type="submit"
 					disabled={isLoading}

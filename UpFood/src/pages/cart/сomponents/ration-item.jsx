@@ -1,4 +1,5 @@
 import React from 'react';
+import { UpdateQuantityButton } from '../../../components';
 
 export const RationItem = ({
 	ration,
@@ -7,6 +8,7 @@ export const RationItem = ({
 	visibleMeals,
 	isLoading,
 	mealsData,
+	count,
 }) => {
 	return (
 		<div key={ration.id} className="mb-4  items-center">
@@ -27,6 +29,12 @@ export const RationItem = ({
 				</div>
 				<div className="flex items-center space-x-4">
 					<p className="text-lg font-bold">{ration.totalPrice} ₽</p>
+					<UpdateQuantityButton
+						itemId={ration.id}
+						count={count}
+						itemType="ration"
+						className="text-gray-500 hover:text-emerald-500 focus:outline-none"
+					/>
 					<button
 						type="submit"
 						disabled={isLoading}

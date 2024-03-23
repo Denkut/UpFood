@@ -18,47 +18,9 @@
       "weight": 65,
       "fullName": "Den kutepov",
       "cart": {
-        "meals": [
-          {
-            "id": "fl7K2na",
-            "count": 1
-          },
-          {
-            "id": "020",
-            "count": 1
-          },
-          {
-            "id": "006",
-            "count": 1
-          }
-        ],
-        "rations": [
-          {
-            "id": "_YH-696",
-            "count": 1
-          },
-          {
-            "id": "fcVL-HY",
-            "count": 1
-          }
-        ]
-      },
-      "meals": [
-        {
-          "id": "fl7K2na",
-          "count": 1
-        },
-        {
-          "id": "020",
-          "count": 1
-        }
-      ],
-      "rations": [
-        {
-          "id": "_YH-696",
-          "count": 1
-        }
-      ]
+        "meals": [],
+        "rations": []
+      }
     },
     {
       "login": "Denis",
@@ -761,7 +723,7 @@
   ],
   "sessions": [
     {
-      "hash": "0.43180404689760054637304165225941687822341918945313",
+      "hash": "0.37386958278140514089216139836935326457023620605469",
       "user": {
         "id": "JahlbFP",
         "login": "anton",
@@ -780,33 +742,37 @@
           "2"
         ],
         "cart": {
-          "meals": [
-            {
-              "id": "008",
-              "count": 1
-            },
-            {
-              "id": "002",
-              "count": 1
-            },
-            {
-              "id": "fl7K2na",
-              "count": 1
-            }
-          ],
-          "rations": [
-            {
-              "id": "_YH-696",
-              "count": 1
-            },
-            {
-              "id": "006",
-              "count": 1
-            }
-          ]
+          "meals": [],
+          "rations": []
         }
       },
       "id": 1
+    },
+    {
+      "hash": "0.77861547445386580790227526449598371982574462890625",
+      "user": {
+        "id": "JahlbFP",
+        "login": "anton",
+        "password": "qwe123",
+        "registeredAt": "2024-01-10 17:15",
+        "roleId": 0,
+        "fullName": "Den kutepov",
+        "weight": 65,
+        "goal": 1,
+        "height": 127,
+        "age": 38,
+        "email": "upfood.ru@yandex.ru",
+        "dietCategory": 4,
+        "allergenicIngredients": [
+          "1",
+          "2"
+        ],
+        "cart": {
+          "meals": [],
+          "rations": []
+        }
+      },
+      "id": 2
     }
   ]
 }

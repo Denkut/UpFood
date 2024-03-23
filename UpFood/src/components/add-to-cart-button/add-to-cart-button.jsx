@@ -29,7 +29,6 @@ export const AddToCartButton = ({ itemId, itemType, className }) => {
 				return;
 			}
 			dispatch(setCart(res));
-
 			const currentUserDataJSON = sessionStorage.getItem('userData');
 			if (currentUserDataJSON) {
 				const currentUserData = JSON.parse(currentUserDataJSON);
@@ -39,6 +38,7 @@ export const AddToCartButton = ({ itemId, itemType, className }) => {
 					'userData',
 					JSON.stringify(currentUserData),
 				);
+
 			}
 
 			setIsLoading(false);

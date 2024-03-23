@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout, setCart, updateCartItemQuantityAsync } from '../../actions';
+import { logout, setCart } from '../../actions';
 import { useServerRequest } from '../../hooks';
 import { selectCart, selectUser, selectUserSession } from '../../selectors';
 import { server } from '../../bff';
@@ -84,15 +84,23 @@ export const Cart = () => {
 	useEffect(() => {
 		const newTotalPrice =
 			filteredMeals.reduce(
-				(total, item) => total + parseFloat(item.price),
+				(total, item) =>
+					total +
+					parseFloat(item.price) *
+						(mealsCart.find(cartItem => cartItem.id === item.id)
+							?.count || 1),
 				0,
 			) +
 			filteredRations.reduce(
-				(total, ration) => total + ration.totalPrice,
+				(total, ration) =>
+					total +
+					ration.totalPrice *
+						(rationsCart.find(cartItem => cartItem.id === ration.id)
+							?.count || 1),
 				0,
 			);
 		setTotalPrice(newTotalPrice);
-	}, [filteredMeals, filteredRations]);
+	}, [filteredMeals, filteredRations, mealsCart, rationsCart]);
 
 	const handleRemoveItem = async (itemId, type) => {
 		setIsLoading(true);
@@ -151,10 +159,6 @@ export const Cart = () => {
 		}
 	};
 
-	const handleUpdateQuantity = (id, newQuantity) => {
-		dispatch(updateCartItemQuantityAsync({ id, count: newQuantity }));
-	};
-
 	return (
 		<div className="container mx-auto mt-8">
 			<h2 className="mb-4 text-3xl font-bold">Корзина</h2>
@@ -169,7 +173,11 @@ export const Cart = () => {
 						<MealItem
 							key={item.id}
 							item={item}
-							handleUpdateQuantity={handleUpdateQuantity}
+							count={
+								mealsCart.find(
+									cartItem => cartItem.id === item.id,
+								)?.count || 0
+							}
 							handleRemoveItem={handleRemoveItem}
 							isLoading={isLoading}
 							mealsData={mealsData}
@@ -179,6 +187,11 @@ export const Cart = () => {
 						<RationItem
 							key={ration.id}
 							ration={ration}
+							count={
+								rationsCart.find(
+									cartItem => cartItem.id === ration.id,
+								)?.count || 0
+							}
 							visibleMeals={visibleMeals}
 							toggleVisibleMeals={toggleVisibleMeals}
 							handleRemoveItem={handleRemoveItem}

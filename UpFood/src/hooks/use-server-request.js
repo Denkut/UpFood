@@ -19,7 +19,6 @@ export const useServerRequest = () => {
 				'fetchRation',
 				'fetchRations',
 				'fetchRationsCart',
-				'fetchCart',
 				'removeCartItem',
 				'addToCart',
 			].includes(operation)
