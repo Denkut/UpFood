@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCart } from '../../actions';
 import { server } from '../../bff';
-import { selectUser } from '../../selectors';
+import { selectCart, selectUser } from '../../selectors';
 
 export const UpdateQuantityButton = ({ itemId, count, itemType }) => {
+	const userCart = useSelector(selectCart);
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
 	const [quantity, setQuantity] = useState(count);
@@ -36,17 +37,16 @@ export const UpdateQuantityButton = ({ itemId, count, itemType }) => {
 				itemId,
 				itemType,
 				user.id,
-				user.cart,
+				userCart,
 				newQuantity,
 			);
-			console.log(user.cart);
+			console.log(userCart);
 
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
 				setIsLoading(false);
 				return;
 			}
-
 			dispatch(setCart(res));
 
 			const currentUserDataJSON = sessionStorage.getItem('userData');

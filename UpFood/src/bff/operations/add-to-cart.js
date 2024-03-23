@@ -10,10 +10,18 @@ export const addToCart = async (itemId, type, userId, userCart) => {
 
 		const cartType = type === 'meal' ? 'meals' : 'rations';
 
-		if (!newCart[cartType]) {
-			newCart[cartType] = [itemId];
+		const existingItem = newCart[cartType]?.find(
+			item => item.id === itemId,
+		);
+
+		if (existingItem) {
+			existingItem.count += 1;
 		} else {
-			newCart[cartType] = [...newCart[cartType], itemId];
+			newCart[cartType] = newCart[cartType] || [];
+			newCart[cartType].push({
+				id: itemId,
+				count: 1,
+			});
 		}
 
 		const newCartFromServer = await updateCart(userId, {

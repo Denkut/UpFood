@@ -11,6 +11,7 @@ import Logo from '../../assets/Logo.png';
 import { ROLE } from '../../constants';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+	selectCart,
 	selectUserLogin,
 	selectUserRole,
 	selectUserSession,
@@ -25,12 +26,14 @@ const navigation = [
 	{ name: 'Пользователи', to: '/users' },
 ];
 
+// Посчитать userCart колиество элементов в корзине, не учитывая count и вывести в кружочек
 export const Header = () => {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 	const dispatch = useDispatch();
 	const roleId = useSelector(selectUserRole);
 	const login = useSelector(selectUserLogin);
 	const session = useSelector(selectUserSession);
+	const userCart = useSelector(selectCart);
 
 	const onLogout = () => {
 		dispatch(logout(session));
@@ -94,7 +97,12 @@ export const Header = () => {
 						)}
 						<div className="flex items-center">
 							<Link to="/cart">
-								<ShoppingCartIcon className=" block h-6 w-auto rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:text-emerald-800" />
+								<ShoppingCartIcon
+									className=" block h-6 w-auto rounded-lg px-2.5 text-base font-semibold leading-7 text-gray-900 hover:text-emerald-800"
+									// {cartItemCount > 0 && (
+									// 	<span >{cartItemCount}</span>
+									// )}
+								/>
 							</Link>
 							{roleId === ROLE.GUEST ? (
 								<Link

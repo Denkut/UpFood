@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
-import { selectUser } from '../../selectors';
+import { selectCart, selectUser } from '../../selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { server } from '../../bff';
 import { setCart } from '../../actions';
 
 export const AddToCartButton = ({ itemId, itemType, className }) => {
+	const userCart = useSelector(selectCart);
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(false);
 	const [serverError, setServerError] = useState(null);
 
+	//Исправить добавление двух одинаковых блюд. должен увеличиться count, если добавил одинаковые блюда
 	const handleAddToCartClick = async () => {
 		setIsLoading(true);
 		try {
 			const { error, res } = await server.addToCart(
-				{
-					id: itemId,
-					count: 1,
-				},
+				itemId,
 				itemType,
 				user.id,
-				user.cart,
+				userCart,
 			);
 
 			if (error) {
@@ -38,7 +37,6 @@ export const AddToCartButton = ({ itemId, itemType, className }) => {
 					'userData',
 					JSON.stringify(currentUserData),
 				);
-
 			}
 
 			setIsLoading(false);

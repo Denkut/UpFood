@@ -23,6 +23,7 @@ export const updateCartItemQuantity = async (
 	const newCartFromServer = await updateCart(userId, {
 		cart: newCart,
 	});
+
 	return {
 		error: null,
 		res: newCartFromServer,
