@@ -18,7 +18,7 @@ export const MealDescription = ({ ingredients, goal }) => {
 				<span className="mr-2 items-center text-xl font-semibold text-emerald-900">
 					Ингредиенты:
 				</span>
-				<ul className="mr-2 flex items-center text-lg">
+				<ul className="mr-2 flex flex-wrap items-center text-lg">
 					{ingredients &&
 						ingredients.map((id, index) => (
 							<li key={id} className="mr-2">

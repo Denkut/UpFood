@@ -113,7 +113,7 @@
           ]
         }
       ],
-      "image_url": "https://psychbook.ru/assets/i/ai/4/4/1/i/2988970.jpg",
+      "image_url": "https://www.yamdiet.com/wp-content/uploads/dsc_0095-scaled.jpg",
       "content": "Рацион 1 подходит для поддержания формы"
     },
     {
@@ -303,19 +303,24 @@
       "image_url": "https://mykaleidoscope.ru/uploads/posts/2020-02/1581015361_18-p-omleti-na-zavtrak-51.jpg",
       "type": "Завтрак",
       "calories": "300",
-      "goal": [
-        "похудеть"
-      ],
+      "goal": "набрать вес",
       "dietCategory": "сыроеды",
       "ingredients": [
         1,
-        2,
         6,
         10,
         28,
         29,
         36,
-        3
+        7,
+        3,
+        4,
+        2,
+        8,
+        11,
+        13,
+        15,
+        17
       ],
       "price": "250"
     },
@@ -758,18 +763,33 @@
       "id": 1
     },
     {
-      "hash": "0.14032360615291539218674188305158168077468872070313",
+      "hash": "0.01837370581433761529410730872768908739089965820313",
       "user": {
-        "id": "JahlbFf",
-        "login": "Denis",
+        "id": "JahlbFP",
+        "login": "anton",
         "password": "qwe123",
         "registeredAt": "2024-01-10 17:15",
-        "roleId": 1,
+        "roleId": 0,
+        "fullName": "Den kutepov",
+        "weight": 65,
+        "goal": 1,
+        "height": 127,
+        "age": 38,
+        "email": "upfood.ru@yandex.ru",
+        "dietCategory": 4,
+        "allergenicIngredients": [
+          "1",
+          "2"
+        ],
         "cart": {
           "meals": [
             {
-              "id": "001",
+              "id": "002",
               "count": 1
+            },
+            {
+              "id": "003",
+              "count": 2
             }
           ],
           "rations": []

@@ -1,10 +1,17 @@
-import React, { useRef, useState, useCallback, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveMealAsync } from '../../../actions';
 import { useServerRequest } from '../../../hooks';
 import { useNavigate } from 'react-router-dom';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import debounce from 'lodash.debounce';
+import {
+	ImageInput,
+	IngredientList,
+	IngredientSearch,
+	NumberInput,
+	SelectInput,
+	TextInput,
+} from '../components/components';
 import {
 	mealTypes,
 	dietCategories,
@@ -21,18 +28,11 @@ export const MealEdit = ({
 		calories,
 		dietCategory,
 		price,
-		ingredients,
+		ingredients: initialIngredients,
 		goal,
 	},
 	isCreating,
 }) => {
-	const titleRef = useRef(null);
-	const imageUrlRef = useRef(null);
-	const typeRef = useRef(null);
-	const caloriesRef = useRef(null);
-	const dietCategoryRef = useRef(null);
-	const priceRef = useRef(null);
-	const goalRef = useRef(null);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const requestServer = useServerRequest();
@@ -43,31 +43,13 @@ export const MealEdit = ({
 		imageUrl,
 		type,
 		calories,
-		goal,
 		dietCategory,
 		price,
-		ingredients,
+		goal,
+		ingredients: initialIngredients || [],
 	});
 
-	const [filteredIngredients, setFilteredIngredients] =
-		useState(allIngredients);
-	const [selectedIngredients, setSelectedIngredients] = useState(
-		editedData.ingredients || [],
-	);
-
-	const debouncedFilterIngredients = useCallback(
-		debounce(inputValue => {
-			const filtered = allIngredients.filter(ingredient =>
-				ingredient.name
-					.toLowerCase()
-					.includes(inputValue.toLowerCase()),
-			);
-			setFilteredIngredients(filtered);
-		}, 300),
-		[],
-	);
-
-	useLayoutEffect(() => {
+	useEffect(() => {
 		if (isCreating) {
 			setEditedData({
 				id: null,
@@ -75,38 +57,13 @@ export const MealEdit = ({
 				imageUrl: '',
 				type: '',
 				calories: 0,
-				goal: '',
 				dietCategory: '',
 				price: 0,
+				goal: '',
 				ingredients: [],
 			});
-			setSelectedIngredients([]);
-		} else {
-			setEditedData({
-				id,
-				title,
-				imageUrl,
-				type,
-				calories,
-				goal,
-				dietCategory,
-				price,
-				ingredients,
-			});
-			setSelectedIngredients(ingredients || []);
 		}
-	}, [
-		isCreating,
-		id,
-		title,
-		imageUrl,
-		type,
-		calories,
-		goal,
-		dietCategory,
-		price,
-		ingredients,
-	]);
+	}, [isCreating]);
 
 	const handleSave = () => {
 		dispatch(saveMealAsync(requestServer, editedData)).then(({ id }) =>
@@ -114,63 +71,37 @@ export const MealEdit = ({
 		);
 	};
 
-	const handleInputChange = e => {
-		const { name, value, type } = e.target;
-
+	const handleInputChange = (name, value) => {
 		setEditedData(prevData => ({
 			...prevData,
-			[name]: type === 'number' ? +value : value,
+			[name]: value,
 		}));
 	};
 
 	const handleIngredientChange = id => {
 		setEditedData(prevData => {
-			const currentIngredients = prevData.ingredients || [];
-			const updatedIngredients = currentIngredients.includes(id)
-				? currentIngredients.filter(ingredientId => ingredientId !== id)
-				: [...currentIngredients, id];
+			const updatedIngredients = prevData.ingredients.includes(id)
+				? prevData.ingredients.filter(
+						ingredientId => ingredientId !== id,
+					)
+				: [...prevData.ingredients, id];
 
 			return {
 				...prevData,
 				ingredients: updatedIngredients,
 			};
 		});
-
-		setSelectedIngredients(prevSelected => {
-			const isSelected = prevSelected.includes(id);
-
-			if (isSelected) {
-				return prevSelected.filter(ingredientId => ingredientId !== id);
-			} else {
-				return [...prevSelected, id];
-			}
-		});
-	};
-
-	const filterIngredients = inputValue => {
-		debouncedFilterIngredients(inputValue);
 	};
 
 	return (
 		<div className="mb-6 flex rounded-md bg-white p-6 shadow-lg">
 			<div className="flex-shrink-0">
-				<img
-					src={editedData.imageUrl}
-					alt={editedData.title}
-					className="mb-4 h-[400px] w-[400px] rounded-md object-cover"
+				<ImageInput
+					imageUrl={editedData.imageUrl}
+					onImageUrlChange={value =>
+						handleInputChange('imageUrl', value)
+					}
 				/>
-				<label className="mt-2 block text-sm font-medium text-gray-700">
-					Ссылка на фото:
-					<input
-						ref={imageUrlRef}
-						type="text"
-						name="imageUrl"
-						value={editedData.imageUrl}
-						placeholder="Изображение..."
-						onChange={handleInputChange}
-						className="mt-1 w-full rounded-md border p-2"
-					/>
-				</label>
 			</div>
 
 			<div className="ml-8 flex flex-col">
@@ -187,157 +118,63 @@ export const MealEdit = ({
 					</button>
 				</div>
 
-				<h2 className="mt-2 max-w-72 text-3xl font-semibold">
-					<input
-						ref={titleRef}
-						type="text"
-						name="title"
-						value={editedData.title}
-						placeholder="Название..."
-						onChange={handleInputChange}
-					/>
-				</h2>
+				<TextInput
+					label="Название:"
+					value={editedData.title}
+					onChange={value => handleInputChange('title', value)}
+				/>
 
 				<div className="mb-2 flex items-center text-gray-500">
-					<div className="mr-2 text-base text-emerald-700">
-						<select
-							ref={typeRef}
-							name="type"
-							onChange={handleInputChange}
-							className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none"
-						>
-							<option value="">Выберите тип приема пищи</option>
-							{mealTypes.map(item => (
-								<option key={item.id} value={item.name}>
-									{item.name}
-								</option>
-							))}
-						</select>
-					</div>
+					<SelectInput
+						label="Тип приема пищи:"
+						options={mealTypes}
+						value={editedData.type}
+						onChange={value => handleInputChange('type', value)}
+					/>
 
-					<span className="mr-2">
-						<input
-							ref={caloriesRef}
-							type="number"
-							name="calories"
-							value={editedData.calories}
-							placeholder="Каллории..."
-							onChange={handleInputChange}
-						/>{' '}
-						ккал.
-					</span>
+					<NumberInput
+						label="Калории:"
+						value={editedData.calories}
+						onChange={value => handleInputChange('calories', value)}
+						suffix="ккал."
+					/>
 				</div>
 
 				<div className="mb-2 flex items-center text-red-900">
-					<span className="mr-2">
-						<select
-							ref={dietCategoryRef}
-							name="dietCategory"
-							onChange={handleInputChange}
-							className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none"
-						>
-							<option value="">Выберите категорию диеты</option>
-							{dietCategories.map(item => (
-								<option key={item.id} value={item.name}>
-									{item.name}
-								</option>
-							))}
-						</select>
-					</span>
-				</div>
-
-				<div className="mb-2 text-3xl font-bold text-gray-900">
-					<input
-						ref={priceRef}
-						type="number"
-						name="price"
-						value={editedData.price}
-						placeholder="Цена..."
-						onChange={handleInputChange}
+					<SelectInput
+						label="Категория диеты:"
+						options={dietCategories}
+						value={editedData.dietCategory}
+						onChange={value =>
+							handleInputChange('dietCategory', value)
+						}
 					/>
-					₽
 				</div>
 
-				<div className="mb-2 mt-8 items-center text-lg">
-					<span className="mr-2 items-center text-xl font-semibold text-emerald-900">
-						Ингредиенты:
-					</span>
-					<input
-						type="text"
-						placeholder="Поиск ингредиентов..."
-						className="mt-1 w-full rounded-md border p-2"
-						onChange={e => filterIngredients(e.target.value)}
-					/>
-					<div
-						className={`mt-1 h-40 w-full overflow-y-auto rounded-md border bg-white shadow-lg ${
-							filteredIngredients.length > 0
-								? 'visible'
-								: 'hidden'
-						}`}
-					>
-						{filteredIngredients.map(item => (
-							<div key={item.id} className="mt-2 ">
-								<label className="cursor-pointer text-center hover:bg-emerald-100">
-									<input
-										className="mx-2 cursor-pointer items-center "
-										type="checkbox"
-										value={item.id}
-										name="mealIngredients"
-										checked={selectedIngredients.includes(
-											item.id,
-										)}
-										onChange={() =>
-											handleIngredientChange(item.id)
-										}
-									/>
-									{item.name}
-								</label>
-							</div>
-						))}
-					</div>
-				</div>
+				<TextInput
+					label="Цена:"
+					value={editedData.price}
+					onChange={value => handleInputChange('price', value)}
+					suffix="₽"
+				/>
 
-				<div className="mb-2 mt-8 items-center text-lg">
-					<span className="mr-2 items-center text-xl font-semibold text-emerald-900">
-						Выбранные ингредиенты:
-					</span>
-					<ul className="mr-2 flex items-center text-lg">
-						{selectedIngredients.map((id, index) => (
-							<li key={id} className="mr-2">
-								{
-									allIngredients.find(item => item.id === id)
-										?.name
-								}
-								{index !==
-									(editedData.ingredients || []).length - 1 &&
-									','}
-							</li>
-						))}
-					</ul>
-				</div>
+				<IngredientSearch
+					allIngredients={allIngredients}
+					selectedIngredients={editedData.ingredients}
+					onIngredientChange={handleIngredientChange}
+				/>
 
-				<div className="mb-2 flex items-center text-lg">
-					<span className="mr-2 items-center text-xl font-semibold text-emerald-900">
-						Цель:
-					</span>
-					<select
-						ref={goalRef}
-						name="goal"
-						onChange={handleInputChange}
-						className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none"
-					>
-						<option value="" disabled={!editedData.goal}>
-							{editedData.goal
-								? editedData.goal
-								: 'Выберите цель'}
-						</option>
-						{goals.map(item => (
-							<option key={item.id} value={item.name}>
-								{item.name}
-							</option>
-						))}
-					</select>
-				</div>
+				<IngredientList
+					selectedIngredients={editedData.ingredients}
+					allIngredients={allIngredients}
+				/>
+
+				<SelectInput
+					label="Цель:"
+					options={goals}
+					value={editedData.goal}
+					onChange={value => handleInputChange('goal', value)}
+				/>
 			</div>
 		</div>
 	);

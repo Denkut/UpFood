@@ -40,7 +40,6 @@ export const UpdateQuantityButton = ({ itemId, count, itemType }) => {
 				userCart,
 				newQuantity,
 			);
-			console.log(userCart);
 
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
