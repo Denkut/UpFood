@@ -2,7 +2,6 @@ import { ACTION_TYPE } from '../actions';
 
 const initialRationsState = {
 	rations: [],
-	selectedRation: null,
 };
 
 export const rationsReducer = (state = initialRationsState, action) => {

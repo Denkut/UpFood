@@ -7,8 +7,9 @@ import debounce from 'lodash.debounce';
 import { getLastPageFromLinks } from './utils';
 import { PAGINATION_LIMIT } from '../../constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectMeals, selectRations } from '../../selectors';
+import { selectMeals, selectRations, selectUser } from '../../selectors';
 import { setMeals, setRations } from '../../actions';
+import { filterAllergenicMeals, filterAllergenicRations } from '../../utils';
 
 export const Main = () => {
 	const [page, setPage] = useState(1);
@@ -19,6 +20,19 @@ export const Main = () => {
 	const dispatch = useDispatch();
 	const meals = useSelector(selectMeals);
 	const rations = useSelector(selectRations);
+	const user = useSelector(selectUser);
+	const userAllergies = user.allergenicIngredients || [];
+	const { unmarkedMeals, markedMeals } = filterAllergenicMeals(
+		meals,
+		userAllergies,
+	);
+	const sortedMeals = [...unmarkedMeals, ...markedMeals];
+	const { markedRations, unmarkedRations } = filterAllergenicRations(
+		rations,
+		userAllergies,
+	);
+
+	const sortedRations = [...unmarkedRations, ...markedRations];
 
 	useEffect(() => {
 		const fetchMealsAndRations = async () => {
@@ -125,9 +139,9 @@ export const Main = () => {
 			<h2 className="mb-6 mt-10 text-3xl font-bold text-gray-900">
 				Наши рационы
 			</h2>
-			{rations.length > 0 ? (
+			{sortedRations.length > 0 ? (
 				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-					{rations.map(
+					{sortedRations.map(
 						({ id, title, imageUrl, goal, meals, content }) => {
 							const totalCalories = meals.reduce(
 								(sum, meal) =>
@@ -158,6 +172,11 @@ export const Main = () => {
 									totalPrices={totalPrices}
 									mealTitles={mealTitles}
 									content={content}
+									meals={meals}
+									userAllergies={userAllergies}
+									isMarked={
+										!!markedRations.find(r => r.id === id)
+									}
 								/>
 							);
 						},
@@ -172,9 +191,9 @@ export const Main = () => {
 			<h2 className="mb-6 mt-10 text-3xl font-bold text-gray-900">
 				Наши блюда
 			</h2>
-			{meals.length > 0 ? (
+			{sortedMeals.length > 0 ? (
 				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-					{meals.map(
+					{sortedMeals.map(
 						({
 							id,
 							title,
@@ -197,6 +216,7 @@ export const Main = () => {
 								ingredients={ingredients}
 								goal={goal}
 								price={price}
+								userAllergies={userAllergies}
 							/>
 						),
 					)}

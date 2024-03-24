@@ -10,6 +10,7 @@ export const transformRation = dbRation => ({
 			type: item.type,
 			price: item.price,
 			calories: item.calories,
+			ingredients: item.ingredients,
 			quantity: item.quantity || 1,
 		})),
 	})),

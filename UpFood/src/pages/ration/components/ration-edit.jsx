@@ -72,6 +72,7 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 					quantity: updatedQuantity,
 					title: selectedMeal.title,
 					calories: selectedMeal.calories,
+					ingredients: selectedMeal.ingredients,
 					price: selectedMeal.price,
 					type: selectedMeal.type,
 				},

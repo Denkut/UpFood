@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ingredients as allIngredients } from '../../../bff/constants';
 import { AddToCartButton } from '../../../components';
@@ -12,6 +13,7 @@ export const MealCard = ({
 	ingredients,
 	goal,
 	price,
+	userAllergies,
 }) => {
 	const displayIngredients = ingredients.slice(0, 2).map((id, index) => (
 		<span key={id}>
@@ -22,8 +24,17 @@ export const MealCard = ({
 
 	const ellipsis = ingredients.length > 2 ? <span>...</span> : null;
 
+	const isAllergen = id => {
+		const idString = id.toString();
+		return userAllergies.includes(idString);
+	};
+
 	return (
-		<div className="mx-auto flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl">
+		<div
+			className={`mx-auto flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl ${
+				ingredients.some(isAllergen) ? 'border-2 border-red-500' : ''
+			}`}
+		>
 			<Link className="flex h-full flex-col" to={`/meal/${id}`}>
 				<img
 					className="h-48 w-full object-cover object-center"

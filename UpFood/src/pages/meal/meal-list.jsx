@@ -5,8 +5,9 @@ import debounce from 'lodash.debounce';
 import { PAGINATION_LIMIT } from '../../constants';
 import { getLastPageFromLinks } from '../main/utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectMeals } from '../../selectors';
+import { selectMeals, selectUser } from '../../selectors';
 import { setMeals } from '../../actions';
+import { filterAllergenicMeals } from '../../utils';
 
 export const MealList = () => {
 	const [page, setPage] = useState(1);
@@ -18,6 +19,13 @@ export const MealList = () => {
 	const requestServer = useServerRequest();
 	const dispatch = useDispatch();
 	const meals = useSelector(selectMeals);
+	const user = useSelector(selectUser);
+	const userAllergies = user.allergenicIngredients || [];
+	const { unmarkedMeals, markedMeals } = filterAllergenicMeals(
+		meals,
+		userAllergies,
+	);
+	const sortedMeals = [...unmarkedMeals, ...markedMeals];
 
 	useEffect(() => {
 		const fetchMeals = async () => {
@@ -132,9 +140,9 @@ export const MealList = () => {
 			<h2 className="mb-6 mt-10 text-3xl font-bold text-gray-900 ">
 				Наши блюда
 			</h2>
-			{meals.length > 0 ? (
+			{sortedMeals.length > 0 ? (
 				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-					{meals.map(
+					{sortedMeals.map(
 						({
 							id,
 							title,
@@ -157,6 +165,7 @@ export const MealList = () => {
 								ingredients={ingredients}
 								goal={goal}
 								price={price}
+								userAllergies={userAllergies}
 							/>
 						),
 					)}

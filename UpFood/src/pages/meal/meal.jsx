@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useMatch, useParams } from 'react-router-dom';
 import { useServerRequest } from '../../hooks';
 import { RESET_MEAL_DATA, loadMealAsync } from '../../actions';
-import { selectMeal } from '../../selectors';
+import { selectMeal, selectUser } from '../../selectors';
 import { MealContent, MealDescription, MealEdit } from './components';
 
 export const Meal = () => {
@@ -15,6 +15,8 @@ export const Meal = () => {
 	const params = useParams();
 	const requestServer = useServerRequest();
 	const meal = useSelector(selectMeal);
+	const user = useSelector(selectUser);
+	const userAllergies = user.allergenicIngredients || [];
 
 	useLayoutEffect(() => {
 		dispatch(RESET_MEAL_DATA);
@@ -50,6 +52,7 @@ export const Meal = () => {
 					<MealDescription
 						ingredients={meal.ingredients}
 						goal={meal.goal}
+						userAllergies={userAllergies}
 					/>
 				</>
 			)}

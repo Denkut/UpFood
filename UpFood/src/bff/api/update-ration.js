@@ -15,6 +15,7 @@ export const updateRation = ({
 			type: item.type,
 			title: item.title,
 			calories: item.calories,
+			ingredients: item.ingredients,
 			price: item.price,
 		})),
 	}));

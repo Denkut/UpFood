@@ -56,6 +56,7 @@ const profileFormSchema = yup.object().shape({
 export const Profile = () => {
 	const user = useSelector(selectUser);
 	const roleId = useSelector(selectUserRole);
+	const [searchValue, setSearchValue] = useState('');
 
 	const [serverError, setServerError] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
@@ -122,6 +123,14 @@ export const Profile = () => {
 	if (roleId === ROLE.GUEST) {
 		return <Navigate to="/" />;
 	}
+
+	const handleInputChange = e => {
+		setSearchValue(e.target.value);
+	};
+
+	const filteredAllergies = ingredients.filter(allergy =>
+		allergy.name.toLowerCase().includes(searchValue.toLowerCase()),
+	);
 
 	return (
 		<div className="m-auto w-full max-w-xs items-center justify-center">
@@ -269,28 +278,39 @@ export const Profile = () => {
 				</div>
 
 				<div className="mb-4">
-					<label
-						htmlFor="allergies"
-						className="mb-2 block text-sm font-bold text-gray-700"
-					>
+					<span className="mr-2 items-center text-xl font-semibold text-emerald-900">
 						Аллергии:
-					</label>
-					{ingredients.map(item => (
-						<div key={item.id}>
-							<label htmlFor={`ingredient-${item.id}`}>
-								{item.name}
-							</label>
-							<input
-								type="checkbox"
-								name={`ingredient${item.id}`}
-								id={`ingredient-${item.id}`}
-								value={item.id}
-								{...register('allergenicIngredients', {
-									onChange: () => setServerError(null),
-								})}
-							/>
-						</div>
-					))}
+					</span>
+					<input
+						type="text"
+						placeholder="Поиск аллергий..."
+						className="mt-1 w-full rounded-md border p-2"
+						value={searchValue}
+						onChange={handleInputChange}
+					/>
+					<div
+						className={`mt-1 h-40 w-full overflow-y-auto rounded-md border bg-white shadow-lg ${
+							filteredAllergies.length > 0 ? 'visible' : 'hidden'
+						}`}
+					>
+						{filteredAllergies.map(allergy => (
+							<div key={allergy.id} className="mt-2">
+								<label className="cursor-pointer text-center hover:bg-emerald-100">
+									<input
+										type="checkbox"
+										name={`ingredient${allergy.id}`}
+										id={`ingredient-${allergy.id}`}
+										value={allergy.id}
+										{...register('allergenicIngredients', {
+											onChange: () =>
+												setServerError(null),
+										})}
+									/>
+									{allergy.name}
+								</label>
+							</div>
+						))}
+					</div>
 				</div>
 
 				<div className="flex items-center justify-center">

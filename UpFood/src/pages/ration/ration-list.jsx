@@ -5,8 +5,9 @@ import debounce from 'lodash.debounce';
 import { getLastPageFromLinks } from '../main/utils';
 import { PAGINATION_LIMIT } from '../../constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectRations } from '../../selectors';
+import { selectRations, selectUser } from '../../selectors';
 import { setRations } from '../../actions';
+import { filterAllergenicRations } from '../../utils';
 
 export const RationList = () => {
 	const [page, setPage] = useState(1);
@@ -17,6 +18,14 @@ export const RationList = () => {
 	const requestServer = useServerRequest();
 	const dispatch = useDispatch();
 	const rations = useSelector(selectRations);
+	const user = useSelector(selectUser);
+	const userAllergies = user.allergenicIngredients || [];
+	const { markedRations, unmarkedRations } = filterAllergenicRations(
+		rations,
+		userAllergies,
+	);
+
+	const sortedRations = [...unmarkedRations, ...markedRations];
 
 	useEffect(() => {
 		const fetchRations = async () => {
@@ -82,9 +91,9 @@ export const RationList = () => {
 			<h2 className="mb-6 mt-10 text-3xl font-bold text-gray-900 ">
 				Наши рационы
 			</h2>
-			{rations.length > 0 ? (
+			{sortedRations.length > 0 ? (
 				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-					{rations.map(
+					{sortedRations.map(
 						({ id, title, imageUrl, goal, meals, content }) => {
 							const totalCalories = meals.reduce(
 								(sum, meal) =>
@@ -115,6 +124,10 @@ export const RationList = () => {
 									totalPrices={totalPrices}
 									mealTitles={mealTitles}
 									content={content}
+									userAllergies={userAllergies}
+									isMarked={
+										!!markedRations.find(r => r.id === id)
+									}
 								/>
 							);
 						},

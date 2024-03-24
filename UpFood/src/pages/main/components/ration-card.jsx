@@ -1,5 +1,7 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { AddToCartButton } from '../../../components';
+
 export const RationCard = ({
 	id,
 	title,
@@ -10,6 +12,7 @@ export const RationCard = ({
 	mealTitles,
 	content,
 	type,
+	isMarked,
 }) => {
 	const displayMeals =
 		mealTitles && mealTitles.length > 0
@@ -25,7 +28,11 @@ export const RationCard = ({
 		mealTitles && mealTitles.length > 2 ? <span>...</span> : null;
 
 	return (
-		<div className="mx-auto flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl">
+		<div
+			className={`mx-auto flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl ${
+				isMarked ? 'border-2 border-red-500' : ''
+			}`}
+		>
 			<Link className="flex h-full flex-col" to={`/ration/${id}`}>
 				<img
 					className="h-48 w-full object-cover object-center"

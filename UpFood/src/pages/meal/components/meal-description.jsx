@@ -1,9 +1,14 @@
 import { ingredients as allIngredients } from '../../../bff/constants';
 
-export const MealDescription = ({ ingredients, goal }) => {
+export const MealDescription = ({ ingredients, goal, userAllergies }) => {
 	const getIngredientNameById = id => {
 		const ingredient = allIngredients.find(item => item.id === id);
 		return ingredient ? ingredient.name : '';
+	};
+
+	const isAllergen = id => {
+		const idString = id.toString();
+		return userAllergies.includes(idString);
 	};
 
 	return (
@@ -21,7 +26,12 @@ export const MealDescription = ({ ingredients, goal }) => {
 				<ul className="mr-2 flex flex-wrap items-center text-lg">
 					{ingredients &&
 						ingredients.map((id, index) => (
-							<li key={id} className="mr-2">
+							<li
+								key={id}
+								className={`mr-2 ${
+									isAllergen(id) ? 'text-red-500' : ''
+								}`}
+							>
 								{getIngredientNameById(id)}
 								{index !== ingredients.length - 1 && ','}
 							</li>

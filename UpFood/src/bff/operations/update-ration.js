@@ -18,6 +18,7 @@ export const updateRation = async (ration, rationEditData) => {
 					mealId: item.meal_id,
 					price: item.price,
 					calories: item.calories,
+					ingredients: item.ingredients,
 					quantity: item.quantity || 1,
 				})),
 			})),

@@ -19,6 +19,7 @@ export const addRation = ({
 			title: item.title,
 			calories: item.calories,
 			price: item.price,
+			ingredients: item.ingredients,
 		})),
 	}));
 
