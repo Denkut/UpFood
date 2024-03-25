@@ -14,17 +14,16 @@ export const RationList = () => {
 	const [lastPage, setLastPage] = useState(1);
 	const [searchPhrase, setSearchPhrase] = useState('');
 	const [shouldSearch, setShouldSearch] = useState(false);
-	const [filterGoal, setFilterGoal] = useState('');
 	const requestServer = useServerRequest();
 	const dispatch = useDispatch();
 	const rations = useSelector(selectRations);
 	const user = useSelector(selectUser);
 	const userAllergies = user.allergenicIngredients || [];
+	const userGoal = user.goal || [];
 	const { markedRations, unmarkedRations } = filterAllergenicRations(
 		rations,
 		userAllergies,
 	);
-
 	const sortedRations = [...unmarkedRations, ...markedRations];
 
 	useEffect(() => {
@@ -34,7 +33,6 @@ export const RationList = () => {
 				searchPhrase,
 				page,
 				PAGINATION_LIMIT,
-				filterGoal,
 			).then(({ res: { rations, links } }) => {
 				dispatch(setRations(rations));
 				setLastPage(getLastPageFromLinks(links));
@@ -42,7 +40,7 @@ export const RationList = () => {
 		};
 
 		fetchRations();
-	}, [requestServer, page, shouldSearch, filterGoal, dispatch]);
+	}, [requestServer, page, shouldSearch, dispatch]);
 
 	const startDelayedSearch = useMemo(
 		() => debounce(setShouldSearch, 2000),
@@ -53,10 +51,6 @@ export const RationList = () => {
 		startDelayedSearch(!shouldSearch);
 	};
 
-	const handleGoalFilter = goal => {
-		setFilterGoal(goal);
-	};
-
 	return (
 		<div className="relative isolate px-6 pt-14 lg:px-8">
 			<Search
@@ -64,29 +58,6 @@ export const RationList = () => {
 				searchPhrase={searchPhrase}
 				onChange={onSearch}
 			/>
-
-			<div className="mt-4 flex justify-center">
-				<button
-					onClick={() => handleGoalFilter('похудеть')}
-					className={`mx-2 rounded border px-4 py-2 ${
-						filterGoal === 'похудеть'
-							? 'bg-emerald-500 text-white'
-							: ''
-					}`}
-				>
-					Похудеть
-				</button>
-				<button
-					onClick={() => handleGoalFilter('набрать массу')}
-					className={`mx-2 rounded border px-4 py-2 ${
-						filterGoal === 'набрать массу'
-							? 'bg-emerald-500 text-white'
-							: ''
-					}`}
-				>
-					Набрать массу
-				</button>
-			</div>
 
 			<h2 className="mb-6 mt-10 text-3xl font-bold text-gray-900 ">
 				Наши рационы
@@ -128,6 +99,8 @@ export const RationList = () => {
 									isMarked={
 										!!markedRations.find(r => r.id === id)
 									}
+									userGoal={userGoal}
+									markedRations={markedRations}
 								/>
 							);
 						},

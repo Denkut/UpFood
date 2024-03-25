@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AddToCartButton } from '../../../components';
+import { goals } from '../../../bff/constants';
 
 export const RationCard = ({
 	id,
@@ -13,6 +14,8 @@ export const RationCard = ({
 	content,
 	type,
 	isMarked,
+	userGoal,
+	userAllergies,
 }) => {
 	const displayMeals =
 		mealTitles && mealTitles.length > 0
@@ -27,11 +30,16 @@ export const RationCard = ({
 	const ellipsis =
 		mealTitles && mealTitles.length > 2 ? <span>...</span> : null;
 
+	const goalName =
+		goals.find(item => String(item.id) === goal)?.name || 'Цель не указана';
+
+	const isUserGoalMatching = String(userGoal) === goal;
+
 	return (
 		<div
 			className={`mx-auto flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl ${
-				isMarked ? 'border-2 border-red-500' : ''
-			}`}
+				isUserGoalMatching ? 'border-2 border-green-500' : ''
+			} ${isMarked ? 'border-2 border-red-500' : ''}`}
 		>
 			<Link className="flex h-full flex-col" to={`/ration/${id}`}>
 				<img
@@ -58,9 +66,9 @@ export const RationCard = ({
 						</div>
 					)}
 				</div>
-				<div className="flex items-center justify-between bg-amber-600  px-6 py-4">
+				<div className="flex items-center justify-between bg-amber-600 px-6 py-4">
 					<span className="font-bold text-white">₽{totalPrices}</span>
-					<span className="text-gray-200">Цель: {goal}</span>
+					<span className="text-gray-200">Цель: {goalName}</span>
 				</div>
 			</Link>
 
@@ -68,7 +76,7 @@ export const RationCard = ({
 				<AddToCartButton
 					itemId={id}
 					itemType="ration"
-					className="w-full rounded-full bg-amber-800   px-4 py-2 font-bold text-white hover:bg-amber-700 focus:outline-none"
+					className="w-full rounded-full bg-amber-800 px-4 py-2 font-bold text-white hover:bg-amber-700 focus:outline-none"
 				/>
 			</div>
 		</div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ingredients as allIngredients } from '../../../bff/constants';
+import { ingredients as allIngredients, goals } from '../../../bff/constants';
 import { AddToCartButton } from '../../../components';
 
 export const MealCard = ({
@@ -13,7 +13,8 @@ export const MealCard = ({
 	ingredients,
 	goal,
 	price,
-	userAllergies,
+	isMarked,
+	userGoal,
 }) => {
 	const displayIngredients = ingredients.slice(0, 2).map((id, index) => (
 		<span key={id}>
@@ -24,16 +25,16 @@ export const MealCard = ({
 
 	const ellipsis = ingredients.length > 2 ? <span>...</span> : null;
 
-	const isAllergen = id => {
-		const idString = id.toString();
-		return userAllergies.includes(idString);
-	};
+	const goalName =
+		goals.find(item => String(item.id) === goal)?.name || 'Цель не указана';
+
+	const isUserGoalMatching = String(userGoal) === goal;
 
 	return (
 		<div
 			className={`mx-auto flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl ${
-				ingredients.some(isAllergen) ? 'border-2 border-red-500' : ''
-			}`}
+				isUserGoalMatching ? 'border-2 border-green-500' : ''
+			} ${isMarked ? 'border-2 border-red-500' : ''}`}
 		>
 			<Link className="flex h-full flex-col" to={`/meal/${id}`}>
 				<img
@@ -62,7 +63,7 @@ export const MealCard = ({
 				</div>
 				<div className="flex items-center justify-between bg-emerald-500 px-6 py-4">
 					<span className="font-bold text-white">₽{price}</span>
-					<span className="text-gray-200">{goal}</span>
+					<span className="text-gray-200">{goalName}</span>
 				</div>
 			</Link>
 

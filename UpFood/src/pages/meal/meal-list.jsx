@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useServerRequest } from '../../hooks';
 import { Search, MealCard, Pagination } from '../main/components';
 import debounce from 'lodash.debounce';
@@ -15,17 +15,22 @@ export const MealList = () => {
 	const [searchPhrase, setSearchPhrase] = useState('');
 	const [shouldSearch, setShouldSearch] = useState(false);
 	const [filterType, setFilterType] = useState('');
-	const [filterCalories, setFilterCalories] = useState('');
 	const requestServer = useServerRequest();
 	const dispatch = useDispatch();
 	const meals = useSelector(selectMeals);
 	const user = useSelector(selectUser);
+	const userGoal = user.goal || [];
 	const userAllergies = user.allergenicIngredients || [];
 	const { unmarkedMeals, markedMeals } = filterAllergenicMeals(
 		meals,
 		userAllergies,
 	);
-	const sortedMeals = [...unmarkedMeals, ...markedMeals];
+	const sortedMeals = [...unmarkedMeals, ...markedMeals].filter(meal => {
+		if (filterType === '') {
+			return true;
+		}
+		return meal.type === filterType;
+	});
 
 	useEffect(() => {
 		const fetchMeals = async () => {
@@ -35,7 +40,6 @@ export const MealList = () => {
 				page,
 				PAGINATION_LIMIT,
 				filterType,
-				filterCalories,
 			).then(({ res: { meals, links } }) => {
 				dispatch(setMeals(meals));
 				setLastPage(getLastPageFromLinks(links));
@@ -43,7 +47,7 @@ export const MealList = () => {
 		};
 
 		fetchMeals();
-	}, [requestServer, page, shouldSearch, filterType, filterCalories]);
+	}, [requestServer, page, shouldSearch, filterType]);
 
 	const startDelayedSearch = useMemo(
 		() => debounce(setShouldSearch, 2000),
@@ -59,10 +63,6 @@ export const MealList = () => {
 		setFilterType(type);
 	};
 
-	const handleCaloriesFilter = calories => {
-		setFilterCalories(calories);
-	};
-
 	return (
 		<div className="relative isolate px-6 pt-14 lg:px-8">
 			<Search
@@ -73,9 +73,9 @@ export const MealList = () => {
 
 			<div className="mt-4 flex justify-center">
 				<button
-					onClick={() => handleTypeFilter('breakfast')}
+					onClick={() => handleTypeFilter('Завтрак')}
 					className={`mx-2 rounded border px-4 py-2 ${
-						filterType === 'breakfast'
+						filterType === 'Завтрак'
 							? 'bg-emerald-500 text-white'
 							: ''
 					}`}
@@ -83,57 +83,28 @@ export const MealList = () => {
 					Завтрак
 				</button>
 				<button
-					onClick={() => handleTypeFilter('lunch')}
+					onClick={() => handleTypeFilter('Обед')}
 					className={`mx-2 rounded border px-4 py-2 ${
-						filterType === 'lunch'
-							? 'bg-emerald-500 text-white'
-							: ''
+						filterType === 'Обед' ? 'bg-emerald-500 text-white' : ''
 					}`}
 				>
 					Обед
 				</button>
 				<button
-					onClick={() => handleTypeFilter('dinner')}
+					onClick={() => handleTypeFilter('Ужин')}
 					className={`mx-2 rounded border px-4 py-2 ${
-						filterType === 'dinner'
-							? 'bg-emerald-500 text-white'
-							: ''
+						filterType === 'Ужин' ? 'bg-emerald-500 text-white' : ''
 					}`}
 				>
 					Ужин
 				</button>
-			</div>
-
-			<div className="mt-4 flex justify-center">
 				<button
-					onClick={() => handleCaloriesFilter('low')}
+					onClick={() => handleTypeFilter('')}
 					className={`mx-2 rounded border px-4 py-2 ${
-						filterCalories === 'low'
-							? 'bg-emerald-500 text-white'
-							: ''
+						filterType === '' ? 'bg-emerald-500 text-white' : ''
 					}`}
 				>
-					Низкокалорийные
-				</button>
-				<button
-					onClick={() => handleCaloriesFilter('medium')}
-					className={`mx-2 rounded border px-4 py-2 ${
-						filterCalories === 'medium'
-							? 'bg-emerald-500 text-white'
-							: ''
-					}`}
-				>
-					Среднекалорийные
-				</button>
-				<button
-					onClick={() => handleCaloriesFilter('high')}
-					className={`mx-2 rounded border px-4 py-2 ${
-						filterCalories === 'high'
-							? 'bg-emerald-500 text-white'
-							: ''
-					}`}
-				>
-					Высококалорийные
+					Все блюда
 				</button>
 			</div>
 
@@ -153,21 +124,28 @@ export const MealList = () => {
 							ingredients,
 							goal,
 							price,
-						}) => (
-							<MealCard
-								key={id}
-								id={id}
-								title={title}
-								imageUrl={imageUrl}
-								type={type}
-								calories={calories}
-								dietCategory={dietCategory}
-								ingredients={ingredients}
-								goal={goal}
-								price={price}
-								userAllergies={userAllergies}
-							/>
-						),
+						}) => {
+							const isMarked = !!markedMeals.find(
+								meal => meal.id === id,
+							);
+							return (
+								<MealCard
+									key={id}
+									id={id}
+									title={title}
+									imageUrl={imageUrl}
+									type={type}
+									calories={calories}
+									dietCategory={dietCategory}
+									ingredients={ingredients}
+									goal={goal}
+									price={price}
+									userAllergies={userAllergies}
+									userGoal={userGoal}
+									isMarked={isMarked}
+								/>
+							);
+						},
 					)}
 				</div>
 			) : (

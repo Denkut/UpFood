@@ -49,7 +49,7 @@ export const Ration = () => {
 	}, [dispatch, requestServer, params.id, isCreating]);
 
 	if (isMealsLoading || isRationLoading) {
-		return null; // Можно также отобразить индикатор загрузки
+		return null;
 	}
 
 	return (

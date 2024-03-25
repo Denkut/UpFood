@@ -1,4 +1,4 @@
-import { ingredients as allIngredients } from '../../../bff/constants';
+import { ingredients as allIngredients, goals } from '../../../bff/constants';
 
 export const MealDescription = ({ ingredients, goal, userAllergies }) => {
 	const getIngredientNameById = id => {
@@ -11,13 +11,18 @@ export const MealDescription = ({ ingredients, goal, userAllergies }) => {
 		return userAllergies.includes(idString);
 	};
 
+	const goalName =
+		goals.find(item => String(item.id) === goal)?.name || 'Цель не указана';
+
 	return (
 		<div className="ml-5 items-center">
 			<div className="flex">
 				<span className="mr-2 items-center text-xl font-semibold text-emerald-900">
 					Цель:
 				</span>
-				<span className="mr-2 flex items-center text-lg">{goal}</span>
+				<span className="mr-2 flex items-center text-lg">
+					{goalName}
+				</span>
 			</div>
 			<div className="flex">
 				<span className="mr-2 items-center text-xl font-semibold text-emerald-900">

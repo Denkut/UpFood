@@ -1,6 +1,11 @@
 import React from 'react';
+import { goals } from '../../../bff/constants';
 
 export const RationDescription = ({ ration }) => {
+	const goal = goals.find(item => String(item.id) === ration.goal);
+
+	const goalName = goal ? goal.name : 'Цель не указана';
+
 	return (
 		<div className="ml-5 items-center">
 			<div className="flex">
@@ -8,7 +13,7 @@ export const RationDescription = ({ ration }) => {
 					Цель:
 				</span>
 				<span className="mr-2 flex items-center text-lg">
-					{ration.goal}
+					{goalName}
 				</span>
 			</div>
 			<div className="flex">

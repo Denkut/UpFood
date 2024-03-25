@@ -155,13 +155,18 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 						onChange={handleGoalChange}
 						className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none"
 					>
-						<option value="" disabled={!editedData.goal}>
+						<option
+							value=""
+							selected
+							disabled={!editedData.goal}
+							hidden
+						>
 							{editedData.goal
 								? editedData.goal
 								: 'Выберите цель'}
 						</option>
 						{goals.map(item => (
-							<option key={item.id} value={item.name}>
+							<option key={item.id} value={item.id}>
 								{item.name}
 							</option>
 						))}
