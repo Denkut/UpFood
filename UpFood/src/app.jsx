@@ -63,7 +63,6 @@ export const App = () => {
 				</Routes>
 			</div>
 			<Footer />
-			{/* <Modal /> */}
 		</div>
 	);
 };

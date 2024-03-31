@@ -15,7 +15,6 @@ export const RationCard = ({
 	type,
 	isMarked,
 	userGoal,
-	userAllergies,
 }) => {
 	const displayMeals =
 		mealTitles && mealTitles.length > 0
@@ -37,9 +36,21 @@ export const RationCard = ({
 
 	return (
 		<div
-			className={`mx-auto flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl ${
-				isUserGoalMatching ? 'border-2 border-green-500' : ''
-			} ${isMarked ? 'border-2 border-red-500' : ''}`}
+			className={`mx-auto flex w-auto flex-col overflow-hidden rounded-xl bg-white shadow-lg transition duration-300 hover:scale-105 hover:shadow-xl xl:w-96 ${
+				isMarked && isUserGoalMatching
+					? 'border-2 border-emerald-500'
+					: isUserGoalMatching
+						? 'border-2 border-b-0 border-t-0 border-emerald-500'
+						: isMarked
+							? 'border-2 border-b-0 border-t-0 border-red-500'
+							: ''
+			}`}
+			style={{
+				borderTopColor: isMarked ? 'red' : undefined,
+				borderBottomColor: isMarked ? 'red' : undefined,
+				borderLeftColor: isUserGoalMatching ? 'emerald' : undefined,
+				borderRightColor: isUserGoalMatching ? 'emerald' : undefined,
+			}}
 		>
 			<Link className="flex h-full flex-col" to={`/ration/${id}`}>
 				<img

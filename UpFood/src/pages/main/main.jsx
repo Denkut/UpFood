@@ -2,7 +2,13 @@ import { Link } from 'react-router-dom';
 import Rations from '../../assets/picture/Rations.jpg';
 import { useEffect, useMemo, useState } from 'react';
 import { useServerRequest } from '../../hooks';
-import { Search, MealCard, Pagination, RationCard } from '../main/components';
+import {
+	Search,
+	MealCard,
+	Pagination,
+	RationCard,
+	BorderExplanationModal,
+} from '../main/components';
 import debounce from 'lodash.debounce';
 import { getLastPageFromLinks } from './utils';
 import { PAGINATION_LIMIT } from '../../constants';
@@ -16,11 +22,14 @@ export const Main = () => {
 	const [lastPage, setLastPage] = useState(1);
 	const [searchPhrase, setSearchPhrase] = useState('');
 	const [shouldSearch, setShouldSearch] = useState(false);
+	const [showRationBorderExplanation, setShowRationBorderExplanation] =
+		useState(false);
 	const requestServer = useServerRequest();
 	const dispatch = useDispatch();
 	const meals = useSelector(selectMeals);
 	const rations = useSelector(selectRations);
 	const user = useSelector(selectUser);
+	const userGoal = user.goal || [];
 	const userAllergies = user.allergenicIngredients || [];
 	const { unmarkedMeals, markedMeals } = filterAllergenicMeals(
 		meals,
@@ -75,6 +84,9 @@ export const Main = () => {
 		startDelayedSearch(!shouldSearch);
 	};
 
+	const toggleRationBorderExplanation = () => {
+		setShowRationBorderExplanation(prevState => !prevState);
+	};
 	return (
 		<div className="relative isolate px-6 pt-14 lg:px-8">
 			<div
@@ -118,6 +130,7 @@ export const Main = () => {
 					alt="rations"
 				/>
 			</div>
+
 			<Search
 				className=""
 				searchPhrase={searchPhrase}
@@ -136,11 +149,13 @@ export const Main = () => {
 					}}
 				/>
 			</div>
+
 			<h2 className="mb-6 mt-10 text-3xl font-bold text-gray-900">
 				Наши рационы
 			</h2>
+
 			{sortedRations.length > 0 ? (
-				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 					{sortedRations.map(
 						({ id, title, imageUrl, goal, meals, content }) => {
 							const totalCalories = meals.reduce(
@@ -177,6 +192,8 @@ export const Main = () => {
 									isMarked={
 										!!markedRations.find(r => r.id === id)
 									}
+									userGoal={userGoal}
+									markedRations={markedRations}
 								/>
 							);
 						},
@@ -192,7 +209,7 @@ export const Main = () => {
 				Наши блюда
 			</h2>
 			{sortedMeals.length > 0 ? (
-				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+				<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
 					{sortedMeals.map(
 						({
 							id,
@@ -217,12 +234,28 @@ export const Main = () => {
 								goal={goal}
 								price={price}
 								userAllergies={userAllergies}
+								userGoal={userGoal}
+								isMarked={
+									!!markedMeals.find(meal => meal.id === id)
+								}
 							/>
 						),
 					)}
 				</div>
 			) : (
 				<p>Загрузка блюд...</p>
+			)}
+			<button
+				className="mt-3 rounded-md  bg-amber-700      px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+				onClick={toggleRationBorderExplanation}
+			>
+				ЦВЕТА ГРАНИЦ
+			</button>
+
+			{showRationBorderExplanation && (
+				<BorderExplanationModal
+					onClose={toggleRationBorderExplanation}
+				/>
 			)}
 			{lastPage > 1 && (meals.length > 0 || rations.length > 0) && (
 				<Pagination setPage={setPage} page={page} lastPage={lastPage} />
