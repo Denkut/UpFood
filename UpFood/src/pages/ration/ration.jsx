@@ -5,7 +5,8 @@ import { RESET_RATION_DATA, loadRationAsync, setMealsAll } from '../../actions';
 import { RationContent, RationDescription, RationEdit } from './components';
 import { selectMeals, selectRation } from '../../selectors';
 import { useServerRequest } from '../../hooks';
-import { Error } from '../../components';
+import { Error, PrivateContent } from '../../components';
+import { ROLE } from '../../constants';
 
 export const Ration = () => {
 	const [error, setError] = useState(null);
@@ -53,24 +54,21 @@ export const Ration = () => {
 		return null;
 	}
 
-	return error ? (
-		<div>
-			<Error  error={error} />
-		</div>
-	) : (
-		<div>
-			{isCreating || isEditing ? (
+	const SpecificRationPage =
+		isCreating || isEditing ? (
+			<PrivateContent access={[ROLE.ADMIN]} serverError={error}>
 				<RationEdit ration={ration} meals={meals} />
-			) : (
-				<>
-					<RationContent ration={ration} meals={meals} />
-					<RationDescription
-						ration={ration}
-						content={ration.content}
-						goal={ration.goal}
-					/>
-				</>
-			)}
-		</div>
-	);
+			</PrivateContent>
+		) : (
+			<>
+				<RationContent ration={ration} meals={meals} />
+				<RationDescription
+					ration={ration}
+					content={ration.content}
+					goal={ration.goal}
+				/>
+			</>
+		);
+
+	return error ? <Error error={error} /> : SpecificRationPage;
 };

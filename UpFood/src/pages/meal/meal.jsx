@@ -5,7 +5,8 @@ import { useServerRequest } from '../../hooks';
 import { RESET_MEAL_DATA, loadMealAsync } from '../../actions';
 import { selectMeal, selectUser } from '../../selectors';
 import { MealContent, MealDescription, MealEdit } from './components';
-import { Error } from '../../components';
+import { Error, PrivateContent } from '../../components';
+import { ROLE } from '../../constants';
 
 export const Meal = () => {
 	const [error, setError] = useState(null);
@@ -39,24 +40,21 @@ export const Meal = () => {
 		return null;
 	}
 
-	return error ? (
-		<div>
-			<Error error={error} />
-		</div>
-	) : (
-		<div>
-			{isCreating || isEditing ? (
+	const SpecificMealPage =
+		isCreating || isEditing ? (
+			<PrivateContent access={[ROLE.ADMIN]} serverError={error}>
 				<MealEdit meal={meal} />
-			) : (
-				<>
-					<MealContent meal={meal} />
-					<MealDescription
-						ingredients={meal.ingredients}
-						goal={meal.goal}
-						userAllergies={userAllergies}
-					/>
-				</>
-			)}
-		</div>
-	);
+			</PrivateContent>
+		) : (
+			<>
+				<MealContent meal={meal} />
+				<MealDescription
+					ingredients={meal.ingredients}
+					goal={meal.goal}
+					userAllergies={userAllergies}
+				/>
+			</>
+		);
+
+	return error ? <Error error={error} /> : SpecificMealPage;
 };

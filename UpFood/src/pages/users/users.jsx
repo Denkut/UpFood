@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ROLE } from '../../constants';
-import { Content } from '../../components';
+import { PrivateContent } from '../../components';
 import { TableRow, UserRow } from './components';
 import { useServerRequest } from '../../hooks';
 import { useSelector } from 'react-redux';
@@ -47,7 +47,7 @@ export const Users = () => {
 
 	return (
 		<div>
-			<Content error={errorMessage}>
+			<PrivateContent access={[ROLE.ADMIN]} serverError={errorMessage}>
 				<h2 className="mb-10 flex items-center justify-center text-xl font-semibold">
 					Пользователи
 				</h2>
@@ -75,7 +75,7 @@ export const Users = () => {
 						/>
 					))}
 				</div>
-			</Content>
+			</PrivateContent>
 		</div>
 	);
 };
