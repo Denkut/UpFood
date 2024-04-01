@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AddToCartButton } from '../../../components';
 import { goals } from '../../../bff/constants';
+import { ROLE } from '../../../constants';
+import { useSelector } from 'react-redux';
+import { selectUserRole } from '../../../selectors';
 
 export const RationCard = ({
 	id,
@@ -16,6 +19,8 @@ export const RationCard = ({
 	isMarked,
 	userGoal,
 }) => {
+	const roleId = useSelector(selectUserRole);
+
 	const displayMeals =
 		mealTitles && mealTitles.length > 0
 			? mealTitles.slice(0, 2).map((meal, index) => (
@@ -83,13 +88,16 @@ export const RationCard = ({
 				</div>
 			</Link>
 
-			<div className="bg-gray-100 p-4">
-				<AddToCartButton
-					itemId={id}
-					itemType="ration"
-					className="w-full rounded-full bg-amber-800 px-4 py-2 font-bold text-white hover:bg-amber-700 focus:outline-none"
-				/>
-			</div>
+			{roleId === ROLE.ADMIN ||
+				(roleId === ROLE.CLIENT && (
+					<div className="bg-gray-100 p-4">
+						<AddToCartButton
+							itemId={id}
+							itemType="ration"
+							className="w-full rounded-full bg-amber-800 px-4 py-2 font-bold text-white hover:bg-amber-700 focus:outline-none"
+						/>
+					</div>
+				))}
 		</div>
 	);
 };

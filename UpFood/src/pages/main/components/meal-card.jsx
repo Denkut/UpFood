@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ingredients as allIngredients, goals } from '../../../bff/constants';
 import { AddToCartButton } from '../../../components';
+import { ROLE } from '../../../constants';
+import { useSelector } from 'react-redux';
+import { selectUserRole } from '../../../selectors';
 
 export const MealCard = ({
 	id,
@@ -16,6 +19,8 @@ export const MealCard = ({
 	isMarked,
 	userGoal,
 }) => {
+	const roleId = useSelector(selectUserRole);
+
 	const displayIngredients = ingredients.slice(0, 2).map((id, index) => (
 		<span key={id}>
 			{allIngredients.find(item => item.id === id)?.name}
@@ -79,13 +84,16 @@ export const MealCard = ({
 				</div>
 			</Link>
 
-			<div className="bg-gray-100 p-4">
-				<AddToCartButton
-					itemId={id}
-					itemType="meal"
-					className="w-full rounded-full bg-emerald-800 px-4 py-2 font-bold text-white hover:bg-emerald-700 focus:outline-none"
-				/>
-			</div>
+			{roleId === ROLE.ADMIN ||
+				(roleId === ROLE.CLIENT && (
+					<div className="bg-gray-100 p-4">
+						<AddToCartButton
+							itemId={id}
+							itemType="meal"
+							className="w-full rounded-full bg-emerald-800 px-4 py-2 font-bold text-white hover:bg-emerald-700 focus:outline-none"
+						/>
+					</div>
+				))}
 		</div>
 	);
 };

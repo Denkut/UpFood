@@ -11,9 +11,14 @@ import {
 } from '../main/components';
 import debounce from 'lodash.debounce';
 import { getLastPageFromLinks } from './utils';
-import { PAGINATION_LIMIT } from '../../constants';
+import { PAGINATION_LIMIT, ROLE } from '../../constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectMeals, selectRations, selectUser } from '../../selectors';
+import {
+	selectMeals,
+	selectRations,
+	selectUser,
+	selectUserRole,
+} from '../../selectors';
 import { setMeals, setRations } from '../../actions';
 import { filterAllergenicMeals, filterAllergenicRations } from '../../utils';
 
@@ -29,6 +34,7 @@ export const Main = () => {
 	const meals = useSelector(selectMeals);
 	const rations = useSelector(selectRations);
 	const user = useSelector(selectUser);
+	const roleId = useSelector(selectUserRole);
 	const userGoal = user.goal || [];
 	const userAllergies = user.allergenicIngredients || [];
 	const { unmarkedMeals, markedMeals } = filterAllergenicMeals(
@@ -245,18 +251,23 @@ export const Main = () => {
 			) : (
 				<p>Загрузка блюд...</p>
 			)}
-			<button
-				className="mt-3 rounded-md  bg-amber-700      px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
-				onClick={toggleRationBorderExplanation}
-			>
-				ЦВЕТА ГРАНИЦ
-			</button>
+			{roleId === ROLE.ADMIN ||
+				(roleId === ROLE.CLIENT && (
+					<>
+						<button
+							className="mt-3 rounded-md  bg-amber-700      px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+							onClick={toggleRationBorderExplanation}
+						>
+							ЦВЕТА ГРАНИЦ
+						</button>
 
-			{showRationBorderExplanation && (
-				<BorderExplanationModal
-					onClose={toggleRationBorderExplanation}
-				/>
-			)}
+						{showRationBorderExplanation && (
+							<BorderExplanationModal
+								onClose={toggleRationBorderExplanation}
+							/>
+						)}
+					</>
+				))}
 			{lastPage > 1 && (meals.length > 0 || rations.length > 0) && (
 				<Pagination setPage={setPage} page={page} lastPage={lastPage} />
 			)}
