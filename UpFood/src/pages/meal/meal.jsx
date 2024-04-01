@@ -5,6 +5,7 @@ import { useServerRequest } from '../../hooks';
 import { RESET_MEAL_DATA, loadMealAsync } from '../../actions';
 import { selectMeal, selectUser } from '../../selectors';
 import { MealContent, MealDescription, MealEdit } from './components';
+import { Error } from '../../components';
 
 export const Meal = () => {
 	const [error, setError] = useState(null);
@@ -37,13 +38,13 @@ export const Meal = () => {
 	if (isLoading) {
 		return null;
 	}
-	return (
+
+	return error ? (
 		<div>
-			{error && (
-				<div className="mb-4 bg-red-200 p-4 text-red-800">
-					Ошибка: {error.message}
-				</div>
-			)}
+			<Error error={error} />
+		</div>
+	) : (
+		<div>
 			{isCreating || isEditing ? (
 				<MealEdit meal={meal} />
 			) : (

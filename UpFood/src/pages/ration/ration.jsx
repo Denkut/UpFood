@@ -5,6 +5,7 @@ import { RESET_RATION_DATA, loadRationAsync, setMealsAll } from '../../actions';
 import { RationContent, RationDescription, RationEdit } from './components';
 import { selectMeals, selectRation } from '../../selectors';
 import { useServerRequest } from '../../hooks';
+import { Error } from '../../components';
 
 export const Ration = () => {
 	const [error, setError] = useState(null);
@@ -52,13 +53,12 @@ export const Ration = () => {
 		return null;
 	}
 
-	return (
+	return error ? (
 		<div>
-			{error && (
-				<div className="mb-4 bg-red-200 p-4 text-red-800">
-					Error: {error.message}
-				</div>
-			)}
+			<Error  error={error} />
+		</div>
+	) : (
+		<div>
 			{isCreating || isEditing ? (
 				<RationEdit ration={ration} meals={meals} />
 			) : (

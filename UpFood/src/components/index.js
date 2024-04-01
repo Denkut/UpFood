@@ -6,3 +6,4 @@ export * from './content/content';
 export * from './modal/modal';
 export * from './add-to-cart-button/add-to-cart-button';
 export * from './update-quantity-button/update-quantity-button';
+export * from './error/error';

@@ -11,10 +11,11 @@ import {
 	Registration,
 	Users,
 } from './pages';
-import { Footer, Header } from './components';
+import { Error, Footer, Header } from './components';
 import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCart, setUser } from './actions';
+import { ERROR } from './constants';
 
 export const App = () => {
 	const dispatch = useDispatch();
@@ -59,7 +60,10 @@ export const App = () => {
 					<Route path="/meal/:id" element={<Meal />} />
 					<Route path="/meal/:id/edit" element={<Meal />} />
 					<Route path="/cart" element={<Cart />} />
-					<Route path="*" element={<div>Ошибка</div>} />
+					<Route
+						path="*"
+						element={<Error error={ERROR.PAGE_NOT_EXIST} />}
+					/>
 				</Routes>
 			</div>
 			<Footer />
