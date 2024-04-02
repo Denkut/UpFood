@@ -1,7 +1,9 @@
 import { useServerRequest } from '../../../hooks';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { TableRow } from './table-row';
 import { BookmarkSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { PROP_TYPE } from '../../../constants';
 
 export const UserRow = ({
 	id,
@@ -62,4 +64,13 @@ export const UserRow = ({
 			/>
 		</div>
 	);
+};
+
+UserRow.propTypes = {
+	id: PropTypes.string.isRequired,
+	login: PropTypes.string.isRequired,
+	registeredAt: PropTypes.string.isRequired,
+	roleId: PROP_TYPE.ROLE_ID.isRequired,
+	roles: PropTypes.arrayOf(PROP_TYPE.ROLE).isRequired,
+	onUserRemove: PropTypes.func.isRequired,
 };

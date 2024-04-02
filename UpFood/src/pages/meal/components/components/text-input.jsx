@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const TextInput = ({ label, value, onChange }) => {
 	return (
@@ -11,4 +12,10 @@ export const TextInput = ({ label, value, onChange }) => {
 			/>
 		</h2>
 	);
+};
+
+TextInput.propTypes = {
+	label: PropTypes.string.isRequired,
+	value: PropTypes.string,
+	onChange: PropTypes.func.isRequired,
 };

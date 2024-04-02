@@ -1,5 +1,7 @@
 /* eslint-disable react/display-name */
 import { forwardRef } from 'react';
+import PropTypes from 'prop-types';
+import { PROP_TYPE } from '../../constants';
 
 export const Input = forwardRef(({ label, error, ...props }, ref) => {
 	return (
@@ -20,3 +22,8 @@ export const Input = forwardRef(({ label, error, ...props }, ref) => {
 		</div>
 	);
 });
+
+Input.propTypes = {
+	label: PropTypes.string,
+	error: PROP_TYPE.ERROR,
+};

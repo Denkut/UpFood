@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const NumberInput = ({ value, onChange, suffix }) => {
 	return (
@@ -11,4 +12,10 @@ export const NumberInput = ({ value, onChange, suffix }) => {
 			{suffix}
 		</span>
 	);
+};
+
+NumberInput.propTypes = {
+	suffix: PropTypes.string.isRequired,
+	value: PropTypes.string,
+	onChange: PropTypes.func.isRequired,
 };

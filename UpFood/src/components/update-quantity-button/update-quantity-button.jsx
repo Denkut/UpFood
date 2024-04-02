@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCart } from '../../actions';
 import { server } from '../../bff';
@@ -85,4 +86,10 @@ export const UpdateQuantityButton = ({ itemId, count, itemType }) => {
 			{serverError && <p style={{ color: 'red' }}>{serverError}</p>}
 		</div>
 	);
+};
+
+UpdateQuantityButton.propTypes = {
+	itemId: PropTypes.string.isRequired,
+	count: PropTypes.number.isRequired,
+	itemType: PropTypes.string.isRequired,
 };

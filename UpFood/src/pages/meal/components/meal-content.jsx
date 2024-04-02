@@ -11,6 +11,7 @@ import { useServerRequest } from '../../../hooks';
 import { checkAccess } from '../../../utils';
 import { ROLE } from '../../../bff/constants';
 import { AddToCartButton, Modal } from '../../../components';
+import { PROP_TYPE } from '../../../constants';
 
 export const MealContent = ({
 	meal: { id, title, imageUrl, type, calories, dietCategory, price },
@@ -84,13 +85,20 @@ export const MealContent = ({
 				<div className="mb-2 text-3xl font-bold text-gray-900">
 					{price} ₽
 				</div>
-				<AddToCartButton
-					itemId={id}
-					itemType="meal"
-					className="w-96 rounded-full bg-emerald-800 px-4 py-2 font-bold text-white hover:bg-emerald-700 focus:outline-none"
-				/>
+				{userRole !== ROLE.GUEST && (
+					<AddToCartButton
+						itemId={id}
+						itemType="meal"
+						className="w-96 rounded-full bg-emerald-800 px-4 py-2 font-bold text-white hover:bg-emerald-700 focus:outline-none"
+					/>
+				)}
 			</div>
+
 			<Modal />
 		</div>
 	);
+};
+
+MealContent.propTypes = {
+	meal: PROP_TYPE.MEAL,
 };

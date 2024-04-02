@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const SelectInput = ({ label, options, value, onChange }) => {
+export const SelectInputGoal = ({ label, options, value, onChange }) => {
 	return (
 		<div className="mr-2">
 			{label}
@@ -16,7 +16,7 @@ export const SelectInput = ({ label, options, value, onChange }) => {
 					hidden
 				>{`Выберите ${label.toLowerCase()}`}</option>
 				{options.map(item => (
-					<option key={item.id} value={item.name}>
+					<option key={item.id} value={item.id}>
 						{item.name}
 					</option>
 				))}
@@ -25,7 +25,7 @@ export const SelectInput = ({ label, options, value, onChange }) => {
 	);
 };
 
-SelectInput.propTypes = {
+SelectInputGoal.propTypes = {
 	label: PropTypes.string.isRequired,
 	options: PropTypes.arrayOf(
 		PropTypes.shape({

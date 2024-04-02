@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const ImageInput = ({ imageUrl, onImageUrlChange }) => {
 	return (
@@ -20,4 +21,9 @@ export const ImageInput = ({ imageUrl, onImageUrlChange }) => {
 			</label>
 		</div>
 	);
+};
+
+ImageInput.propTypes = {
+	imageUrl: PropTypes.string.isRequired,
+	onImageUrlChange: PropTypes.func,
 };

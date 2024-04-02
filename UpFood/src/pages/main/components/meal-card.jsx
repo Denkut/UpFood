@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ingredients as allIngredients, goals } from '../../../bff/constants';
 import { AddToCartButton } from '../../../components';
@@ -84,16 +85,29 @@ export const MealCard = ({
 				</div>
 			</Link>
 
-			{roleId === ROLE.ADMIN ||
-				(roleId === ROLE.CLIENT && (
-					<div className="bg-gray-100 p-4">
-						<AddToCartButton
-							itemId={id}
-							itemType="meal"
-							className="w-full rounded-full bg-emerald-800 px-4 py-2 font-bold text-white hover:bg-emerald-700 focus:outline-none"
-						/>
-					</div>
-				))}
+			{roleId !== ROLE.GUEST && (
+				<div className="bg-gray-100 p-4">
+					<AddToCartButton
+						itemId={id}
+						itemType="meal"
+						className="w-full rounded-full bg-emerald-800 px-4 py-2 font-bold text-white hover:bg-emerald-700 focus:outline-none"
+					/>
+				</div>
+			)}
 		</div>
 	);
+};
+
+MealCard.propTypes = {
+	id: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+	imageUrl: PropTypes.string.isRequired,
+	type: PropTypes.string.isRequired,
+	calories: PropTypes.string.isRequired,
+	dietCategory: PropTypes.string.isRequired,
+	ingredients: PropTypes.array.isRequired,
+	goal: PropTypes.string.isRequired,
+	price: PropTypes.string.isRequired,
+	isMarked: PropTypes.bool.isRequired,
+	userGoal: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
 };

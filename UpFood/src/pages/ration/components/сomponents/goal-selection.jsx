@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { goals } from '../../../../bff/constants';
 
 export const GoalSelection = ({ goal, onGoalChange }) => {
@@ -23,4 +24,9 @@ export const GoalSelection = ({ goal, onGoalChange }) => {
 			</select>
 		</div>
 	);
+};
+
+GoalSelection.propTypes = {
+	goal: PropTypes.string.isRequired,
+	onGoalChange: PropTypes.func.isRequired,
 };

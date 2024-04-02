@@ -251,23 +251,22 @@ export const Main = () => {
 			) : (
 				<p>Загрузка блюд...</p>
 			)}
-			{roleId === ROLE.ADMIN ||
-				(roleId === ROLE.CLIENT && (
-					<>
-						<button
-							className="mt-3 rounded-md  bg-amber-700      px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
-							onClick={toggleRationBorderExplanation}
-						>
-							ЦВЕТА ГРАНИЦ
-						</button>
+			{roleId !== ROLE.GUEST && (
+				<>
+					<button
+						className="mt-3 rounded-md  bg-amber-700      px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+						onClick={toggleRationBorderExplanation}
+					>
+						ЦВЕТА ГРАНИЦ
+					</button>
 
-						{showRationBorderExplanation && (
-							<BorderExplanationModal
-								onClose={toggleRationBorderExplanation}
-							/>
-						)}
-					</>
-				))}
+					{showRationBorderExplanation && (
+						<BorderExplanationModal
+							onClose={toggleRationBorderExplanation}
+						/>
+					)}
+				</>
+			)}
 			{lastPage > 1 && (meals.length > 0 || rations.length > 0) && (
 				<Pagination setPage={setPage} page={page} lastPage={lastPage} />
 			)}

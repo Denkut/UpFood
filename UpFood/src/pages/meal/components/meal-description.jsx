@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { ingredients as allIngredients, goals } from '../../../bff/constants';
 
 export const MealDescription = ({ ingredients, goal, userAllergies }) => {
@@ -45,4 +46,10 @@ export const MealDescription = ({ ingredients, goal, userAllergies }) => {
 			</div>
 		</div>
 	);
+};
+
+MealDescription.propTypes = {
+	ingredients: PropTypes.array.isRequired,
+	goal: PropTypes.string.isRequired,
+	userAllergies: PropTypes.array.isRequired,
 };

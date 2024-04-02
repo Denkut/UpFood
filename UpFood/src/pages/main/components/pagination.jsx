@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const Pagination = ({ setPage, page, lastPage }) => {
 	return (
 		<div className="mt-8 flex items-center justify-center">
@@ -32,4 +34,10 @@ export const Pagination = ({ setPage, page, lastPage }) => {
 			</button>
 		</div>
 	);
+};
+
+Pagination.propTypes = {
+	page: PropTypes.number.isRequired,
+	lastPage: PropTypes.number.isRequired,
+	setPage: PropTypes.func.isRequired,
 };

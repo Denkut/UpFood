@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const MealSelection = ({
 	meal,
@@ -38,4 +39,12 @@ export const MealSelection = ({
 			</button>
 		</div>
 	);
+};
+
+MealSelection.propTypes = {
+	meal: PropTypes.array.isRequired,
+	meals: PropTypes.array.isRequired,
+	index: PropTypes.number.isRequired,
+	onMealChange: PropTypes.func.isRequired,
+	onQuantityChange: PropTypes.func.isRequired,
 };

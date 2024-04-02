@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { UpdateQuantityButton } from '../../../components';
 
 export const RationItem = ({
@@ -76,4 +77,14 @@ export const RationItem = ({
 			)}
 		</div>
 	);
+};
+
+RationItem.propTypes = {
+	ration: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
+	handleRemoveItem: PropTypes.func.isRequired,
+	toggleVisibleMeals: PropTypes.func.isRequired,
+	visibleMeals: PropTypes.object.isRequired,
+	isLoading: PropTypes.bool.isRequired,
+	mealsData: PropTypes.object.isRequired,
+	count: PropTypes.number.isRequired,
 };

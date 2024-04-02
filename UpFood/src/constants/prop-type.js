@@ -10,17 +10,21 @@ export const PROP_TYPE = {
 		name: PropTypes.string.isRequired,
 	}),
 	ERROR: PropTypes.oneOfType([PropTypes.string, PropTypes.exact(null)]),
-	COMMENT: PropTypes.shape({
-		id: PropTypes.number.isRequired,
-		author: PropTypes.string.isRequired,
-		content: PropTypes.string.isRequired,
-		publishedAt: PropTypes.string.isRequired,
-	}),
-	POST: PropTypes.shape({
+	MEAL: PropTypes.shape({
 		id: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired,
 		imageUrl: PropTypes.string.isRequired,
-		content: PropTypes.string.isRequired,
-		publishedAt: PropTypes.string.isRequired,
+		type: PropTypes.string.isRequired,
+		calories: PropTypes.string.isRequired,
+		dietCategory: PropTypes.string.isRequired,
+		ingredients: PropTypes.array,
+		goal: PropTypes.string.isRequired,
+		price: PropTypes.string.isRequired,
+	}),
+	ITEM: PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		imageUrl: PropTypes.string.isRequired,
+		title: PropTypes.string.isRequired,
+		price: PropTypes.string.isRequired,
 	}),
 };

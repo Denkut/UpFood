@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { MealSelection } from './meal-selection';
 
 export const SelectedMeals = ({ mealsEditedData, meals, handleMealChange }) => {
@@ -8,7 +9,7 @@ export const SelectedMeals = ({ mealsEditedData, meals, handleMealChange }) => {
 				<div key={index} className="mt-4">
 					<span>Блюдо {index + 1}:</span>
 					<MealSelection
-						key={meal.items[0].mealId} // Уникальный ключ для каждого компонента MealSelection
+						key={meal.items[0].mealId}
 						meals={meals}
 						selectedMealId={meal.items[0].mealId}
 						onMealChange={selectedMealId =>
@@ -37,4 +38,10 @@ export const SelectedMeals = ({ mealsEditedData, meals, handleMealChange }) => {
 			))}
 		</div>
 	);
+};
+
+MealSelection.propTypes = {
+	meals: PropTypes.array.isRequired,
+	mealsEditedData: PropTypes.func.isRequired,
+	handleMealChange: PropTypes.func.isRequired,
 };

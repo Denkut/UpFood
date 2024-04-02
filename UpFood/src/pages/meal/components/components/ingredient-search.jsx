@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export const IngredientSearch = ({
 	allIngredients,
@@ -49,4 +50,10 @@ export const IngredientSearch = ({
 			</div>
 		</div>
 	);
+};
+
+IngredientSearch.propTypes = {
+	selectedIngredients: PropTypes.array,
+	allIngredients: PropTypes.array,
+	onIngredientChange: PropTypes.func,
 };

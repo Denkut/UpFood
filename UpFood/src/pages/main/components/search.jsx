@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 export const Search = ({ searchPhrase, onChange, className }) => {
@@ -17,4 +19,9 @@ export const Search = ({ searchPhrase, onChange, className }) => {
 			</div>
 		</div>
 	);
+};
+
+Search.protoType = {
+	searchPhrase: PropTypes.string.isRequired,
+	onChange: PropTypes.func.isRequired,
 };

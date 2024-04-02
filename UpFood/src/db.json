@@ -15,31 +15,23 @@
       "email": "upfood.ru@yandex.ru",
       "age": 38,
       "height": 127,
-      "goal": 3,
+      "goal": 2,
       "weight": 65,
       "fullName": "Den kutepov",
       "cart": {
         "meals": [
           {
-            "id": "002",
-            "count": 1
-          },
-          {
-            "id": "001",
+            "id": "003",
             "count": 1
           }
         ],
         "rations": [
           {
-            "id": "_YH-696",
+            "id": "002",
             "count": 1
           },
           {
-            "id": "002",
-            "count": 2
-          },
-          {
-            "id": "okCHDVL",
+            "id": "fcVL-HY",
             "count": 1
           }
         ]
@@ -53,12 +45,7 @@
       "id": "JahlbFf",
       "cart": {
         "meals": [],
-        "rations": [
-          {
-            "id": "002",
-            "count": 1
-          }
-        ]
+        "rations": []
       },
       "allergenicIngredients": [
         "16"
@@ -156,70 +143,8 @@
           ]
         }
       ],
-      "image_url": "https://www.yamdiet.com/wp-content/uploads/dsc_0095-scaled.jpg",
-      "content": "Рацион 1 подходит для поддержания формы"
-    },
-    {
-      "id": "006",
-      "title": "Рацион 2",
-      "goal": "1",
-      "meals": [
-        {
-          "items": [
-            {
-              "mealId": "004",
-              "quantity": 1,
-              "title": "Сырники из творога с кокосом",
-              "calories": "149",
-              "ingredients": [
-                1,
-                2
-              ],
-              "price": "200"
-            }
-          ]
-        },
-        {
-          "items": [
-            {
-              "mealId": "007",
-              "quantity": 2,
-              "title": "Куриные крылья в кисло-сладком соусе",
-              "calories": "280",
-              "ingredients": [
-                7,
-                27,
-                28,
-                29,
-                30,
-                37
-              ],
-              "price": "250"
-            }
-          ]
-        },
-        {
-          "items": [
-            {
-              "mealId": "018",
-              "quantity": 1,
-              "title": "Фаршированные перцы с мясом и рисом",
-              "calories": "350",
-              "ingredients": [
-                3,
-                7,
-                24,
-                25,
-                29,
-                36
-              ],
-              "price": "320"
-            }
-          ]
-        }
-      ],
       "image_url": "https://psychbook.ru/assets/i/ai/4/4/1/i/2988970.jpg",
-      "content": " КБЖУ в рационе: Данамически задать. С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет оценить значение существенных финансовых и административных условий."
+      "content": "Рацион 1 подходит для поддержания формы"
     },
     {
       "title": "Рацион 1 - Набрать вес",
@@ -228,20 +153,16 @@
         {
           "items": [
             {
-              "mealId": "016",
+              "mealId": "006",
               "quantity": 1,
-              "type": "Ужин",
-              "title": "Куриный суп с лапшой",
-              "calories": "320",
+              "type": "Завтрак",
+              "title": "Творожная запеканка с изюмом",
+              "calories": "148",
               "ingredients": [
-                7,
-                26,
-                27,
-                29,
-                37,
-                39
+                1,
+                2
               ],
-              "price": "300"
+              "price": "200"
             }
           ]
         },
@@ -306,7 +227,7 @@
                 1,
                 2
               ],
-              "price": 200
+              "price": "200"
             }
           ]
         },
@@ -371,7 +292,7 @@
                 1,
                 2
               ],
-              "price": 200
+              "price": "200"
             }
           ]
         },
@@ -456,9 +377,7 @@
       "type": "Обед",
       "calories": "450",
       "goal": "2",
-      "dietCategory": [
-        "мясоеды"
-      ],
+      "dietCategory": "мясоеды",
       "ingredients": [
         7,
         6,
@@ -479,9 +398,7 @@
       "type": "Ужин",
       "calories": "400",
       "goal": "3",
-      "dietCategory": [
-        "вегетарианство"
-      ],
+      "dietCategory": "вегетарианство",
       "ingredients": [
         26,
         6,
@@ -497,12 +414,10 @@
       "id": "004",
       "title": "Сырники из творога с кокосом",
       "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/6ca491a009cbf8c605f7ed563c4b0874.png",
-      "type": "Ужин",
+      "type": "Завтрак",
       "calories": "149",
-      "goal": "3",
-      "dietCategory": [
-        "вегетарианство"
-      ],
+      "goal": "1",
+      "dietCategory": "вегетарианство",
       "ingredients": [
         1,
         2
@@ -513,15 +428,15 @@
       "id": "005",
       "title": "Овсяные оладьи",
       "image_url": "https://hosting.renderforestsites.com/20951507/1121108/media/445de8fe4f1e3b2cffe01835db6395f0.png",
-      "type": "Обед",
-      "calories": "157",
-      "goal": "2",
-      "dietCategory": "глютен-фри",
+      "type": "Завтрак",
+      "calories": "158",
+      "goal": "1",
+      "dietCategory": "сыроеды",
       "ingredients": [
         1,
         2
       ],
-      "price": 400
+      "price": "400"
     },
     {
       "id": "006",
@@ -530,14 +445,12 @@
       "type": "Завтрак",
       "calories": "148",
       "goal": "1",
-      "dietCategory": [
-        "вегетарианство"
-      ],
+      "dietCategory": "глютен-фри",
       "ingredients": [
         1,
         2
       ],
-      "price": 200
+      "price": "200"
     },
     {
       "id": "007",
@@ -546,9 +459,7 @@
       "type": "Обед",
       "calories": "280",
       "goal": "3",
-      "dietCategory": [
-        "мясоеды"
-      ],
+      "dietCategory": "мясоеды",
       "ingredients": [
         7,
         27,
@@ -566,9 +477,7 @@
       "type": "Ужин",
       "calories": "300",
       "goal": "3",
-      "dietCategory": [
-        "рыбоядение"
-      ],
+      "dietCategory": "рыбоядение",
       "ingredients": [
         23,
         34,
@@ -585,9 +494,7 @@
       "type": "Ужин",
       "calories": "400",
       "goal": "1",
-      "dietCategory": [
-        "рыбоядение"
-      ],
+      "dietCategory": "рыбоядение",
       "ingredients": [
         23,
         24,
@@ -604,9 +511,7 @@
       "type": "Обед",
       "calories": "320",
       "goal": "3",
-      "dietCategory": [
-        "вегетарианство"
-      ],
+      "dietCategory": "вегетарианство",
       "ingredients": [
         3,
         6,
@@ -643,9 +548,7 @@
       "type": "Ужин",
       "calories": "350",
       "goal": "3",
-      "dietCategory": [
-        "рыбоядение"
-      ],
+      "dietCategory": "рыбоядение",
       "ingredients": [
         24,
         17,
@@ -661,9 +564,7 @@
       "type": "Обед",
       "calories": "250",
       "goal": "1",
-      "dietCategory": [
-        "мясоеды"
-      ],
+      "dietCategory": "мясоеды",
       "ingredients": [
         11,
         28,
@@ -680,9 +581,7 @@
       "type": "Ужин",
       "calories": "280",
       "goal": "3",
-      "dietCategory": [
-        "вегетарианство"
-      ],
+      "dietCategory": "вегетарианство",
       "ingredients": [
         6,
         12,
@@ -700,9 +599,7 @@
       "type": "Обед",
       "calories": "300",
       "goal": "3",
-      "dietCategory": [
-        "вегетарианство"
-      ],
+      "dietCategory": "вегетарианство",
       "ingredients": [
         6,
         16,
@@ -720,9 +617,7 @@
       "type": "Ужин",
       "calories": "320",
       "goal": "3",
-      "dietCategory": [
-        "мясоеды"
-      ],
+      "dietCategory": "мясоеды",
       "ingredients": [
         7,
         26,
@@ -740,9 +635,7 @@
       "type": "Обед",
       "calories": "400",
       "goal": "1",
-      "dietCategory": [
-        "мясоеды"
-      ],
+      "dietCategory": "мясоеды",
       "ingredients": [
         26,
         27,
@@ -760,9 +653,7 @@
       "type": "Ужин",
       "calories": "350",
       "goal": "3",
-      "dietCategory": [
-        "мясоеды"
-      ],
+      "dietCategory": "мясоеды",
       "ingredients": [
         3,
         7,
@@ -780,9 +671,7 @@
       "type": "Ужин",
       "calories": "320",
       "goal": "1",
-      "dietCategory": [
-        "вегетарианство"
-      ],
+      "dietCategory": "вегетарианство",
       "ingredients": [
         11,
         21,
@@ -796,9 +685,9 @@
       "image_url": "https://proprikol.ru/wp-content/uploads/2020/04/kartinki-borshh-11.jpg",
       "title": "Борщ",
       "type": "Обед",
-      "calories": 120,
+      "calories": "120",
       "dietCategory": "лактоза-фри",
-      "price": 150,
+      "price": "150",
       "ingredients": [
         1,
         6,
@@ -812,9 +701,9 @@
       "image_url": "https://mb.web.sapo.io/d1e4c24a683970aa05b3419c507cba52018af73e.jpg",
       "title": "Мороженое ",
       "type": "Обед",
-      "calories": 26,
+      "calories": "26",
       "dietCategory": "веганство",
-      "price": 45,
+      "price": "45",
       "ingredients": [
         8,
         9,
@@ -826,7 +715,7 @@
   ],
   "sessions": [
     {
-      "hash": "0.58539447597876148599027601449051871895790100097656",
+      "hash": "0.87122420521801524628813240269664674997329711914063",
       "user": {
         "id": "JahlbFP",
         "login": "anton",
@@ -835,7 +724,7 @@
         "roleId": 0,
         "fullName": "Den kutepov",
         "weight": 65,
-        "goal": 1,
+        "goal": 3,
         "height": 127,
         "age": 38,
         "email": "upfood.ru@yandex.ru",
@@ -846,32 +735,15 @@
           "11"
         ],
         "cart": {
-          "meals": [
-            {
-              "id": "002",
-              "count": 1
-            },
-            {
-              "id": "005",
-              "count": 1
-            },
-            {
-              "id": "001",
-              "count": 1
-            }
-          ],
+          "meals": [],
           "rations": [
             {
-              "id": "_YH-696",
+              "id": "006",
               "count": 1
             },
             {
-              "id": "002",
+              "id": "fcVL-HY",
               "count": 2
-            },
-            {
-              "id": "okCHDVL",
-              "count": 1
             }
           ]
         }
@@ -879,7 +751,7 @@
       "id": 1
     },
     {
-      "hash": "0.49062087660402808886317416181555017828941345214844",
+      "hash": "0.19310035304759054497480974532663822174072265625000",
       "user": {
         "id": "JahlbFP",
         "login": "anton",
@@ -888,7 +760,7 @@
         "roleId": 0,
         "fullName": "Den kutepov",
         "weight": 65,
-        "goal": 2,
+        "goal": 3,
         "height": 127,
         "age": 38,
         "email": "upfood.ru@yandex.ru",
@@ -899,32 +771,15 @@
           "11"
         ],
         "cart": {
-          "meals": [
-            {
-              "id": "002",
-              "count": 1
-            },
-            {
-              "id": "005",
-              "count": 1
-            },
-            {
-              "id": "001",
-              "count": 1
-            }
-          ],
+          "meals": [],
           "rations": [
             {
-              "id": "_YH-696",
+              "id": "006",
               "count": 1
             },
             {
-              "id": "002",
+              "id": "fcVL-HY",
               "count": 2
-            },
-            {
-              "id": "okCHDVL",
-              "count": 1
             }
           ]
         }

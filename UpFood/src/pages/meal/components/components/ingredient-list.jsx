@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const IngredientList = ({ selectedIngredients, allIngredients }) => {
 	return (
@@ -16,4 +17,9 @@ export const IngredientList = ({ selectedIngredients, allIngredients }) => {
 			</ul>
 		</div>
 	);
+};
+
+IngredientList.propTypes = {
+	selectedIngredients: PropTypes.array,
+	allIngredients: PropTypes.array,
 };

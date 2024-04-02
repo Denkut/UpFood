@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { AddToCartButton } from '../../../components';
 import { goals } from '../../../bff/constants';
@@ -15,7 +16,6 @@ export const RationCard = ({
 	totalPrices,
 	mealTitles,
 	content,
-	type,
 	isMarked,
 	userGoal,
 }) => {
@@ -65,7 +65,6 @@ export const RationCard = ({
 				/>
 				<div className="flex flex-grow flex-col justify-between p-6">
 					<h4 className="mb-2 text-xl font-bold">{title}</h4>
-					<p className="mb-2 text-gray-700">{type}</p>
 					<div className="mb-4 flex items-center">
 						<span className="text-gray-500">
 							Общие калории: {totalCalories}
@@ -88,16 +87,28 @@ export const RationCard = ({
 				</div>
 			</Link>
 
-			{roleId === ROLE.ADMIN ||
-				(roleId === ROLE.CLIENT && (
-					<div className="bg-gray-100 p-4">
-						<AddToCartButton
-							itemId={id}
-							itemType="ration"
-							className="w-full rounded-full bg-amber-800 px-4 py-2 font-bold text-white hover:bg-amber-700 focus:outline-none"
-						/>
-					</div>
-				))}
+			{roleId !== ROLE.GUEST && (
+				<div className="bg-gray-100 p-4">
+					<AddToCartButton
+						itemId={id}
+						itemType="ration"
+						className="w-full rounded-full bg-amber-800 px-4 py-2 font-bold text-white hover:bg-amber-700 focus:outline-none"
+					/>
+				</div>
+			)}
 		</div>
 	);
+};
+
+RationCard.propTypes = {
+	id: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+	imageUrl: PropTypes.string.isRequired,
+	goal: PropTypes.string.isRequired,
+	totalCalories: PropTypes.number.isRequired,
+	totalPrices: PropTypes.number.isRequired,
+	mealTitles: PropTypes.array.isRequired,
+	content: PropTypes.string.isRequired,
+	isMarked: PropTypes.bool.isRequired,
+	userGoal: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
 };

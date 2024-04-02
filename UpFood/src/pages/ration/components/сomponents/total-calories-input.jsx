@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const TotalCaloriesInput = ({ totalCalories, onChange }) => {
 	return (
@@ -16,4 +17,9 @@ export const TotalCaloriesInput = ({ totalCalories, onChange }) => {
 			</div>
 		</div>
 	);
+};
+
+TotalCaloriesInput.propTypes = {
+	totalCalories: PropTypes.func.isRequired,
+	onChange: PropTypes.func.isRequired,
 };

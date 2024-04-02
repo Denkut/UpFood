@@ -10,6 +10,7 @@ import {
 	IngredientSearch,
 	NumberInput,
 	SelectInput,
+	SelectInputGoal,
 	TextInput,
 } from '../components/components';
 import {
@@ -18,6 +19,7 @@ import {
 	goals,
 	ingredients as allIngredients,
 } from '../../../bff/constants';
+import { PROP_TYPE } from '../../../constants';
 
 export const MealEdit = ({
 	meal: {
@@ -169,7 +171,7 @@ export const MealEdit = ({
 					allIngredients={allIngredients}
 				/>
 
-				<SelectInput
+				<SelectInputGoal
 					label="Цель:"
 					options={goals}
 					value={editedData.goal}
@@ -178,4 +180,8 @@ export const MealEdit = ({
 			</div>
 		</div>
 	);
+};
+
+MealEdit.propTypes = {
+	meal: PROP_TYPE.MEAL,
 };

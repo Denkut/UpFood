@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const ContentTextarea = ({ content, onContentChange }) => {
 	return (
@@ -14,4 +15,9 @@ export const ContentTextarea = ({ content, onContentChange }) => {
 			/>
 		</div>
 	);
+};
+
+ContentTextarea.propTypes = {
+	content: PropTypes.string.isRequired,
+	onContentChange: PropTypes.func.isRequired,
 };

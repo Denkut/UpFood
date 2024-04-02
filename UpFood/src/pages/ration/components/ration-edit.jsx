@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { saveRationAsync } from '../../../actions';
 import { useServerRequest } from '../../../hooks';
@@ -155,12 +156,7 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 						onChange={handleGoalChange}
 						className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight shadow focus:outline-none"
 					>
-						<option
-							value=""
-							selected
-							disabled={!editedData.goal}
-							hidden
-						>
+						<option value="" disabled={!editedData.goal} hidden>
 							{editedData.goal
 								? editedData.goal
 								: 'Выберите цель'}
@@ -367,4 +363,10 @@ export const RationEdit = ({ ration, meals, isCreating }) => {
 			</div>
 		</div>
 	);
+};
+
+RationEdit.propTypes = {
+	ration: PropTypes.object.isRequired,
+	meals: PropTypes.array.isRequired,
+	isCreating: PropTypes.bool,
 };

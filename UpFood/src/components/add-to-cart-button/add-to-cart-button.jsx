@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { selectCart, selectUser } from '../../selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { server } from '../../bff';
@@ -53,4 +54,9 @@ export const AddToCartButton = ({ itemId, itemType, className }) => {
 			{serverError && <p style={{ color: 'red' }}>{serverError}</p>}
 		</div>
 	);
+};
+
+AddToCartButton.propTypes = {
+	itemId: PropTypes.string.isRequired,
+	itemType: PropTypes.string.isRequired,
 };

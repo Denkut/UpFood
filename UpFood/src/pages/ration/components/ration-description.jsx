@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { goals } from '../../../bff/constants';
 
 export const RationDescription = ({ ration }) => {
@@ -26,4 +27,8 @@ export const RationDescription = ({ ration }) => {
 			</div>
 		</div>
 	);
+};
+
+RationDescription.propTypes = {
+	ration: PropTypes.object.isRequired,
 };

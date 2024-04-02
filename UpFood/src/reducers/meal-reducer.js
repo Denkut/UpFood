@@ -6,8 +6,9 @@ const initialMealState = {
 	imageUrl: '',
 	type: '',
 	calories: '',
-	dietCategory: [],
+	dietCategory: '',
 	price: '',
+	goal: '',
 };
 
 export const mealReducer = (state = initialMealState, action) => {

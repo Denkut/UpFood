@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
 	ArrowLeftEndOnRectangleIcon,
 	ShoppingCartIcon,
@@ -81,4 +82,15 @@ export const HeaderMobile = ({
 			</div>
 		</div>
 	);
+};
+
+HeaderMobile.propTypes = {
+	updatedNavigation: PropTypes.arrayOf(
+		PropTypes.shape({
+			name: PropTypes.string.isRequired,
+			to: PropTypes.string.isRequired,
+		}),
+	).isRequired,
+	onLogout: PropTypes.func.isRequired,
+	cartItemCount: PropTypes.number.isRequired,
 };

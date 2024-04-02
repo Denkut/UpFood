@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { UpdateQuantityButton } from '../../../components';
+import { PROP_TYPE } from '../../../constants';
 
 export const MealItem = ({ item, handleRemoveItem, isLoading, count }) => {
 	return (
@@ -31,4 +33,11 @@ export const MealItem = ({ item, handleRemoveItem, isLoading, count }) => {
 			</div>
 		</div>
 	);
+};
+
+MealItem.propTypes = {
+	item: PROP_TYPE.ITEM,
+	handleRemoveItem: PropTypes.func.isRequired,
+	isLoading: PropTypes.bool.isRequired,
+	count: PropTypes.number.isRequired,
 };
