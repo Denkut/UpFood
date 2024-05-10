@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c9cd2a46.css",
+    "main.js": "/static/js/main.d4541628.js",
+    "static/media/Rations.jpg": "/static/media/Rations.b794d356ce78b0701bf0.jpg",
+    "static/media/Logo.png": "/static/media/Logo.8bfd0eb39c77721a3e25.png",
+    "index.html": "/index.html",
+    "main.c9cd2a46.css.map": "/static/css/main.c9cd2a46.css.map",
+    "main.d4541628.js.map": "/static/js/main.d4541628.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c9cd2a46.css",
+    "static/js/main.d4541628.js"
+  ]
+}
