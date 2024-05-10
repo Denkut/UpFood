@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const { generate } = require("../helper/token");
 const ROLES = require("../constants/roles");
-const { getCart } = require("../controllers/cart");
+const { getCart } = require("./cart");
 
 //register
 async function register(login, password, profileData) {
