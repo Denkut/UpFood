@@ -11,10 +11,10 @@ const dietCategoriesRouter = require("./routes/constants/diets");
 const port = 3003;
 const app = express();
 
+app.use(express.static("../Frontend/build"));
+
 app.use(cookieParser());
 app.use(express.json());
-
-app.use(express.static("../Frontend/build"));
 
 app.use("/", routes);
 
