@@ -262,7 +262,7 @@ export const Profile = () => {
             {...register("goal", {
               onChange: () => setServerError(null),
             })}
-            value={user.goal || ""}
+            value={user.goal}
           >
             <option value="">Не указано</option>
             {goals.length > 0 &&
@@ -290,7 +290,7 @@ export const Profile = () => {
             {...register("diet", {
               onChange: () => setServerError(null),
             })}
-            value={user.diet || ""}
+            value={user.diet}
           >
             <option value="">Не указано</option>
             {diets.length > 0 &&
