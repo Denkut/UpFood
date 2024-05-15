@@ -1,11 +1,11 @@
-FROM node:18
+FROM node:20
 
 WORKDIR /usr/src/app
 
 COPY . .
 
 WORKDIR /usr/src/app/Frontend
-RUN npm cache clean --force
+RUN npm install -g npm@latest
 RUN npm i
 RUN npm run build
 
