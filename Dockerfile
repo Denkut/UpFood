@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 WORKDIR /usr/src/app/Frontend
+RUN npm cache clean --force
 RUN npm i
 RUN npm run build
 
