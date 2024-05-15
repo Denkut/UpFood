@@ -53,7 +53,7 @@ export const Authorization = () => {
   useResetForm(reset);
 
   const onSubmit = ({ login, password }) => {
-    request("/login", "POST", { login, password }).then(({ error, user }) => {
+    request("api/login", "POST", { login, password }).then(({ error, user }) => {
       if (error) {
         setServerError(`Ошибка запроса: ${error}`);
         return;

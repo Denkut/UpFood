@@ -30,8 +30,22 @@ export const RationEdit = ({ ration, meals, types, goals, isCreating }) => {
         total_prices: "",
         meals: [],
       });
+    } else {
+      calculateTotalCalories();
     }
   }, [isCreating]);
+
+  const calculateTotalCalories = () => {
+    const totalCaloriesMeals = editedData.meals.reduce((total, meal) => {
+      const selectedMeal = meals.find((m) => m.id === meal.id);
+      return total + selectedMeal.calories * meal.quantity;
+    }, 0);
+
+    setEditedData((prevData) => ({
+      ...prevData,
+      total_calories: totalCaloriesMeals,
+    }));
+  };
 
   const handleSave = () => {
     const { total_calories, ...editedDataToSendWithoutTotalCalories } =
@@ -164,7 +178,7 @@ export const RationEdit = ({ ration, meals, types, goals, isCreating }) => {
           <span className="mr-2 items-center text-xl font-semibold text-emerald-900">
             Блюда:
           </span>
-          
+
           <div className="flex flex-col">
             {editedData.meals.map((meal, id) => (
               <div key={id} className="mt-4">

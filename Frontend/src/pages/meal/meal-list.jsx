@@ -50,7 +50,7 @@ export const MealList = () => {
           dietsData,
         ] = await Promise.all([
           request(
-            `/meals?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`
+            `api/meals?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`
           ),
           fetchData("types"),
           fetchData("ingredients"),

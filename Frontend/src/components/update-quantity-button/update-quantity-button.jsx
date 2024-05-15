@@ -34,7 +34,7 @@ export const UpdateQuantityButton = ({ itemId, quantity }) => {
     setIsLoading(true);
     try {
       const { error, data } = await request(
-        `/cart/${user.id}/${itemId}`,
+        `/api/cart/${user.id}/${itemId}`,
         "PATCH",
         { quantity: newQuantity }
       );

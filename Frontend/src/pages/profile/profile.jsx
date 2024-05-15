@@ -118,7 +118,7 @@ export const Profile = () => {
   const onSubmit = async (dataUser) => {
     setIsLoading(true);
 
-    request(`/profile/${user.id}`, "PATCH", dataUser).then(
+    request(`/api/profile/${user.id}`, "PATCH", dataUser).then(
       ({ error, data }) => {
         setIsLoading(false);
         if (error) {

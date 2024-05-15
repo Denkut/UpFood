@@ -33,7 +33,7 @@ export const RationList = () => {
         const {
           data: { rations, lastPage },
         } = await request(
-          `/rations?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`
+          `api/rations?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`
         );
         dispatch(setRations(rations));
         setLastPage(lastPage);

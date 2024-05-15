@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
   PencilSquareIcon,
@@ -24,7 +23,7 @@ export const RationContent = ({ ration, meals, types, goals }) => {
         text: "Удалить рацион?",
         onConfirm: () => {
           dispatch(removeRationAsync(id)).then(() => {
-            navigate(-1);
+            navigate("/rations");
           });
           dispatch(CLOSE_MODAL);
         },

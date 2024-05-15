@@ -22,7 +22,7 @@ export const MealContent = ({ meal, diets, types }) => {
         text: "Удалить блюдо?",
         onConfirm: () => {
           dispatch(removeMealAsync(id)).then(() => {
-            navigate(-1);
+            navigate("/meals");
           });
           dispatch(CLOSE_MODAL);
         },

@@ -51,7 +51,7 @@ export const Ration = () => {
     fetchDataForAll();
 
     dispatch(RESET_RATION_DATA);
-    request("/meals")
+    request("/api/meals")
       .then(({ data: { meals } }) => {
         dispatch(setMealsAll(meals));
         setIsLoading(false);

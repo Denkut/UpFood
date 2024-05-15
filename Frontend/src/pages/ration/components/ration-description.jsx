@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 export const RationDescription = ({
   ration,
-  types,
-  ingredients,
   goals,
-  diets,
 }) => {
   const goal = goals[0].goal.find((item) => item.id === ration.goal);
 

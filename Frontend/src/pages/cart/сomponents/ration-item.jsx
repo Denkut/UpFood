@@ -20,15 +20,15 @@ export const RationItem = ({
           className="mr-4 h-24 w-24 cursor-pointer rounded object-cover"
         />
         <div className="flex-1">
-          <p
+          <h4
             onClick={() => toggleVisibleMeals(ration.id)}
             className="cursor-pointer text-lg font-bold hover:text-emerald-700"
           >
             {ration.title}
-          </p>
+          </h4>
         </div>
         <div className="flex items-center space-x-4">
-          <p className="text-lg font-bold">{ration.totalPrice} ₽</p>
+          <h4 className="text-lg font-bold">{ration.totalPrice} ₽</h4>
           <UpdateQuantityButton
             itemId={ration.id}
             quantity={quantity}
@@ -58,10 +58,10 @@ export const RationItem = ({
                 className="mr-4 h-16 w-16 rounded object-cover"
               />
               <div className="flex-1">
-                <p className="text-lg font-bold">{meal.title}</p>
+                <h4 className="text-lg font-bold">{meal.title}</h4>
               </div>
               <div className="flex items-center space-x-4">
-                <p className="text-lg font-bold">{meal.price} ₽</p>
+                <h4 className="text-lg font-bold">{meal.price} ₽</h4>
               </div>
             </div>
           ))}

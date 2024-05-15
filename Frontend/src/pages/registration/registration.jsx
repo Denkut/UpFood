@@ -66,7 +66,7 @@ export const Registration = () => {
   useResetForm(reset);
 
   const onSubmit = ({ login, password, email }) => {
-    request("/register", "POST", { login, password, email }).then(
+    request("api/register", "POST", { login, password, email }).then(
       ({ error, user }) => {
         if (error) {
           setServerError(`Ошибка запроса: ${error}`);

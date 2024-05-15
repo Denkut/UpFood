@@ -20,7 +20,7 @@ export const AddToCartButton = ({ itemId, itemType, className }) => {
           : { rations: [{ id: itemId, quantity: 1 }] };
 
       const { error, data: updatedCart } = await request(
-        `/cart/${user.id}`,
+        `/api/cart/${user.id}`,
         "POST",
         productData
       );

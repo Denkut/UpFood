@@ -21,7 +21,7 @@ export const UserRow = ({
   };
 
   const onRoleSave = (userId, newUserRoleId) => {
-    request(`/users/${userId}`, "PATCH", { roleId: newUserRoleId }).then(() => {
+    request(`api/users/${userId}`, "PATCH", { roleId: newUserRoleId }).then(() => {
       setInitialRoleId(newUserRoleId);
     });
   };

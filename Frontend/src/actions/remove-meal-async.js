@@ -1,3 +1,4 @@
 import { request } from "../utils";
 
-export const removeMealAsync = (id) => () => request(`/meals/${id}`, "DELETE");
+export const removeMealAsync = (id) => () =>
+  request(`/api/meals/${id}`, "DELETE");

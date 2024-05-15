@@ -18,7 +18,7 @@ export const Users = () => {
       return;
     }
 
-    Promise.all([request("/users"), request("/users/roles")]).then(
+    Promise.all([request("api/users"), request("api/users/roles")]).then(
       ([usersRes, rolesRes]) => {
         if (usersRes.error || rolesRes.error) {
           setErrorMessage(usersRes.error || rolesRes.error);
@@ -36,7 +36,7 @@ export const Users = () => {
       return;
     }
 
-    request(`/users/${userId}`, "DELETE").then(() => {
+    request(`api/users/${userId}`, "DELETE").then(() => {
       setShouldUpdateUserList(!shouldUpdateUserList);
     });
   };

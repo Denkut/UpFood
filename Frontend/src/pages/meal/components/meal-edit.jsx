@@ -150,7 +150,7 @@ export const MealEdit = ({
           />
         </div>
         <div className="mb-2 d-flex align-items-center text-gray-900">
-          <TextInput
+          <NumberInput
             label="Цена:"
             value={editedData.price}
             onChange={(value) => handleInputChange("price", value)}

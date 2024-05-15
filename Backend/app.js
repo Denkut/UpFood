@@ -17,7 +17,7 @@ app.use(express.static("../Frontend/build"));
 app.use(cookieParser());
 app.use(express.json());
 
-app.use("/", routes);
+app.use("/api", routes);
 
 app.use("/api/constants", typesRouter);
 app.use("/api/constants", ingredientsRouter);

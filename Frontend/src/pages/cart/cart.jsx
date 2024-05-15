@@ -34,15 +34,16 @@ export const Cart = () => {
       [rationId]: !prevVisibleMeals[rationId],
     }));
   };
+
   useEffect(() => {
     const fetchMealsAndRations = async () => {
-      if (([!ROLE.GUEST], userRole)) {
+      if (ROLE.GUEST === userRole) {
         return;
       }
       if (user) {
         setIsLoading(true);
         try {
-          const cartsResponse = await request(`/cart/${user.id}`);
+          const cartsResponse = await request(`/api/cart/${user.id}`);
           const { meals, rations } = cartsResponse.data || {};
 
           const mealsToDisplay = meals.filter((meal) =>
@@ -76,12 +77,7 @@ export const Cart = () => {
               };
             });
 
-          setFilteredRations(
-            rationsToDisplay.map((ration) => ({
-              ...ration,
-              totalPrice: ration.totalPrices,
-            }))
-          );
+          setFilteredRations(rationsToDisplay);
 
           const mealsObj = meals.reduce((acc, meal) => {
             acc[meal.id] = meal;
@@ -139,7 +135,10 @@ export const Cart = () => {
     setIsLoading(true);
 
     try {
-      const { error } = await request(`/cart/${user.id}/${itemId}`, "DELETE");
+      const { error } = await request(
+        `/api/cart/${user.id}/${itemId}`,
+        "DELETE"
+      );
 
       if (error) {
         setServerError(`Ошибка запроса: ${error}`);
@@ -151,7 +150,7 @@ export const Cart = () => {
           prevRations.filter((item) => item.id !== itemId && item.type !== type)
         );
 
-        const updatedCartResponse = await request(`/cart/${user.id}`);
+        const updatedCartResponse = await request(`/api/cart/${user.id}`);
         const { meals: updatedMeals, rations: updatedRations } =
           updatedCartResponse.data || {};
 

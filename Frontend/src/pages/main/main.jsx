@@ -88,10 +88,10 @@ export const Main = () => {
     const fetchMealsAndRations = async () => {
       try {
         const mealsResponse = await request(
-          `/meals?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`
+          `api/meals?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`
         );
         const rationsResponse = await request(
-          `/rations?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`
+          `api/rations?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`
         );
 
         const { meals, lastPage: mealsLastPage } = mealsResponse.data;
@@ -332,9 +332,7 @@ export const Main = () => {
                     }
                   )}
                 </div>
-              ) : (
-                <div>Загрузка рационов...</div>
-              )}
+              ) : null}
 
               <h2 className="mb-6 mt-10 text-3xl font-bold text-gray-900">
                 Наши блюда
@@ -380,15 +378,16 @@ export const Main = () => {
                     }
                   )}
                 </div>
-              ) : (
-                <div>Загрузка блюд...</div>
-              )}
+              ) : null}
             </>
           )}
 
-          {lastPage > 1 && (meals.length > 0 || rations.length > 0) && (
-            <Pagination setPage={setPage} page={page} lastPage={lastPage} />
-          )}
+          {lastPage > 1 &&
+            (meals.length > 0 ||
+              rations.length > 0 ||
+              recommendedItems.length > 0) && (
+              <Pagination setPage={setPage} page={page} lastPage={lastPage} />
+            )}
         </>
       )}
     </div>
