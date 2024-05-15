@@ -11,6 +11,6 @@ RUN npm run build
 WORKDIR /usr/src/app/Backend
 RUN npm i
 
-EXPOSE 3001
+EXPOSE 3003
 
 CMD [ "node", "app.js" ]
