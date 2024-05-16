@@ -5,7 +5,6 @@ WORKDIR /usr/src/app
 COPY . .
 
 WORKDIR /usr/src/app/Frontend
-RUN npm install -g npm@latest
 RUN npm i
 RUN npm run build
 
