@@ -16,7 +16,7 @@
 
 ## 🛠️ Стек
 
-- React + TypeScript
+- React 
 - Context API
 - Styled Components
 - LocalStorage для хранения корзины
