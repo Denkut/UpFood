@@ -32,5 +32,5 @@ cd UpFood
 npm install
 npm run dev
 
-Видео работы
+Видео работы сайта
 https://github.com/user-attachments/assets/f2dcc0db-e95c-462b-8608-dfb85c800c3f
